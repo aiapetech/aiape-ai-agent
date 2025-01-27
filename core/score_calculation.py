@@ -106,12 +106,12 @@ class TokenInfo:
         for p in projects:
             ps = p.split(';')
             project_names += ps
-        # for project_name in set(project_names):
-        #     token_obj = self.get_token_info(project_name)
-        #     if token_obj is None:
-        #         print(f"Token {project_name} not found")
-        #         continue
-        #     self.get_token_data(token_obj)
+        for project_name in set(project_names):
+            token_obj = self.get_token_info(project_name)
+            if token_obj is None:
+                print(f"Token {project_name} not found")
+                continue
+            self.get_token_data(token_obj)
         df_token_market_data = pd.read_sql(f"SELECT * FROM token_market_data", postgres_engine)
         values = df_token_market_data.to_dict("records")
         for token in values: 

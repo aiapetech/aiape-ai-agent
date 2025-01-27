@@ -1,0 +1,18 @@
+cookie:
+  expiry_days: 30
+  key: zenlab # Must be string
+  name: random_cookie_name
+
+cookie:
+  expiry_days: 30
+  key: zenlab # Must be a string
+  name: login
+credentials:
+  usernames:
+    admin:
+      email: hoquocbao93@gmail.com
+      failed_login_attempts: 0 # Will be managed automatically
+      first_name: Admin
+      last_name: Super
+      logged_in: False # Will be managed automatically
+      password: rvprSk6OdpXFAl # Will be hashed automatically
