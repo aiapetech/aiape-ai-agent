@@ -16,3 +16,5 @@ credentials:
       last_name: Super
       logged_in: False # Will be managed automatically
       password: rvprSk6OdpXFAl # Will be hashed automatically
+
+

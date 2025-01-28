@@ -15,6 +15,7 @@ def get_profiles():
     profiles = pd.read_sql("SELECT * FROM profiles", engine)
     return profiles
 try:
+    #st.session_state['authentication_status'] = True
     df_post = get_posts_data()
     df_profile = get_profiles()
     col1, col2, col3 = st.columns([1,1,1])
