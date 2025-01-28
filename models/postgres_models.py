@@ -18,7 +18,7 @@ from sqlalchemy.dialects import postgresql #ARRAY contains requires dialect spec
 class BaseSQLModel(SQLModel):
     class Config:
         from_attributes = True
-    id: int= Field( primary_key=True)
+    id: int= Field(default=None, primary_key=True)
     created_at: datetime = Field(default_factory=datetime.utcnow)
     updated_at: datetime = Field(default_factory=datetime.utcnow)
     

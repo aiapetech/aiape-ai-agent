@@ -61,12 +61,17 @@ if "authenticated" not in st.session_state:
    
 data_page = st.Page("./data/data_management.py", title="Post Management", icon=":material/add_circle:")
 data_processing_page = st.Page("./data/post_processing.py", title="Post Processing", icon=":material/transform:")
-report_page = st.Page("./data/report.py", title="Reports", icon=":material/insert_chart_outlined:")
+report_page = st.Page("./data/report.py", title="Reports", icon=":material/insert_chart_outlined:")#
+db_admin = st.Page("./data/db_admin.py", title="DB Admin", icon=":material/insert_chart_outlined:")
+
 #pg = st.navigation([report_page])
 if st.session_state['authentication_status'] == True:
     pg = st.navigation(
             {
-                "Data": [data_page,data_processing_page],
+                "Data": [
+                        #db_admin,
+                         data_page,
+                         data_processing_page],
                 "Reports": [report_page],
             
             }
