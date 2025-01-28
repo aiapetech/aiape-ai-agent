@@ -16,6 +16,8 @@ from langchain.chains.combine_documents import create_stuff_documents_chain
 from langchain.schema.document import Document
 from stqdm import stqdm
 from core.config import settings as app_settings
+from langchain_google_genai import ChatGoogleGenerativeAI
+
 
 dotenv.load_dotenv()
 CWD = os.getcwd()
@@ -34,7 +36,10 @@ class PostProcessor:
         #self.vector_store_component = vector_store.QdrantVectorStoreComponent(embedding_model=self.text_embedder_component.embedding_model,collection_name=settings.QDRANT_COLLECTION_NAME)
         self.text_splitter_component = text_splitter.TextSplitterComponent(chunk_size=settings.CHUNCK_SIZE,chunk_overlap=settings.CHUNK_OVERLAP)
         self.postgres_engine = postgres_engine
-        self.llm = ChatOpenAI(model=settings.OPENAI_MODEL_NAME)
+        if settings.MODEL_PROVIDER == "openai":
+            self.llm = ChatOpenAI(model=settings.OPENAI_MODEL_NAME)
+        elif settings.MODEL_PROVIDER == "google":
+            self.llm = ChatGoogleGenerativeAI("gemini-1.5-flash")
         self.settings = settings
         
     def get_data_by_date(self,date: str, post_id: int = None):

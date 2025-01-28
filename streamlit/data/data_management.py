@@ -13,11 +13,9 @@ from sqlalchemy import text
 
 
 
-@st.cache_data
 def get_posts_data():
-    posts = pd.read_sql("SELECT p.posted_at, p.content, a.name author_name, p.link FROM posts p left join profiles a on p.author_id = a.id", engine)
+    posts = pd.read_sql("SELECT p.id post_id,p.posted_at, p.content, a.name author_name, p.link FROM posts p left join profiles a on p.author_id = a.id", engine)
     return posts
-@st.cache_data
 def get_profiles():
     profiles = pd.read_sql("SELECT * FROM profiles", engine)
     return profiles
@@ -62,7 +60,7 @@ try:
     if not start_date or not end_date:
         st.error("Please select at least one date.")
     else:
-        st.subheader("Authors")
+        st.subheader("Imported Authors")
         st.dataframe(df_profile[["id","name","link"]])
         if st.button('Add New Profile'):
             st.session_state['profile_form_intput']=True
@@ -84,8 +82,8 @@ try:
 
         datetime_filter = (df_post.posted_at >= start_datetime) & (df_post.posted_at <= end_datetime)
         data = df_post.loc[datetime_filter]
-        display_data = data[["posted_at","content","author_name","link"]]
-        st.subheader("Posts")
+        display_data = data[["post_id","posted_at","content","author_name","link"]].sort_values(by='posted_at',ascending=False)
+        st.subheader("Imported Posts")
         st.dataframe(display_data)
         if st.button('Add New Post'):
             st.session_state['post_form_intput']=True
@@ -112,5 +110,4 @@ try:
                 st.session_state['post_form_intput']=False
                 st.session_state.post_submitted = False
 except Exception as e:
-
     st.error(f"An error occurred: {e}")

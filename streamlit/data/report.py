@@ -44,7 +44,7 @@ try:
     df_post = get_postgres_data()
     col1, col2 = st.columns([1,2])
     with col1:
-        processed_date = st.date_input("Select a date to generate the report", df_post.posted_at.min(), df_post.posted_at.max())
+        processed_date = st.date_input("Select a date to generate the report",value=df_post.posted_at.min(), min_value= df_post.posted_at.min(),max_value= df_post.posted_at.max())
         start_datetime = datetime.combine(processed_date, datetime.min.time())
         end_datetime = datetime.combine(processed_date, datetime.max.time())
     with col2:

@@ -53,8 +53,11 @@ class TokenInfo:
             statement = select(Tokens).where(and_(Tokens.symbol == token_symbol, Tokens.search_text.like(search_text))).order_by(asc(Tokens.market_cap_rank))
             token_obj = session.exec(statement).first()
             if token_obj is None:
-                statement = select(Tokens).where(and_(Tokens.symbol == token_symbol, Tokens.name.like(token_name))).order_by(asc(Tokens.market_cap_rank))
+                statement = select(Tokens).where(and_(Tokens.symbol == token_symbol, Tokens.name.like(f'%{token_name}%'))).order_by(asc(Tokens.market_cap_rank))
                 token_obj = session.exec(statement).first()
+                if token_obj is None:
+                    statement = select(Tokens).where(or_(Tokens.symbol == token_symbol, Tokens.name.like(f'%{token_name}%'),Tokens.cgc_id.like((f'%{token_name}%')))).order_by(asc(Tokens.market_cap_rank))
+                    token_obj = session.exec(statement).first()
         return token_obj
     def get_token_data(self,token_obj):
         token_cgc_id = token_obj.cgc_id
@@ -103,6 +106,7 @@ class TokenInfo:
         projects = processed_results.project_name.unique().tolist()
         project_names = []
         scrores = []
+        token_symbols = []
         for p in projects:
             ps = p.split(';')
             project_names += ps
@@ -112,7 +116,8 @@ class TokenInfo:
                 print(f"Token {project_name} not found")
                 continue
             self.get_token_data(token_obj)
-        df_token_market_data = pd.read_sql(f"SELECT * FROM token_market_data", postgres_engine)
+            token_symbols.append(token_obj.symbol)
+        df_token_market_data = pd.read_sql(f"SELECT * FROM token_market_data where symbol in {tuple(token_symbols)}", postgres_engine)
         values = df_token_market_data.to_dict("records")
         for token in values: 
             score = self.calculate_score(token)

@@ -18,6 +18,8 @@ def process_post_data():
     settings = ChainSetting()
     if option == "Google Gemini":
         settings.MODEL_PROVIDER = "google"
+    else:
+        settings.MODEL_PROVIDER = "openai"
     date = processed_date.strftime("%Y-%m-%d")
     processor = PostProcessor(settings, postgres_engine)
     processor.analyze_posts(date=date)
@@ -37,9 +39,10 @@ try:
     if 'clicked' not in st.session_state:
         st.session_state.clicked = False
     df = get_postgres_data()
+    processed_results = get_processed_results()
     col1, col2 = st.columns([1,2])
     with col1:
-        processed_date = st.date_input("Select a date to process the data", df.posted_at.min(), df.posted_at.max())
+        processed_date = st.date_input("Select a date to process the data",value=df.posted_at.min(), min_value=df.posted_at.min(), max_value=df.posted_at.max())
         start_datetime = datetime.combine(processed_date, datetime.min.time())
         end_datetime = datetime.combine(processed_date, datetime.max.time())
     with col2:
@@ -70,7 +73,6 @@ try:
 
         if st.session_state.analyzed:
             st.success("Data processed successfully.")
-            processed_results = get_processed_results()
             st.subheader("Processed Results")
             datetime_filter = (processed_results.posted_at >= start_datetime) & (processed_results.posted_at <= end_datetime)
             processed_results = processed_results.loc[datetime_filter]

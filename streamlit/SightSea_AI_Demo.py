@@ -59,9 +59,9 @@ if "authenticated" not in st.session_state:
     elif st.session_state['authentication_status'] == None:
         st.warning('Please enter your username and password')
    
-data_page = st.Page("./data/data_management.py", title="Post Management", icon=":material/add_circle:")
-data_processing_page = st.Page("./data/post_processing.py", title="Post Processing", icon=":material/transform:")
-report_page = st.Page("./data/report.py", title="Reports", icon=":material/insert_chart_outlined:")#
+data_page = st.Page("./data/data_management.py", title="1. Import post", icon=":material/add_circle:")
+data_processing_page = st.Page("./data/post_processing.py", title="2. Analyze post", icon=":material/transform:")
+report_page = st.Page("./data/report.py", title="3. Generate Report", icon=":material/insert_chart_outlined:")#
 db_admin = st.Page("./data/db_admin.py", title="DB Admin", icon=":material/insert_chart_outlined:")
 
 #pg = st.navigation([report_page])
