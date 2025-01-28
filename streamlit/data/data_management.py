@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import sys, os
+from pathlib import Path
 CWD = Path(__file__).parents[2]
 sys.path.append(str(CWD))
 from core.db import engine
