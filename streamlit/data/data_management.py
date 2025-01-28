@@ -1,9 +1,11 @@
 import streamlit as st
 import pandas as pd
+import sys, os
+CWD = Path(__file__).parents[2]
+sys.path.append(str(CWD))
+from core.db import engine
 from sqlalchemy import create_engine
 from datetime import datetime
-
-engine = create_engine('postgresql+psycopg2://postgres:postgres@localhost:5432/sightsea-ai-demo')
 
 
 @st.cache_data
