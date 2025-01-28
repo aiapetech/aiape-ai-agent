@@ -11,7 +11,6 @@ from core.score_calculation import ScoreSetting, TokenInfo
 from models.postgres_models import ProcessedResults, TokenMarketData
 from sqlmodel import Session, select
 
-@st.cache_data
 def get_postgres_data():
     posts = pd.read_sql("SELECT p.posted_at, p.content, a.name author_name, p.link, p.status FROM posts p left join profiles a on p.author_id = a.id", postgres_engine)
     return posts
