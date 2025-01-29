@@ -60,7 +60,7 @@ try:
         datetime_filter = (df.posted_at >= start_datetime) & (df.posted_at <= end_datetime)
         data = df.loc[datetime_filter]
         available_status = data[data['status'] == 'processed']
-        if len(available_status) > 1:
+        if len(available_status) >= 1:
             st.session_state.analyzed = True
         else:
             st.session_state.analyzed = False

@@ -130,7 +130,7 @@ class TokenInfo:
                     }
                 )
         df_scrores = pd.DataFrame(scrores).sort_values(by='score',ascending=False)
-        df_token_market_data = pd.read_sql(f"SELECT * FROM token_market_data", postgres_engine)
+        df_token_market_data = pd.read_sql(f"SELECT * FROM token_market_data where date(last_updated) = '{processed_date}'", postgres_engine)
         return df_scrores, df_token_market_data
     
     # def run_score_calculation(self,posted_date,token=None):

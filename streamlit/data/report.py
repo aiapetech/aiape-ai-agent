@@ -59,7 +59,7 @@ try:
         data = df_post.loc[datetime_filter]
         available_status = data[data['status'] == 'processed']
         placeholder_post = st.empty()
-        if len(available_status) > 1:
+        if len(available_status) >= 1:
             st.session_state.analyzed = True
         else:
             st.session_state.analyzed = False
