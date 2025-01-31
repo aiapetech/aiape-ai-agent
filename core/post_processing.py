@@ -249,5 +249,5 @@ class PostProcessor:
 if __name__ == "__main__":
     settings = ChainSetting()
     post_processor = PostProcessor(settings, postgres_engine)
-    post_processor.analyze_posts(date = "2025-01-24")
+    post_processor.analyze_posts(date = "2025-01-29")
     pass

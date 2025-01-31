@@ -81,6 +81,6 @@ if st.session_state['authentication_status'] == True:
 #     openai_api_key = st.text_input("OpenAI API Key", key="chatbot_api_key", type="password")
 
     st.title("🤖 SightSea AI Demo")
-    st.caption("🌊 AI Agent power by Zenlab 🐳")
+    st.caption("🌊 AI Agent powered by Zenlab 🐳")
     authenticator.logout(location='sidebar')
     pg.run()
