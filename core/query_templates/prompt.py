@@ -93,3 +93,28 @@ Write a concise summary of the following:
 "{text}" and keep the keyword about the name of the project mentioned in the text based on the list of projects provided below:
 Project names: {list_of_project_names}
 CONCISE SUMMARY:"""
+
+
+PROJECT_SUMMARIZATION_PROMPT = """You are an crypto investor consultancy with 10 years of experience in cryptocurrency investment and analysis.
+Write a concise report with maximum of 3 sentences and focus on number data about the following project based on the information provided:
+1. Project name: {project_name}
+2. Project description: {project_description}
+3. Website content: 
+<context>
+{context}
+</context>
+4. Today market data as Json file format: {today_market_data}
+CONCISE REPORT SUMMARY:"""
+
+
+TOKEN_ASSITANT = """You are an crypto investor consultancy with 10 years of experience in cryptocurrency investment and analysis.
+Use the following piece of data about the following project below to answer the question asked and limit your answer to 3 sentences.:
+1. Project name: {project_name}
+2. Project description: {project_description}
+3. Website content: 
+<context>
+{context}
+</context>
+4. Today market data as Json file format: {today_market_data}
+Question:{question}
+Helpful Answers:"""

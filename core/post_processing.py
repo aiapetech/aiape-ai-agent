@@ -18,6 +18,9 @@ from stqdm import stqdm
 from core.config import settings as app_settings
 from langchain_google_genai import ChatGoogleGenerativeAI
 
+from langchain_community.document_loaders import WebBaseLoader
+
+
 
 dotenv.load_dotenv()
 CWD = os.getcwd()
@@ -29,6 +32,7 @@ class ChainSetting:
     with open(f"{CWD}/data/list_of_project.json") as f:
         LIST_OF_PROJECT_INFO = json.load(f)
     OPENAI_MODEL_NAME = app_settings.OPENAI_MODEL_NAME
+    OPENAI_EMBEDDING_MODEL_NAME = app_settings.OPENAI_EMBEDDING_MODEL_NAME
 
 class PostProcessor:
     def __init__(self, settings: ChainSetting, postgres_engine):
@@ -245,9 +249,97 @@ class PostProcessor:
             session.commit()
         session.close()
         return True
+    
+    def generate_content(self, token_data):
+        url = token_data['links']['homepage'][0]
+        market_data = token_data['market_data']
+        today_market_data = {
+            "current_price":market_data['current_price']['usd'],
+            "market_cap":market_data['market_cap']['usd'],
+            "market_cap_rank":market_data['market_cap_rank'],
+            "total_volume":market_data['total_volume']['usd'],
+            "price_change_percentage_24h":market_data['price_change_percentage_24h'],
+            "price_change_24h":market_data['price_change_24h']
+        }
+        description = token_data['description']['en']
+        project_name = token_data['name']
+        ## Process url
+        loader = WebBaseLoader(url)
+        docs = loader.load()
+        prompt = PromptTemplate(
+            template = prompt_template.PROJECT_SUMMARIZATION_PROMPT,
+            input_variables=["context"],
+            partial_variables={
+                "project_name":project_name,
+                "project_description":description,
+                "today_market_data":today_market_data,
+
+                }
+            )
+        chain = create_stuff_documents_chain(self.llm, prompt)
+        res = chain.invoke({"context": docs})
+        if isinstance(res,dict):
+            return res['output_text']
+        else:
+            return res
+
+
+from langchain.vectorstores.docarray import DocArrayInMemorySearch
+from langchain_openai import OpenAIEmbeddings
+from langchain.chains.retrieval_qa.base import RetrievalQA
+
+
+
+class QARetriver:
+    def __init__(self,url,token_data,settings):
+        self.llm = ChatOpenAI(model=settings.OPENAI_MODEL_NAME)
+        self.embeddings = OpenAIEmbeddings(model=settings.OPENAI_EMBEDDING_MODEL_NAME)
+        loader= WebBaseLoader(url)
+        self.docs = loader.load()
+        self.db = DocArrayInMemorySearch.from_documents(self.docs, embedding=self.embeddings)
+        self.token_data = token_data
+        project_name = token_data['name']
+        description = token_data['description']['en']
+        market_data = token_data['market_data']
+        self.prompt = PromptTemplate(
+            template = prompt_template.TOKEN_ASSITANT,
+            input_variables=["context","question"],
+            partial_variables={
+                "project_name":project_name,
+                "project_description":description,
+                "today_market_data":market_data,
+
+                }
+            )
+        #self.prompt=PromptTemplate(template=prompt_template,input_variables=["context","question"])
+        
+
+
+    def retrieve(self,query):
+        retriever = self.db.as_retriever()
+        retrievalQA=RetrievalQA.from_chain_type(
+            llm=self.llm,
+            chain_type="stuff",
+            retriever=retriever,
+            return_source_documents=True,
+            chain_type_kwargs={"prompt":self.prompt}
+        )
+
+        result = retrievalQA.invoke({"query": query})
+        return result['result']
+    
+
+        
+        
 
 if __name__ == "__main__":
     settings = ChainSetting()
     post_processor = PostProcessor(settings, postgres_engine)
-    post_processor.analyze_posts(date = "2025-01-29")
+    with open(f"{CWD}/token_market_data.json") as f:
+        token_data = json.load(f)
+    reports = []
+    for token in token_data:
+        report = post_processor.generate_content(token)
+        reports.append(report)
+    #post_processor.analyze_posts(date = "2025-01-29")
     pass

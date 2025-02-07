@@ -17,6 +17,9 @@ from sqlalchemy import asc
 
 dotenv.load_dotenv()
 
+NUMBER_OF_CATEGORY = 10
+NUMBER_OF_PROJECT_TOKENS = 10
+NUMBER_OF_FINAL_TOKENS = 10
 class ScoreSetting:
     COINGECKO_API_BASE_URL = app_settings.COINGECKO_API_BASE_URL
     COIN_MARKET_CAP_API_BASE_URL = app_settings.COIN_MARKET_CAP_API_BASE_URL
@@ -36,7 +39,7 @@ class TokenInfo:
     
     
     
-    def get_token_info(self,token: str):
+    def get_token_obj(self,token: str):
         token = token.lower().strip().replace('$','')
         if token.split(',')[0].strip().lower() in self.TOPLIST.keys():
             token = self.TOPLIST[token.split(',')[0].strip().lower()]
@@ -59,7 +62,8 @@ class TokenInfo:
                     statement = select(Tokens).where(or_(Tokens.symbol == token_symbol, Tokens.name.like(f'%{token_name}%'),Tokens.cgc_id.like((f'%{token_name}%')))).order_by(asc(Tokens.market_cap_rank))
                     token_obj = session.exec(statement).first()
         return token_obj
-    def get_token_data(self,token_obj):
+    
+    def get_token_market_data(self,token_obj):
         token_cgc_id = token_obj.cgc_id
         headers = {
             'accept': 'application/json',
@@ -69,10 +73,11 @@ class TokenInfo:
             'ids': token_cgc_id,
             'vs_currency': 'usd'
         }
-        url = f"{self.settings.COINGECKO_API_BASE_URL}/coins/markets"
-        res = requests.get(url=url,params=params,headers=headers).json()
+        market_url = f"{self.settings.COINGECKO_API_BASE_URL}/coins/markets"
+        res = requests.get(url=market_url,params=params,headers=headers).json()
         if len(res) == 0:
             return None
+            
         token_market_data = res[0]
         token_market_data['token_id'] = token_obj.id
         token_market_data.pop('id')
@@ -88,7 +93,44 @@ class TokenInfo:
                 session.add(token_market_data_obj)
             session.commit()
         return token_market_data
-    
+
+    def get_token_info(self,token_obj,params=None):
+        if type(token_obj) == str:
+            cgc_id = token_obj
+        else:
+            cgc_id = token_obj.cgc_id
+        headers = {
+            'accept': 'application/json',
+            'x-cg-demo-api-key': self.settings.COINGECKO_API_KEY
+        }
+        if params is None:
+            params = {
+                "comnunity_data": True,
+                "developer_data": False,
+                "market_data": True
+            }
+        info_url = f"{self.settings.COINGECKO_API_BASE_URL}/coins/{cgc_id}"
+        token_info =  requests.get(url=info_url,params=params,headers=headers).json()
+        return token_info
+
+    def get_category_list(self):
+        headers = {
+            'accept': 'application/json',
+            'x-cg-demo-api-key': self.settings.COINGECKO_API_KEY
+        }
+        data = []
+        url = f"{self.settings.COINGECKO_API_BASE_URL}/coins/categories"
+        response = requests.get(url, headers=headers)
+        return response.json()
+        
+    def get_category_data_by_token(self,token_data, category_list):
+        token_categories= token_data['categories']
+        category_data = []
+        for category in category_list:
+            if category['name'] in token_categories:
+                category_data.append(category)     
+        return category_data
+
     def calculate_score(self,token: dict,date =None):
         if date is None:
             date = datetime.now().date()
@@ -98,7 +140,7 @@ class TokenInfo:
         #     token_market_data = session.exec(select(TokenMarketData).where(TokenMarketData.symbol == token['symbol']).where(TokenMarketData.name == token['name']).where(cast(TokenMarketData.last_updated, Date) == date)).first()
         price_change_24h = token['price_change_24h']
         price_change_percentage_24h = token['price_change_percentage_24h']
-        score = price_change_24h * 0.4 + price_change_percentage_24h * 0.6
+        score = price_change_percentage_24h
         return score
     
     def generate_report(self,processed_date):
@@ -110,29 +152,69 @@ class TokenInfo:
         for p in projects:
             ps = p.split(';')
             project_names += ps
+        token_objs = []
+        values = []
         for project_name in set(project_names):
-            token_obj = self.get_token_info(project_name)
+            token_obj = self.get_token_obj(project_name)
             if token_obj is None:
                 print(f"Token {project_name} not found")
                 continue
-            self.get_token_data(token_obj)
-            token_symbols.append(token_obj.symbol)
-        df_token_market_data = pd.read_sql(f"SELECT * FROM token_market_data where symbol in {tuple(token_symbols)}", postgres_engine)
-        values = df_token_market_data.to_dict("records")
-        for token in values: 
-            score = self.calculate_score(token)
-            scrores.append(
-                    {
-                        'token': token['symbol'],
-                        'name': token['name'],
-                        'score': score,
-                        "date": processed_date
-                    }
-                )
-        df_scrores = pd.DataFrame(scrores).sort_values(by='score',ascending=False)
-        df_token_market_data = pd.read_sql(f"SELECT * FROM token_market_data where date(last_updated) = '{processed_date}'", postgres_engine)
-        return df_scrores, df_token_market_data
+            token_objs.append(self.get_token_info(token_obj))
+            #token_objs.append(token_obj)
+            #token_symbols.append(token_obj.symbol)
+        #df_token_market_data = pd.read_sql(f"SELECT * FROM token_market_data where symbol in {tuple(token_symbols)} and date(last_updated) = '{processed_date}'", postgres_engine)
+        # df_token_market_data = 
+        # values = df_token_market_data.to_dict("records")
+        df_project_tokens = pd.DataFrame(token_objs)
+        df_project_tokens['score'] = df_project_tokens.apply(lambda x: self.calculate_score(x['market_data']),axis=1)
+        # token_market_data = [v['market_data'] for v in token_objs]
+        # df_token_market_data = pd.DataFrame(token_market_data)
+        # df_token_market_data['score'] = df_token_market_data.apply(lambda x: self.calculate_score(x['market_data']),axis=1)
+        # for token in token_objs: 
+        #     score = self.calculate_score(token['market_data'])
+        #     scrores.append(
+        #             {
+        #                 'token': token['symbol'],
+        #                 'name': token['name'],
+        #                 'score': score,
+        #                 "date": processed_date
+        #             }
+        #         )
+            
+        df_project_tokens = df_project_tokens.sort_values(by='score',ascending=False)
+        top_token_objs = df_project_tokens.head(NUMBER_OF_PROJECT_TOKENS).to_dict("records")
+        category_list = self.extract_category(top_token_objs)
+        df_category = pd.DataFrame(category_list).sort_values(by='market_cap',ascending=True)
+        category_top_list = df_category.to_dict("records")
+        top_token_each_category = []
+        for category in category_top_list:
+            top_token_each_category += category['top_3_coins_id']
+        top_token_each_category = list(set(top_token_each_category))[:NUMBER_OF_FINAL_TOKENS]
+        final_token_data = []
+        for token in top_token_each_category:
+            final_token_data.append(self.get_token_info(token))
+        return df_project_tokens, df_category, final_token_data
+
+    def extract_category(self,top_tokens):
+        category_list = self.get_category_list()
+        category_data = []
+        for token_data in top_tokens:
+            token_categories= token_data['categories']
+            for category in category_list:
+                if category['name'] in token_categories:
+                    category_data.append(category)     
+        category_name = []
+        category_unique= []
+        for category in category_data:
+            if category['name'] in category_name:
+                continue    
+            category_unique.append(category)
+            category_name.append(category['name'])
+        return category_unique
     
+        
+
+
     # def run_score_calculation(self,posted_date,token=None):
     #     if not token:
     #         tokens = pd.read_sql("SELECT * FROM processed_results w", postgres_engine)
@@ -149,7 +231,20 @@ if __name__ == '__main__':
     #     score = token_info.calculate_score(token)
     settings = ScoreSetting()
     token_info = TokenInfo(settings,postgres_engine)
+    token_info.generate_report('2025-02-06')
     # project_name = 'ETH, Ethereum'
     # token = token_info.get_token_info(project_name)
     # pass
-    df_scrores, df_token_market_data = token_info.generate_report('2025-01-26')
+    #df_scrores, df_token_market_data = token_info.generate_report('2025-01-26')
+    
+    
+    #0. get token tinfo from token name
+    #1  Get token info
+    #2. Get category list
+    #3. Find token category
+    #4. Get top 3 tokens in the category
+    # token_symbol = 'eth'
+    # token_obj = token_info.get_token_obj(token_symbol)
+    # token_data = token_info.get_token_info(token_obj)
+    # category_list = token_info.get_category_list()
+    # category_data = token_info.get_category_data_by_token(token_data, category_list)

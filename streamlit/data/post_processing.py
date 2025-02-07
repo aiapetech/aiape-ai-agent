@@ -8,6 +8,7 @@ from core.db import engine as postgres_engine
 from datetime import datetime
 from core.post_processing import ChainSetting, PostProcessor
 
+
 def get_postgres_data():
     posts = pd.read_sql("""SELECT p.posted_at, p.content, a.name author_name, p.link, p.status FROM posts p left join profiles a on p.author_id = a.id""", postgres_engine)
     return posts

@@ -5,7 +5,7 @@ import requests
 import json
 import time
 
-def get_cgc_api_data():
+def get_cgc_price_api_data():
     api_url = settings.COINGECKO_API_BASE_URL
     api_key = settings.COINGECKO_API_KEY
     headers = {
@@ -20,6 +20,20 @@ def get_cgc_api_data():
         time.sleep(1)
     with open('cgc_data_1.json', 'w') as f:
         json.dump(data, f)
+
+def get_category_data():
+    api_url = settings.COINGECKO_API_BASE_URL
+    api_key = settings.COINGECKO_API_KEY
+    headers = {
+        'accept': 'application/json',
+        'x-cg-demo-api-key': api_key
+    }
+    data = []
+    url = f"{api_url}/coins/categories"
+    response = requests.get(url, headers=headers)
+    data += response.json()
+    with open('cgc_category_data_1.json', 'w') as f:
+        json.dump(data, f)
 if __name__ == "__main__":
-    get_cgc_api_data()
+    get_category_data()
     

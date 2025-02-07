@@ -89,6 +89,7 @@ class Settings(BaseSettings):
     COINGECKO_API_KEY:str = os.getenv("COINGECKO_API_KEY")
     QDRANT_COLLECTION_NAME:str = os.getenv("QDRANT_COLLECTION_NAME")
     COIN_MARKET_CAP_API_BASE_URL:str = os.getenv("COIN_MARKET_CAP_API_BASE_URL")
+    OPENAI_EMBEDDING_MODEL_NAME:str = os.getenv("OPENAI_EMBEDDING_MODEL_NAME")
 
     @model_validator(mode="after")
     def _set_default_emails_from(self) -> Self:
