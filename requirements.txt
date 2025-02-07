@@ -12,6 +12,7 @@ async-timeout==5.0.1
 attrs==24.3.0
 babel==2.16.0
 bcrypt==4.2.1
+beautifulsoup4==4.13.3
 blinker==1.9.0
 cachetools==5.5.1
 captcha==0.6.0
@@ -21,6 +22,7 @@ click==8.1.8
 dataclasses-json==0.6.7
 distro==1.9.0
 dnspython==2.7.0
+docarray==0.40.0
 docstring_parser==0.16
 email_validator==2.2.0
 extra-streamlit-components==0.1.71
@@ -127,6 +129,7 @@ shapely==2.0.6
 six==1.17.0
 smmap==5.0.2
 sniffio==1.3.1
+soupsieve==2.6
 sqladmin==0.20.1
 SQLAlchemy==2.0.37
 sqlmodel==0.0.22
@@ -141,6 +144,7 @@ toml==0.10.2
 tornado==6.4.2
 tortoise-orm==0.24.0
 tqdm==4.67.1
+types-requests==2.32.0.20241016
 typing-inspect==0.9.0
 typing_extensions==4.12.2
 tzdata==2025.1
