@@ -126,10 +126,10 @@ try:
             df_project_tokens['price_change_percentage_24h'] = df_project_tokens.apply(lambda x: f"{x['market_data']['price_change_percentage_24h']}%", axis=1)
             df_project_tokens['price_change_24h_in_usd'] = df_project_tokens.apply(lambda x: x['market_data']['price_change_24h'], axis=1)
             df_project_tokens = df_project_tokens[['symbol','price_change_percentage_24h','price_change_24h_in_usd','categories','score']].sort_values(by="score",ascending=True)
-            st.dataframe(df_project_tokens)
+            st.dataframe(df_project_tokens,hide_index=True)
             st.subheader("3. Categories")
             df_category = df_category[['id','name','market_cap_change_24h','top_3_coins_id']].sort_values(by="market_cap_change_24h",ascending=True)
-            st.dataframe(df_category)
+            st.dataframe(df_category,hide_index=True)
             st.subheader("4. Result Token Data")
             df_final_token_data = pd.DataFrame([f['market_data'] for f in final_token_data]).sort_values(by="price_change_percentage_24h",ascending=True)
             v = []
@@ -146,7 +146,7 @@ try:
                 }
                 v.append(a)
             df_final_token_data = pd.DataFrame(v)
-            st.dataframe(df_final_token_data)
+            st.dataframe(df_final_token_data,hide_index=True)
             st.subheader("5. Generate Content")
             token_lists = [token['id'] for token in final_token_data] 
             token_selectbox(token_lists)

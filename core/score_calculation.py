@@ -184,7 +184,7 @@ class TokenInfo:
         df_project_tokens = df_project_tokens.sort_values(by='score',ascending=False)
         top_token_objs = df_project_tokens.head(NUMBER_OF_PROJECT_TOKENS).to_dict("records")
         category_list = self.extract_category(top_token_objs)
-        df_category = pd.DataFrame(category_list).sort_values(by='market_cap',ascending=True)
+        df_category = pd.DataFrame(category_list).sort_values(by='market_cap',ascending=False)
         category_top_list = df_category.to_dict("records")
         top_token_each_category = []
         for category in category_top_list:

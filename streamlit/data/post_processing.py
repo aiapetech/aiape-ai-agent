@@ -41,7 +41,7 @@ try:
     processed_results = get_processed_results()
     col1, col2 = st.columns([1,2])
     with col1:
-        processed_date = st.date_input("Select a date to process the data",value=df.posted_at.min(), min_value=df.posted_at.min(), max_value=df.posted_at.max())
+        processed_date = st.date_input("Select a date to process the data",value=df.posted_at.max(), min_value=df.posted_at.min(), max_value=df.posted_at.max())
         start_datetime = datetime.combine(processed_date, datetime.min.time())
         end_datetime = datetime.combine(processed_date, datetime.max.time())
     with col2:
