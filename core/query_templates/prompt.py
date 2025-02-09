@@ -104,6 +104,7 @@ Write a concise report with maximum of 3 sentences and focus on number data abou
 {context}
 </context>
 4. Today market data as Json file format: {today_market_data}
+Please provide a concise report summary based on the information provided and the style of the report should be as the combination of Elon Musk's tweet and funny.
 CONCISE REPORT SUMMARY:"""
 
 

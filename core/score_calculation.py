@@ -13,11 +13,12 @@ from sqlalchemy import cast, Date
 from core.config import settings as app_settings
 
 from sqlalchemy import asc
+import time
 
 
 dotenv.load_dotenv()
 
-NUMBER_OF_CATEGORY = 10
+NUMBER_OF_CATEGORY = 3
 NUMBER_OF_PROJECT_TOKENS = 10
 NUMBER_OF_FINAL_TOKENS = 10
 class ScoreSetting:
@@ -111,7 +112,27 @@ class TokenInfo:
             }
         info_url = f"{self.settings.COINGECKO_API_BASE_URL}/coins/{cgc_id}"
         token_info =  requests.get(url=info_url,params=params,headers=headers).json()
+        time.sleep(0.3)
         return token_info
+    def get_list_of_token_in_category(self,category_id,params=None):
+        url =f"{self.settings.COINGECKO_API_BASE_URL}/coins/markets"
+        headers = {
+            'accept': 'application/json',
+            'x-cg-demo-api-key': self.settings.COINGECKO_API_KEY
+        }
+        if params is None:
+            params = {
+                "vs_currency": 'usd',
+                "category": category_id,
+                "order": 'market_cap_desc',
+                'per_page': 100,
+                'page': 1,
+                'sparkline': False,
+                'locale': 'en'
+
+            }
+        result =  requests.get(url=url,params=params,headers=headers).json()
+        return result
 
     def get_category_list(self):
         headers = {
@@ -138,9 +159,12 @@ class TokenInfo:
             date = datetime.strptime(date,'%Y-%m-%d')
         # with Session(postgres_engine) as session:
         #     token_market_data = session.exec(select(TokenMarketData).where(TokenMarketData.symbol == token['symbol']).where(TokenMarketData.name == token['name']).where(cast(TokenMarketData.last_updated, Date) == date)).first()
-        price_change_24h = token['price_change_24h']
+        market_cap_change = token['market_cap_change_percentage_24h']
         price_change_percentage_24h = token['price_change_percentage_24h']
-        score = price_change_percentage_24h
+        if market_cap_change is None:
+            score = price_change_percentage_24h
+        else:
+            score = 0.4*market_cap_change + price_change_percentage_24h*0.6
         return score
     
     def generate_report(self,processed_date):
@@ -195,6 +219,63 @@ class TokenInfo:
             final_token_data.append(self.get_token_info(token))
         return df_project_tokens, df_category, final_token_data
 
+    def calculate_market_cap_percentage_change(self,x):
+        return x['market_cap_change_24h']/(x['market_cap']-x['market_cap_change_24h']) if x['market_cap'] else None
+
+    def get_token_cgc_id(self,project,cgc_coin_list):
+        project_name = project.split(',')[1].lower().strip()
+        project_symbol = project.split(',')[0].strip().lower()
+        cgc_id = next((item for item in cgc_coin_list if item["name"].lower() == project_name and item["symbol"].lower() == project_symbol), None)
+        if cgc_id is None:
+            return None
+        return cgc_id['id']
+    
+    def generate_report_v2(self,df_extracted_project_name):
+        cgc_ids = df_extracted_project_name.project_id.unique().tolist()
+        token_objs = []
+        for cgc_id in set(cgc_ids[:30]):
+            token_objs.append(self.get_token_info(cgc_id))
+            #token_objs.append(token_obj)
+            #token_symbols.append(token_obj.symbol)
+        #df_token_market_data = pd.read_sql(f"SELECT * FROM token_market_data where symbol in {tuple(token_symbols)} and date(last_updated) = '{processed_date}'", postgres_engine)
+        # df_token_market_data = 
+        # values = df_token_market_data.to_dict("records")
+        df_project_tokens = pd.DataFrame(token_objs)
+        df_project_tokens['score'] = df_project_tokens.apply(lambda x: self.calculate_score(x['market_data']),axis=1)
+        # token_market_data = [v['market_data'] for v in token_objs]
+        # df_token_market_data = pd.DataFrame(token_market_data)
+        # df_token_market_data['score'] = df_token_market_data.apply(lambda x: self.calculate_score(x['market_data']),axis=1)
+        # for token in token_objs: 
+        #     score = self.calculate_score(token['market_data'])
+        #     scrores.append(
+        #             {
+        #                 'token': token['symbol'],
+        #                 'name': token['name'],
+        #                 'score': score,
+        #                 "date": processed_date
+        #             }
+        #         )
+            
+        df_project_tokens = df_project_tokens.sort_values(by='score',ascending=False)
+        top_token_objs = df_project_tokens.head(NUMBER_OF_PROJECT_TOKENS).to_dict("records")
+        category_list = self.extract_category(top_token_objs)
+        df_category = pd.DataFrame(category_list).sort_values(by='market_cap',ascending=False)
+        df_category['market_cap_percentage_change_24h'] = df_category.apply(lambda x: self.calculate_market_cap_percentage_change(x), axis=1)
+        category_top_list = df_category.to_dict("records")
+        top_potential_token = []
+        for category in category_top_list[:NUMBER_OF_CATEGORY]:
+            top_100_token = self.get_list_of_token_in_category(category['id'])
+            top_potential_token += top_100_token
+        df_top_potential_tokens = pd.DataFrame(top_potential_token)
+        df_top_potential_tokens['score'] = df_top_potential_tokens.apply(lambda x: self.calculate_score(x),axis=1)
+        df_top_potential_tokens.drop_duplicates(subset=['id'],inplace=True)
+        df_top_potential_tokens = df_top_potential_tokens.sort_values(by='score',ascending=False)
+        
+        final_token_data = []
+        # for token in top_token_each_category:
+        #     final_token_data.append(self.get_token_info(token))
+        return df_project_tokens, df_category, df_top_potential_tokens
+
     def extract_category(self,top_tokens):
         category_list = self.get_category_list()
         category_data = []
@@ -231,20 +312,12 @@ if __name__ == '__main__':
     #     score = token_info.calculate_score(token)
     settings = ScoreSetting()
     token_info = TokenInfo(settings,postgres_engine)
-    token_info.generate_report('2025-02-06')
+    df = pd.read_csv('test_project.csv')
+    token_info.generate_report_v2(df)
     # project_name = 'ETH, Ethereum'
     # token = token_info.get_token_info(project_name)
     # pass
     #df_scrores, df_token_market_data = token_info.generate_report('2025-01-26')
     
+    #token_info.get_category_list()
     
-    #0. get token tinfo from token name
-    #1  Get token info
-    #2. Get category list
-    #3. Find token category
-    #4. Get top 3 tokens in the category
-    # token_symbol = 'eth'
-    # token_obj = token_info.get_token_obj(token_symbol)
-    # token_data = token_info.get_token_info(token_obj)
-    # category_list = token_info.get_category_list()
-    # category_data = token_info.get_category_data_by_token(token_data, category_list)

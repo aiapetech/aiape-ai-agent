@@ -1,0 +1,3424 @@
+[{
+  "type": "tweet",
+  "id": "1888266218898919786",
+  "url": "https://x.com/maddox00000/status/1888266218898919786",
+  "twitterUrl": "https://twitter.com/maddox00000/status/1888266218898919786",
+  "text": "RT @mitismee: Another dca story of a new #SPX6900 believer. While many people out there are being skeptical and hesitate whether or not the…",
+  "fullText": "RT @mitismee: Another dca story of a new #SPX6900 believer. While many people out there are being skeptical and hesitate whether or not the…",
+  "source": "Twitter for iPhone",
+  "retweetCount": 4,
+  "replyCount": 0,
+  "likeCount": 21,
+  "quoteCount": 0,
+  "viewCount": 659,
+  "createdAt": "Sat Feb 08 16:38:43 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 2,
+  "isReply": false,
+  "conversationId": "1888266218898919786",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "maddox00000",
+    "url": "https://x.com/maddox00000",
+    "twitterUrl": "https://twitter.com/maddox00000",
+    "id": "160358122",
+    "name": "maddox 💹🧲",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1840121759003004928/OlCuVTrp_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/160358122/1737150371",
+    "description": "Bitcoin and Cult Memecoins. Everything else is vaporware.",
+    "location": "",
+    "followers": 42045,
+    "following": 2374,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Sun Jun 27 23:43:29 +0000 2010",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 66326,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 417,
+    "statusesCount": 1385,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1871723087080620361"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          41,
+          49
+        ],
+        "text": "SPX6900"
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "1467658898001727490",
+        "name": "Mit.isme",
+        "screen_name": "mitismee",
+        "indices": [
+          3,
+          12
+        ]
+      }
+    ]
+  },
+  "isRetweet": true,
+  "retweet": {
+    "type": "tweet",
+    "id": "1888264486995509352",
+    "text": "Another dca story of a new #SPX6900 believer. While many people out there are being skeptical and hesitate whether or not they should get in. https://t.co/nAFDoLoUpK",
+    "source": "Twitter for Android",
+    "retweetCount": 4,
+    "replyCount": 0,
+    "likeCount": 21,
+    "quoteCount": 0,
+    "viewCount": 659,
+    "createdAt": "Sat Feb 08 16:31:50 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 2,
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "mitismee",
+      "url": "https://x.com/mitismee",
+      "twitterUrl": "https://twitter.com/mitismee",
+      "id": "1467658898001727490",
+      "name": "Mit.isme",
+      "isVerified": false,
+      "isBlueVerified": false,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1888142774035460096/UA18wjFc_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1467658898001727490/1735972674",
+      "description": "strong believer of strong community meme with cult mentality like #SPX6900\nim also a \nbeliever of the 4th turning cycle (the 4th turning book)",
+      "location": "",
+      "followers": 184,
+      "following": 28,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Mon Dec 06 00:55:39 +0000 2021",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 3865,
+      "hasCustomTimelines": false,
+      "isTranslator": false,
+      "mediaCount": 184,
+      "statusesCount": 4004,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1877435974986137807"
+      ]
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "display_url": "pic.x.com/nAFDoLoUpK",
+          "expanded_url": "https://x.com/mitismee/status/1888264486995509352/photo/1",
+          "id_str": "1888264484894220288",
+          "indices": [
+            142,
+            165
+          ],
+          "media_key": "3_1888264484894220288",
+          "media_url_https": "https://pbs.twimg.com/media/GjR2i2gbIAAVbFN.jpg",
+          "type": "photo",
+          "url": "https://t.co/nAFDoLoUpK",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "x": 552,
+                  "y": 27,
+                  "h": 54,
+                  "w": 54
+                }
+              ]
+            },
+            "medium": {
+              "faces": [
+                {
+                  "x": 552,
+                  "y": 27,
+                  "h": 54,
+                  "w": 54
+                }
+              ]
+            },
+            "small": {
+              "faces": [
+                {
+                  "x": 315,
+                  "y": 15,
+                  "h": 30,
+                  "w": 30
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "x": 552,
+                  "y": 27,
+                  "h": 54,
+                  "w": 54
+                }
+              ]
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 741,
+              "w": 1190,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 741,
+              "w": 1190,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 423,
+              "w": 680,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 741,
+            "width": 1190,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 75,
+                "w": 1190,
+                "h": 666
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 741,
+                "h": 741
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 650,
+                "h": 741
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 371,
+                "h": 741
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1190,
+                "h": 741
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1888264484894220288"
+            }
+          }
+        }
+      ]
+    },
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            27,
+            35
+          ],
+          "text": "SPX6900"
+        }
+      ],
+      "media": [
+        {
+          "display_url": "pic.x.com/nAFDoLoUpK",
+          "expanded_url": "https://x.com/mitismee/status/1888264486995509352/photo/1",
+          "id_str": "1888264484894220288",
+          "indices": [
+            142,
+            165
+          ],
+          "media_key": "3_1888264484894220288",
+          "media_url_https": "https://pbs.twimg.com/media/GjR2i2gbIAAVbFN.jpg",
+          "type": "photo",
+          "url": "https://t.co/nAFDoLoUpK",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "x": 552,
+                  "y": 27,
+                  "h": 54,
+                  "w": 54
+                }
+              ]
+            },
+            "medium": {
+              "faces": [
+                {
+                  "x": 552,
+                  "y": 27,
+                  "h": 54,
+                  "w": 54
+                }
+              ]
+            },
+            "small": {
+              "faces": [
+                {
+                  "x": 315,
+                  "y": 15,
+                  "h": 30,
+                  "w": 30
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "x": 552,
+                  "y": 27,
+                  "h": 54,
+                  "w": 54
+                }
+              ]
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 741,
+              "w": 1190,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 741,
+              "w": 1190,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 423,
+              "w": 680,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 741,
+            "width": 1190,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 75,
+                "w": 1190,
+                "h": 666
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 741,
+                "h": 741
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 650,
+                "h": 741
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 371,
+                "h": 741
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1190,
+                "h": 741
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1888264484894220288"
+            }
+          }
+        }
+      ],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1888245850968592506",
+  "url": "https://x.com/maddox00000/status/1888245850968592506",
+  "twitterUrl": "https://twitter.com/maddox00000/status/1888245850968592506",
+  "text": "RT @Danmen_xyz: $Spx is going to change my life",
+  "fullText": "RT @Danmen_xyz: $Spx is going to change my life",
+  "source": "Twitter for iPhone",
+  "retweetCount": 7,
+  "replyCount": 1,
+  "likeCount": 70,
+  "quoteCount": 1,
+  "viewCount": 1882,
+  "createdAt": "Sat Feb 08 15:17:47 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 2,
+  "isReply": false,
+  "conversationId": "1888245850968592506",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "maddox00000",
+    "url": "https://x.com/maddox00000",
+    "twitterUrl": "https://twitter.com/maddox00000",
+    "id": "160358122",
+    "name": "maddox 💹🧲",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1840121759003004928/OlCuVTrp_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/160358122/1737150371",
+    "description": "Bitcoin and Cult Memecoins. Everything else is vaporware.",
+    "location": "",
+    "followers": 42045,
+    "following": 2374,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Sun Jun 27 23:43:29 +0000 2010",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 66326,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 417,
+    "statusesCount": 1385,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1871723087080620361"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [
+      {
+        "indices": [
+          16,
+          20
+        ],
+        "text": "Spx"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "1488927724789972992",
+        "name": "Danmen💹🧲",
+        "screen_name": "Danmen_xyz",
+        "indices": [
+          3,
+          14
+        ]
+      }
+    ]
+  },
+  "isRetweet": true,
+  "retweet": {
+    "type": "tweet",
+    "id": "1888205496953311373",
+    "text": "$Spx is going to change my life",
+    "source": "Twitter for Android",
+    "retweetCount": 7,
+    "replyCount": 1,
+    "likeCount": 70,
+    "quoteCount": 1,
+    "viewCount": 1882,
+    "createdAt": "Sat Feb 08 12:37:26 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 2,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "Danmen_xyz",
+      "url": "https://x.com/Danmen_xyz",
+      "twitterUrl": "https://twitter.com/Danmen_xyz",
+      "id": "1488927724789972992",
+      "name": "Danmen💹🧲",
+      "isVerified": false,
+      "isBlueVerified": false,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1882808553141850112/1JmR_AP3_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1488927724789972992/1738677789",
+      "description": "Sold 1m $michi for pocket money 🙂 | #SPX6900 #RETARDIO",
+      "location": "",
+      "followers": 723,
+      "following": 718,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Wed Feb 02 17:30:12 +0000 2022",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 8944,
+      "hasCustomTimelines": false,
+      "isTranslator": false,
+      "mediaCount": 1190,
+      "statusesCount": 4825,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1883832554878542047"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [
+        {
+          "indices": [
+            0,
+            4
+          ],
+          "text": "Spx"
+        }
+      ],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1888241321099264472",
+  "url": "https://x.com/maddox00000/status/1888241321099264472",
+  "twitterUrl": "https://twitter.com/maddox00000/status/1888241321099264472",
+  "text": "RT @munchies1337: Yeah.. we’re going to trillions. https://t.co/efutbS7TiZ",
+  "fullText": "RT @munchies1337: Yeah.. we’re going to trillions. https://t.co/efutbS7TiZ",
+  "source": "Twitter for iPhone",
+  "retweetCount": 42,
+  "replyCount": 13,
+  "likeCount": 213,
+  "quoteCount": 3,
+  "viewCount": 6207,
+  "createdAt": "Sat Feb 08 14:59:47 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 7,
+  "isReply": false,
+  "conversationId": "1888241321099264472",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "maddox00000",
+    "url": "https://x.com/maddox00000",
+    "twitterUrl": "https://twitter.com/maddox00000",
+    "id": "160358122",
+    "name": "maddox 💹🧲",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1840121759003004928/OlCuVTrp_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/160358122/1737150371",
+    "description": "Bitcoin and Cult Memecoins. Everything else is vaporware.",
+    "location": "",
+    "followers": 42045,
+    "following": 2374,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Sun Jun 27 23:43:29 +0000 2010",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 66326,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 417,
+    "statusesCount": 1385,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1871723087080620361"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/efutbS7TiZ",
+        "expanded_url": "https://x.com/munchies1337/status/1888215269790605772/photo/1",
+        "id_str": "1888215257719656448",
+        "indices": [
+          51,
+          74
+        ],
+        "media_key": "3_1888215257719656448",
+        "media_url_https": "https://pbs.twimg.com/media/GjRJxc_aUAAq_nN.jpg",
+        "source_status_id_str": "1888215269790605772",
+        "source_user_id_str": "1753713095346995200",
+        "type": "photo",
+        "url": "https://t.co/efutbS7TiZ",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 72,
+                "y": 1226,
+                "h": 69,
+                "w": 69
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 60,
+                "y": 1037,
+                "h": 58,
+                "w": 58
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 34,
+                "y": 587,
+                "h": 33,
+                "w": 33
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 72,
+                "y": 1226,
+                "h": 69,
+                "w": 69
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1418,
+            "w": 1320,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 1117,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 633,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1418,
+          "width": 1320,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1320,
+              "h": 739
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1320,
+              "h": 1320
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1244,
+              "h": 1418
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 709,
+              "h": 1418
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1320,
+              "h": 1418
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1888215257719656448"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/efutbS7TiZ",
+        "expanded_url": "https://x.com/munchies1337/status/1888215269790605772/photo/1",
+        "id_str": "1888215257719656448",
+        "indices": [
+          51,
+          74
+        ],
+        "media_key": "3_1888215257719656448",
+        "media_url_https": "https://pbs.twimg.com/media/GjRJxc_aUAAq_nN.jpg",
+        "source_status_id_str": "1888215269790605772",
+        "source_user_id_str": "1753713095346995200",
+        "type": "photo",
+        "url": "https://t.co/efutbS7TiZ",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 72,
+                "y": 1226,
+                "h": 69,
+                "w": 69
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 60,
+                "y": 1037,
+                "h": 58,
+                "w": 58
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 34,
+                "y": 587,
+                "h": 33,
+                "w": 33
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 72,
+                "y": 1226,
+                "h": 69,
+                "w": 69
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1418,
+            "w": 1320,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 1117,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 633,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1418,
+          "width": 1320,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1320,
+              "h": 739
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1320,
+              "h": 1320
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1244,
+              "h": 1418
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 709,
+              "h": 1418
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1320,
+              "h": 1418
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1888215257719656448"
+          }
+        }
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "1753713095346995200",
+        "name": "Munchies 💹🧲",
+        "screen_name": "munchies1337",
+        "indices": [
+          3,
+          16
+        ]
+      }
+    ]
+  },
+  "isRetweet": true,
+  "retweet": {
+    "type": "tweet",
+    "id": "1888215269790605772",
+    "text": "Yeah.. we’re going to trillions. https://t.co/efutbS7TiZ",
+    "source": "Twitter for iPhone",
+    "retweetCount": 42,
+    "replyCount": 13,
+    "likeCount": 213,
+    "quoteCount": 3,
+    "viewCount": 6207,
+    "createdAt": "Sat Feb 08 13:16:16 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 7,
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "munchies1337",
+      "url": "https://x.com/munchies1337",
+      "twitterUrl": "https://twitter.com/munchies1337",
+      "id": "1753713095346995200",
+      "name": "Munchies 💹🧲",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1874342742727507969/pmND2qHM_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1753713095346995200/1737073476",
+      "description": "aeon @spx6900\nleave the world a better place, having had you in it",
+      "location": "",
+      "followers": 9032,
+      "following": 580,
+      "status": "",
+      "canDm": false,
+      "canMediaTag": true,
+      "createdAt": "Sat Feb 03 09:33:02 +0000 2024",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "spx6900.com",
+              "expanded_url": "http://spx6900.com",
+              "url": "https://t.co/Dua0HLFrTo",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 37655,
+      "hasCustomTimelines": false,
+      "isTranslator": false,
+      "mediaCount": 1247,
+      "statusesCount": 7811,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1876028939031937298"
+      ]
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "display_url": "pic.x.com/efutbS7TiZ",
+          "expanded_url": "https://x.com/munchies1337/status/1888215269790605772/photo/1",
+          "id_str": "1888215257719656448",
+          "indices": [
+            33,
+            56
+          ],
+          "media_key": "3_1888215257719656448",
+          "media_url_https": "https://pbs.twimg.com/media/GjRJxc_aUAAq_nN.jpg",
+          "type": "photo",
+          "url": "https://t.co/efutbS7TiZ",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "x": 72,
+                  "y": 1226,
+                  "h": 69,
+                  "w": 69
+                }
+              ]
+            },
+            "medium": {
+              "faces": [
+                {
+                  "x": 60,
+                  "y": 1037,
+                  "h": 58,
+                  "w": 58
+                }
+              ]
+            },
+            "small": {
+              "faces": [
+                {
+                  "x": 34,
+                  "y": 587,
+                  "h": 33,
+                  "w": 33
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "x": 72,
+                  "y": 1226,
+                  "h": 69,
+                  "w": 69
+                }
+              ]
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 1418,
+              "w": 1320,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 1200,
+              "w": 1117,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 680,
+              "w": 633,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 1418,
+            "width": 1320,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1320,
+                "h": 739
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1320,
+                "h": 1320
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1244,
+                "h": 1418
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 709,
+                "h": 1418
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1320,
+                "h": 1418
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1888215257719656448"
+            }
+          }
+        }
+      ]
+    },
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "media": [
+        {
+          "display_url": "pic.x.com/efutbS7TiZ",
+          "expanded_url": "https://x.com/munchies1337/status/1888215269790605772/photo/1",
+          "id_str": "1888215257719656448",
+          "indices": [
+            33,
+            56
+          ],
+          "media_key": "3_1888215257719656448",
+          "media_url_https": "https://pbs.twimg.com/media/GjRJxc_aUAAq_nN.jpg",
+          "type": "photo",
+          "url": "https://t.co/efutbS7TiZ",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "x": 72,
+                  "y": 1226,
+                  "h": 69,
+                  "w": 69
+                }
+              ]
+            },
+            "medium": {
+              "faces": [
+                {
+                  "x": 60,
+                  "y": 1037,
+                  "h": 58,
+                  "w": 58
+                }
+              ]
+            },
+            "small": {
+              "faces": [
+                {
+                  "x": 34,
+                  "y": 587,
+                  "h": 33,
+                  "w": 33
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "x": 72,
+                  "y": 1226,
+                  "h": 69,
+                  "w": 69
+                }
+              ]
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 1418,
+              "w": 1320,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 1200,
+              "w": 1117,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 680,
+              "w": 633,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 1418,
+            "width": 1320,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1320,
+                "h": 739
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1320,
+                "h": 1320
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1244,
+                "h": 1418
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 709,
+                "h": 1418
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1320,
+                "h": 1418
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1888215257719656448"
+            }
+          }
+        }
+      ],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/GjRJxc_aUAAq_nN.jpg"
+  ],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1888225393691287999",
+  "url": "https://x.com/maddox00000/status/1888225393691287999",
+  "twitterUrl": "https://twitter.com/maddox00000/status/1888225393691287999",
+  "text": "RT @greymindedgoose: Added like 20 new $SPX followers just today. It is crazy how fast we grow each and every day.",
+  "fullText": "RT @greymindedgoose: Added like 20 new $SPX followers just today. It is crazy how fast we grow each and every day.",
+  "source": "Twitter for iPhone",
+  "retweetCount": 9,
+  "replyCount": 10,
+  "likeCount": 97,
+  "quoteCount": 0,
+  "viewCount": 2159,
+  "createdAt": "Sat Feb 08 13:56:30 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 3,
+  "isReply": false,
+  "conversationId": "1888225393691287999",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "maddox00000",
+    "url": "https://x.com/maddox00000",
+    "twitterUrl": "https://twitter.com/maddox00000",
+    "id": "160358122",
+    "name": "maddox 💹🧲",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1840121759003004928/OlCuVTrp_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/160358122/1737150371",
+    "description": "Bitcoin and Cult Memecoins. Everything else is vaporware.",
+    "location": "",
+    "followers": 42045,
+    "following": 2374,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Sun Jun 27 23:43:29 +0000 2010",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 66326,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 417,
+    "statusesCount": 1385,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1871723087080620361"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [
+      {
+        "indices": [
+          39,
+          43
+        ],
+        "text": "SPX"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "1861095179169452032",
+        "name": "Goose 💹🧲",
+        "screen_name": "greymindedgoose",
+        "indices": [
+          3,
+          19
+        ]
+      }
+    ]
+  },
+  "isRetweet": true,
+  "retweet": {
+    "type": "tweet",
+    "id": "1888207977351360863",
+    "text": "Added like 20 new $SPX followers just today. It is crazy how fast we grow each and every day.",
+    "source": "Twitter for Android",
+    "retweetCount": 9,
+    "replyCount": 10,
+    "likeCount": 97,
+    "quoteCount": 0,
+    "viewCount": 2159,
+    "createdAt": "Sat Feb 08 12:47:17 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 3,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "greymindedgoose",
+      "url": "https://x.com/greymindedgoose",
+      "twitterUrl": "https://twitter.com/greymindedgoose",
+      "id": "1861095179169452032",
+      "name": "Goose 💹🧲",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1885809986468478976/9lCFTPOY_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1861095179169452032/1737845708",
+      "description": "$SPX maxi",
+      "location": "",
+      "followers": 378,
+      "following": 563,
+      "status": "",
+      "canDm": false,
+      "canMediaTag": true,
+      "createdAt": "Mon Nov 25 17:11:24 +0000 2024",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 2685,
+      "hasCustomTimelines": false,
+      "isTranslator": false,
+      "mediaCount": 292,
+      "statusesCount": 1536,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1884669415771259244"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [
+        {
+          "indices": [
+            18,
+            22
+          ],
+          "text": "SPX"
+        }
+      ],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1888206936094490808",
+  "url": "https://x.com/maddox00000/status/1888206936094490808",
+  "twitterUrl": "https://twitter.com/maddox00000/status/1888206936094490808",
+  "text": "RT @SamAp3s: Belief itself is already part of the reward of the best memecoins. Add to that bullish believer communities that shower your t…",
+  "fullText": "RT @SamAp3s: Belief itself is already part of the reward of the best memecoins. Add to that bullish believer communities that shower your t…",
+  "source": "Twitter for iPhone",
+  "retweetCount": 10,
+  "replyCount": 5,
+  "likeCount": 61,
+  "quoteCount": 0,
+  "viewCount": 1815,
+  "createdAt": "Sat Feb 08 12:43:09 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 3,
+  "isReply": false,
+  "conversationId": "1888206936094490808",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "maddox00000",
+    "url": "https://x.com/maddox00000",
+    "twitterUrl": "https://twitter.com/maddox00000",
+    "id": "160358122",
+    "name": "maddox 💹🧲",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1840121759003004928/OlCuVTrp_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/160358122/1737150371",
+    "description": "Bitcoin and Cult Memecoins. Everything else is vaporware.",
+    "location": "",
+    "followers": 42045,
+    "following": 2374,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Sun Jun 27 23:43:29 +0000 2010",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 66326,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 417,
+    "statusesCount": 1385,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1871723087080620361"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "1814588589550022657",
+        "name": "SamApes 💹🧲",
+        "screen_name": "SamAp3s",
+        "indices": [
+          3,
+          11
+        ]
+      }
+    ]
+  },
+  "isRetweet": true,
+  "retweet": {
+    "type": "tweet",
+    "id": "1888173273516573105",
+    "text": "Belief itself is already part of the reward of the best memecoins. Add to that bullish believer communities that shower your timeline with inspirational vibes. Mission and vision.\n\nI believe in something.\n\n#SPX6900 and $GIGA\n\n100B+ in 2025 https://t.co/lNkTCYk9eq",
+    "source": "Twitter for Android",
+    "retweetCount": 10,
+    "replyCount": 5,
+    "likeCount": 61,
+    "quoteCount": 0,
+    "viewCount": 1815,
+    "createdAt": "Sat Feb 08 10:29:23 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 3,
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "SamAp3s",
+      "url": "https://x.com/SamAp3s",
+      "twitterUrl": "https://twitter.com/SamAp3s",
+      "id": "1814588589550022657",
+      "name": "SamApes 💹🧲",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1865353085930840064/-uEG_4J9_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1814588589550022657/1728909201",
+      "description": "Just memes. #SPX6900 \n$GIGA \n#HarryPotterObamaSonic10inu\n $ponke...\n\nMemecoin SuperCycle",
+      "location": "",
+      "followers": 597,
+      "following": 308,
+      "status": "",
+      "canDm": false,
+      "canMediaTag": true,
+      "createdAt": "Sat Jul 20 09:10:23 +0000 2024",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 11473,
+      "hasCustomTimelines": false,
+      "isTranslator": false,
+      "mediaCount": 1385,
+      "statusesCount": 6331,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1875262336610738636"
+      ]
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "display_url": "pic.x.com/lNkTCYk9eq",
+          "expanded_url": "https://x.com/SamAp3s/status/1888173273516573105/photo/1",
+          "id_str": "1888173262879784960",
+          "indices": [
+            240,
+            263
+          ],
+          "media_key": "3_1888173262879784960",
+          "media_url_https": "https://pbs.twimg.com/media/GjQjlCBXAAAt1Ms.jpg",
+          "type": "photo",
+          "url": "https://t.co/lNkTCYk9eq",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "x": 612,
+                  "y": 309,
+                  "h": 174,
+                  "w": 174
+                },
+                {
+                  "x": 196,
+                  "y": 265,
+                  "h": 146,
+                  "w": 146
+                }
+              ]
+            },
+            "medium": {
+              "faces": [
+                {
+                  "x": 612,
+                  "y": 309,
+                  "h": 174,
+                  "w": 174
+                },
+                {
+                  "x": 196,
+                  "y": 265,
+                  "h": 146,
+                  "w": 146
+                }
+              ]
+            },
+            "small": {
+              "faces": [
+                {
+                  "x": 416,
+                  "y": 210,
+                  "h": 118,
+                  "w": 118
+                },
+                {
+                  "x": 133,
+                  "y": 180,
+                  "h": 99,
+                  "w": 99
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "x": 612,
+                  "y": 309,
+                  "h": 174,
+                  "w": 174
+                },
+                {
+                  "x": 196,
+                  "y": 265,
+                  "h": 146,
+                  "w": 146
+                }
+              ]
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 1000,
+              "w": 1000,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 1000,
+              "w": 1000,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 680,
+              "w": 680,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 1000,
+            "width": 1000,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 95,
+                "w": 1000,
+                "h": 560
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1000,
+                "h": 1000
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 877,
+                "h": 1000
+              },
+              {
+                "x": 25,
+                "y": 0,
+                "w": 500,
+                "h": 1000
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1000,
+                "h": 1000
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1888173262879784960"
+            }
+          }
+        }
+      ]
+    },
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            206,
+            214
+          ],
+          "text": "SPX6900"
+        }
+      ],
+      "media": [
+        {
+          "display_url": "pic.x.com/lNkTCYk9eq",
+          "expanded_url": "https://x.com/SamAp3s/status/1888173273516573105/photo/1",
+          "id_str": "1888173262879784960",
+          "indices": [
+            240,
+            263
+          ],
+          "media_key": "3_1888173262879784960",
+          "media_url_https": "https://pbs.twimg.com/media/GjQjlCBXAAAt1Ms.jpg",
+          "type": "photo",
+          "url": "https://t.co/lNkTCYk9eq",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": [
+                {
+                  "x": 612,
+                  "y": 309,
+                  "h": 174,
+                  "w": 174
+                },
+                {
+                  "x": 196,
+                  "y": 265,
+                  "h": 146,
+                  "w": 146
+                }
+              ]
+            },
+            "medium": {
+              "faces": [
+                {
+                  "x": 612,
+                  "y": 309,
+                  "h": 174,
+                  "w": 174
+                },
+                {
+                  "x": 196,
+                  "y": 265,
+                  "h": 146,
+                  "w": 146
+                }
+              ]
+            },
+            "small": {
+              "faces": [
+                {
+                  "x": 416,
+                  "y": 210,
+                  "h": 118,
+                  "w": 118
+                },
+                {
+                  "x": 133,
+                  "y": 180,
+                  "h": 99,
+                  "w": 99
+                }
+              ]
+            },
+            "orig": {
+              "faces": [
+                {
+                  "x": 612,
+                  "y": 309,
+                  "h": 174,
+                  "w": 174
+                },
+                {
+                  "x": 196,
+                  "y": 265,
+                  "h": 146,
+                  "w": 146
+                }
+              ]
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 1000,
+              "w": 1000,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 1000,
+              "w": 1000,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 680,
+              "w": 680,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 1000,
+            "width": 1000,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 95,
+                "w": 1000,
+                "h": 560
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1000,
+                "h": 1000
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 877,
+                "h": 1000
+              },
+              {
+                "x": 25,
+                "y": 0,
+                "w": 500,
+                "h": 1000
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1000,
+                "h": 1000
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1888173262879784960"
+            }
+          }
+        }
+      ],
+      "symbols": [
+        {
+          "indices": [
+            219,
+            224
+          ],
+          "text": "GIGA"
+        }
+      ],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1888160032539185377",
+  "url": "https://x.com/maddox00000/status/1888160032539185377",
+  "twitterUrl": "https://twitter.com/maddox00000/status/1888160032539185377",
+  "text": "RT @genmonex: The growth of the Community is crazy. \n\nI’m so FUCKING bullish for #SPX6900. And people seriously still say the #SPX6900 Comm…",
+  "fullText": "RT @genmonex: The growth of the Community is crazy. \n\nI’m so FUCKING bullish for #SPX6900. And people seriously still say the #SPX6900 Comm…",
+  "source": "Twitter for iPhone",
+  "retweetCount": 49,
+  "replyCount": 16,
+  "likeCount": 223,
+  "quoteCount": 2,
+  "viewCount": 5376,
+  "createdAt": "Sat Feb 08 09:36:46 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 6,
+  "isReply": false,
+  "conversationId": "1888160032539185377",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "maddox00000",
+    "url": "https://x.com/maddox00000",
+    "twitterUrl": "https://twitter.com/maddox00000",
+    "id": "160358122",
+    "name": "maddox 💹🧲",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1840121759003004928/OlCuVTrp_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/160358122/1737150371",
+    "description": "Bitcoin and Cult Memecoins. Everything else is vaporware.",
+    "location": "",
+    "followers": 42045,
+    "following": 2374,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Sun Jun 27 23:43:29 +0000 2010",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 66326,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 417,
+    "statusesCount": 1385,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1871723087080620361"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          81,
+          89
+        ],
+        "text": "SPX6900"
+      },
+      {
+        "indices": [
+          126,
+          134
+        ],
+        "text": "SPX6900"
+      }
+    ],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "1866674091521961984",
+        "name": "luxamontx💹🧲",
+        "screen_name": "genmonex",
+        "indices": [
+          3,
+          12
+        ]
+      }
+    ]
+  },
+  "isRetweet": true,
+  "retweet": {
+    "type": "tweet",
+    "id": "1888056458899783856",
+    "text": "The growth of the Community is crazy. \n\nI’m so FUCKING bullish for #SPX6900. And people seriously still say the #SPX6900 Community is full of bots?\n\n Let me tell you one thing missing out on #SPX6900 will be the biggest mistake of your life.\n\nStop Trading and Believe in something.",
+    "source": "Twitter for Android",
+    "retweetCount": 49,
+    "replyCount": 16,
+    "likeCount": 223,
+    "quoteCount": 2,
+    "viewCount": 5376,
+    "createdAt": "Sat Feb 08 02:45:12 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 6,
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "genmonex",
+      "url": "https://x.com/genmonex",
+      "twitterUrl": "https://twitter.com/genmonex",
+      "id": "1866674091521961984",
+      "name": "luxamontx💹🧲",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1883344763216117760/jdI6zFqQ_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1866674091521961984/1737514505",
+      "description": "Strong Believer of #Spx6900 and $GIGA",
+      "location": "",
+      "followers": 149,
+      "following": 45,
+      "status": "",
+      "canDm": false,
+      "canMediaTag": true,
+      "createdAt": "Wed Dec 11 02:39:36 +0000 2024",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 203,
+      "hasCustomTimelines": false,
+      "isTranslator": false,
+      "mediaCount": 31,
+      "statusesCount": 103,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": []
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "display_url": "pic.x.com/U4iotqtf00",
+          "expanded_url": "https://x.com/genmonex/status/1888056458899783856/video/1",
+          "id_str": "1888056409440366593",
+          "indices": [
+            271,
+            294
+          ],
+          "media_key": "7_1888056409440366593",
+          "media_url_https": "https://pbs.twimg.com/ext_tw_video_thumb/1888056409440366593/pu/img/UPvXBAPC8r1fK1A9.jpg",
+          "type": "video",
+          "url": "https://t.co/U4iotqtf00",
+          "additional_media_info": {
+            "monetizable": false
+          },
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "sizes": {
+            "large": {
+              "h": 1918,
+              "w": 850,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 1200,
+              "w": 532,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 680,
+              "w": 301,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 1918,
+            "width": 850,
+            "focus_rects": []
+          },
+          "video_info": {
+            "aspect_ratio": [
+              425,
+              959
+            ],
+            "duration_millis": 28407,
+            "variants": [
+              {
+                "content_type": "application/x-mpegURL",
+                "url": "https://video.twimg.com/ext_tw_video/1888056409440366593/pu/pl/lQHi9HwxS0pPysEp.m3u8?tag=12&v=cfc"
+              },
+              {
+                "bitrate": 632000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1888056409440366593/pu/vid/avc1/320x722/E-s4UjyqEt42TZEO.mp4?tag=12"
+              },
+              {
+                "bitrate": 950000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1888056409440366593/pu/vid/avc1/480x1082/71n_r01cBpTJplmZ.mp4?tag=12"
+              },
+              {
+                "bitrate": 2176000,
+                "content_type": "video/mp4",
+                "url": "https://video.twimg.com/ext_tw_video/1888056409440366593/pu/vid/avc1/720x1624/fLtbinODZRs9O1Gc.mp4?tag=12"
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "7_1888056409440366593"
+            }
+          }
+        }
+      ]
+    },
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            67,
+            75
+          ],
+          "text": "SPX6900"
+        },
+        {
+          "indices": [
+            112,
+            120
+          ],
+          "text": "SPX6900"
+        },
+        {
+          "indices": [
+            191,
+            199
+          ],
+          "text": "SPX6900"
+        }
+      ],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1888006795181842718",
+  "url": "https://x.com/maddox00000/status/1888006795181842718",
+  "twitterUrl": "https://twitter.com/maddox00000/status/1888006795181842718",
+  "text": "RT @benjvar22: It's fun watching people realize SPX is the next gen BTC. Many struggle with this idea because they don't want it to be true…",
+  "fullText": "RT @benjvar22: It's fun watching people realize SPX is the next gen BTC. Many struggle with this idea because they don't want it to be true…",
+  "source": "Twitter for iPhone",
+  "retweetCount": 63,
+  "replyCount": 47,
+  "likeCount": 443,
+  "quoteCount": 6,
+  "viewCount": 44821,
+  "createdAt": "Fri Feb 07 23:27:52 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 11,
+  "isReply": false,
+  "conversationId": "1888006795181842718",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "maddox00000",
+    "url": "https://x.com/maddox00000",
+    "twitterUrl": "https://twitter.com/maddox00000",
+    "id": "160358122",
+    "name": "maddox 💹🧲",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1840121759003004928/OlCuVTrp_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/160358122/1737150371",
+    "description": "Bitcoin and Cult Memecoins. Everything else is vaporware.",
+    "location": "",
+    "followers": 42045,
+    "following": 2374,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Sun Jun 27 23:43:29 +0000 2010",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 66326,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 417,
+    "statusesCount": 1385,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1871723087080620361"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "48887464",
+        "name": "bΞn v🌱",
+        "screen_name": "benjvar22",
+        "indices": [
+          3,
+          13
+        ]
+      }
+    ]
+  },
+  "isRetweet": true,
+  "retweet": {
+    "type": "tweet",
+    "id": "1887927951385411619",
+    "text": "It's fun watching people realize SPX is the next gen BTC. Many struggle with this idea because they don't want it to be true and it clouds their judgment. \"i knew about it but i didn't invest!\"",
+    "source": "Twitter for Android",
+    "retweetCount": 63,
+    "replyCount": 47,
+    "likeCount": 443,
+    "quoteCount": 6,
+    "viewCount": 44821,
+    "createdAt": "Fri Feb 07 18:14:34 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 11,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "benjvar22",
+      "url": "https://x.com/benjvar22",
+      "twitterUrl": "https://twitter.com/benjvar22",
+      "id": "48887464",
+      "name": "bΞn v🌱",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1874340733232050176/RSL_yNFN_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/48887464/1726466136",
+      "description": "#RemiliaWorldOrder #govegan milady #𝔅ℜ𝔊 🇺🇸🇺🇦 https://t.co/MEWlO1sYgQ 🪲",
+      "location": "Texas, USA",
+      "followers": 5814,
+      "following": 2566,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": false,
+      "createdAt": "Sat Jun 20 01:16:50 +0000 2009",
+      "entities": {
+        "description": {
+          "urls": [
+            {
+              "display_url": "spx6900.com",
+              "expanded_url": "https://www.spx6900.com/",
+              "url": "https://t.co/MEWlO1sYgQ",
+              "indices": [
+                45,
+                68
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 57381,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1662,
+      "statusesCount": 4161,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1607266158771859457"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1888001278501945487",
+  "url": "https://x.com/maddox00000/status/1888001278501945487",
+  "twitterUrl": "https://twitter.com/maddox00000/status/1888001278501945487",
+  "text": "RT @BrettWtff: $SPX is absorbing all capital. High velocity rotations are irrelevant when conviction weighted holders refuse dispersion. Wh…",
+  "fullText": "RT @BrettWtff: $SPX is absorbing all capital. High velocity rotations are irrelevant when conviction weighted holders refuse dispersion. Wh…",
+  "source": "Twitter for iPhone",
+  "retweetCount": 95,
+  "replyCount": 63,
+  "likeCount": 476,
+  "quoteCount": 3,
+  "viewCount": 41249,
+  "createdAt": "Fri Feb 07 23:05:56 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 10,
+  "isReply": false,
+  "conversationId": "1888001278501945487",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "maddox00000",
+    "url": "https://x.com/maddox00000",
+    "twitterUrl": "https://twitter.com/maddox00000",
+    "id": "160358122",
+    "name": "maddox 💹🧲",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1840121759003004928/OlCuVTrp_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/160358122/1737150371",
+    "description": "Bitcoin and Cult Memecoins. Everything else is vaporware.",
+    "location": "",
+    "followers": 42045,
+    "following": 2374,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Sun Jun 27 23:43:29 +0000 2010",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 66326,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 417,
+    "statusesCount": 1385,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1871723087080620361"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [
+      {
+        "indices": [
+          15,
+          19
+        ],
+        "text": "SPX"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "1717180321257385985",
+        "name": "Brettardio 💹🧲",
+        "screen_name": "BrettWtff",
+        "indices": [
+          3,
+          13
+        ]
+      }
+    ]
+  },
+  "isRetweet": true,
+  "retweet": {
+    "type": "tweet",
+    "id": "1887886376424607796",
+    "text": "$SPX is absorbing all capital. High velocity rotations are irrelevant when conviction weighted holders refuse dispersion. What happens when an asset with inelastic sell pressure meets reflexive demand? \n\nYou’ll find out soon.\n\nLiquidity isn’t evaporating, it’s being forcibly reallocated into stronger assets. Holder counts illustrate exactly where liquidity is flowing. #SPX6900 \n\nBelieve in something.",
+    "source": "Twitter Web App",
+    "retweetCount": 95,
+    "replyCount": 63,
+    "likeCount": 476,
+    "quoteCount": 3,
+    "viewCount": 41249,
+    "createdAt": "Fri Feb 07 15:29:22 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 10,
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "BrettWtff",
+      "url": "https://x.com/BrettWtff",
+      "twitterUrl": "https://twitter.com/BrettWtff",
+      "id": "1717180321257385985",
+      "name": "Brettardio 💹🧲",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1867334831522095104/xTiVEnbi_normal.jpg",
+      "description": "",
+      "location": "",
+      "followers": 1222,
+      "following": 1306,
+      "status": "",
+      "canDm": false,
+      "canMediaTag": false,
+      "createdAt": "Wed Oct 25 14:04:33 +0000 2023",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 3455,
+      "hasCustomTimelines": false,
+      "isTranslator": false,
+      "mediaCount": 363,
+      "statusesCount": 3105,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1860035478054936958"
+      ]
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "display_url": "pic.x.com/7DbahfoVZB",
+          "expanded_url": "https://x.com/BrettWtff/status/1887886376424607796/photo/1",
+          "id_str": "1887885939373998080",
+          "indices": [
+            276,
+            299
+          ],
+          "media_key": "3_1887885939373998080",
+          "media_url_https": "https://pbs.twimg.com/media/GjMeQmjXgAA3jvw.jpg",
+          "type": "photo",
+          "url": "https://t.co/7DbahfoVZB",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": []
+            },
+            "medium": {
+              "faces": []
+            },
+            "small": {
+              "faces": []
+            },
+            "orig": {
+              "faces": []
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 413,
+              "w": 924,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 413,
+              "w": 924,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 304,
+              "w": 680,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 413,
+            "width": 924,
+            "focus_rects": [
+              {
+                "x": 93,
+                "y": 0,
+                "w": 738,
+                "h": 413
+              },
+              {
+                "x": 256,
+                "y": 0,
+                "w": 413,
+                "h": 413
+              },
+              {
+                "x": 281,
+                "y": 0,
+                "w": 362,
+                "h": 413
+              },
+              {
+                "x": 359,
+                "y": 0,
+                "w": 207,
+                "h": 413
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 924,
+                "h": 413
+              }
+            ]
+          },
+          "allow_download_status": {
+            "allow_download": true
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1887885939373998080"
+            }
+          }
+        }
+      ]
+    },
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [
+        {
+          "indices": [
+            371,
+            379
+          ],
+          "text": "SPX6900"
+        }
+      ],
+      "symbols": [
+        {
+          "indices": [
+            0,
+            4
+          ],
+          "text": "SPX"
+        }
+      ],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1887980531217789322",
+  "url": "https://x.com/maddox00000/status/1887980531217789322",
+  "twitterUrl": "https://twitter.com/maddox00000/status/1887980531217789322",
+  "text": "The reason why #SPX6900 and $GIGA will win is simple:\n\nThe coins that grow to $100 Billion+\n\nAre those that have a VERY HIGH % of Holders\n\nWho Believe so hard, that they never sell.\n\nBTC, XRP, DOGE proved this.\n\nThis cycle, $SPX &amp; $GIGA are the coins with such die-hard believers. https://t.co/lZB4vxlfM3",
+  "fullText": "The reason why #SPX6900 and $GIGA will win is simple:\n\nThe coins that grow to $100 Billion+\n\nAre those that have a VERY HIGH % of Holders\n\nWho Believe so hard, that they never sell.\n\nBTC, XRP, DOGE proved this.\n\nThis cycle, $SPX &amp; $GIGA are the coins with such die-hard believers. https://t.co/lZB4vxlfM3",
+  "source": "Twitter Web App",
+  "retweetCount": 156,
+  "replyCount": 90,
+  "likeCount": 632,
+  "quoteCount": 5,
+  "viewCount": 42597,
+  "createdAt": "Fri Feb 07 21:43:30 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 34,
+  "isReply": false,
+  "conversationId": "1887980531217789322",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "maddox00000",
+    "url": "https://x.com/maddox00000",
+    "twitterUrl": "https://twitter.com/maddox00000",
+    "id": "160358122",
+    "name": "maddox 💹🧲",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1840121759003004928/OlCuVTrp_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/160358122/1737150371",
+    "description": "Bitcoin and Cult Memecoins. Everything else is vaporware.",
+    "location": "",
+    "followers": 42045,
+    "following": 2374,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Sun Jun 27 23:43:29 +0000 2010",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 66326,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 417,
+    "statusesCount": 1385,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1871723087080620361"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/lZB4vxlfM3",
+        "expanded_url": "https://x.com/maddox00000/status/1887980531217789322/photo/1",
+        "id_str": "1887980252636368896",
+        "indices": [
+          285,
+          308
+        ],
+        "media_key": "3_1887980252636368896",
+        "media_url_https": "https://pbs.twimg.com/media/GjN0CW1X0AAEslo.jpg",
+        "type": "photo",
+        "url": "https://t.co/lZB4vxlfM3",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 1739,
+                "y": 109,
+                "h": 69,
+                "w": 69
+              },
+              {
+                "x": 1767,
+                "y": 987,
+                "h": 67,
+                "w": 67
+              },
+              {
+                "x": 1507,
+                "y": 989,
+                "h": 73,
+                "w": 73
+              },
+              {
+                "x": 549,
+                "y": 253,
+                "h": 97,
+                "w": 97
+              },
+              {
+                "x": 1905,
+                "y": 379,
+                "h": 115,
+                "w": 115
+              },
+              {
+                "x": 735,
+                "y": 833,
+                "h": 103,
+                "w": 103
+              },
+              {
+                "x": 1167,
+                "y": 879,
+                "h": 107,
+                "w": 107
+              },
+              {
+                "x": 453,
+                "y": 413,
+                "h": 243,
+                "w": 243
+              },
+              {
+                "x": 93,
+                "y": 661,
+                "h": 237,
+                "w": 237
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 1019,
+                "y": 64,
+                "h": 41,
+                "w": 41
+              },
+              {
+                "x": 1035,
+                "y": 578,
+                "h": 39,
+                "w": 39
+              },
+              {
+                "x": 883,
+                "y": 580,
+                "h": 43,
+                "w": 43
+              },
+              {
+                "x": 322,
+                "y": 148,
+                "h": 57,
+                "w": 57
+              },
+              {
+                "x": 1116,
+                "y": 222,
+                "h": 67,
+                "w": 67
+              },
+              {
+                "x": 431,
+                "y": 488,
+                "h": 60,
+                "w": 60
+              },
+              {
+                "x": 684,
+                "y": 515,
+                "h": 63,
+                "w": 63
+              },
+              {
+                "x": 266,
+                "y": 242,
+                "h": 142,
+                "w": 142
+              },
+              {
+                "x": 55,
+                "y": 387,
+                "h": 139,
+                "w": 139
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 577,
+                "y": 36,
+                "h": 23,
+                "w": 23
+              },
+              {
+                "x": 586,
+                "y": 327,
+                "h": 22,
+                "w": 22
+              },
+              {
+                "x": 500,
+                "y": 328,
+                "h": 24,
+                "w": 24
+              },
+              {
+                "x": 182,
+                "y": 84,
+                "h": 32,
+                "w": 32
+              },
+              {
+                "x": 632,
+                "y": 125,
+                "h": 38,
+                "w": 38
+              },
+              {
+                "x": 244,
+                "y": 276,
+                "h": 34,
+                "w": 34
+              },
+              {
+                "x": 387,
+                "y": 292,
+                "h": 35,
+                "w": 35
+              },
+              {
+                "x": 150,
+                "y": 137,
+                "h": 80,
+                "w": 80
+              },
+              {
+                "x": 31,
+                "y": 219,
+                "h": 78,
+                "w": 78
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 3058,
+                "y": 193,
+                "h": 123,
+                "w": 123
+              },
+              {
+                "x": 3107,
+                "y": 1736,
+                "h": 119,
+                "w": 119
+              },
+              {
+                "x": 2650,
+                "y": 1740,
+                "h": 130,
+                "w": 130
+              },
+              {
+                "x": 966,
+                "y": 446,
+                "h": 172,
+                "w": 172
+              },
+              {
+                "x": 3350,
+                "y": 667,
+                "h": 203,
+                "w": 203
+              },
+              {
+                "x": 1293,
+                "y": 1466,
+                "h": 182,
+                "w": 182
+              },
+              {
+                "x": 2053,
+                "y": 1546,
+                "h": 189,
+                "w": 189
+              },
+              {
+                "x": 798,
+                "y": 727,
+                "h": 428,
+                "w": 428
+              },
+              {
+                "x": 165,
+                "y": 1163,
+                "h": 418,
+                "w": 418
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1152,
+            "w": 2048,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 675,
+            "w": 1200,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 383,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 2025,
+          "width": 3600,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 9,
+              "w": 3600,
+              "h": 2016
+            },
+            {
+              "x": 1575,
+              "y": 0,
+              "w": 2025,
+              "h": 2025
+            },
+            {
+              "x": 1722,
+              "y": 0,
+              "w": 1776,
+              "h": 2025
+            },
+            {
+              "x": 2104,
+              "y": 0,
+              "w": 1013,
+              "h": 2025
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 3600,
+              "h": 2025
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1887980252636368896"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          15,
+          23
+        ],
+        "text": "SPX6900"
+      }
+    ],
+    "media": [
+      {
+        "display_url": "pic.x.com/lZB4vxlfM3",
+        "expanded_url": "https://x.com/maddox00000/status/1887980531217789322/photo/1",
+        "id_str": "1887980252636368896",
+        "indices": [
+          285,
+          308
+        ],
+        "media_key": "3_1887980252636368896",
+        "media_url_https": "https://pbs.twimg.com/media/GjN0CW1X0AAEslo.jpg",
+        "type": "photo",
+        "url": "https://t.co/lZB4vxlfM3",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 1739,
+                "y": 109,
+                "h": 69,
+                "w": 69
+              },
+              {
+                "x": 1767,
+                "y": 987,
+                "h": 67,
+                "w": 67
+              },
+              {
+                "x": 1507,
+                "y": 989,
+                "h": 73,
+                "w": 73
+              },
+              {
+                "x": 549,
+                "y": 253,
+                "h": 97,
+                "w": 97
+              },
+              {
+                "x": 1905,
+                "y": 379,
+                "h": 115,
+                "w": 115
+              },
+              {
+                "x": 735,
+                "y": 833,
+                "h": 103,
+                "w": 103
+              },
+              {
+                "x": 1167,
+                "y": 879,
+                "h": 107,
+                "w": 107
+              },
+              {
+                "x": 453,
+                "y": 413,
+                "h": 243,
+                "w": 243
+              },
+              {
+                "x": 93,
+                "y": 661,
+                "h": 237,
+                "w": 237
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 1019,
+                "y": 64,
+                "h": 41,
+                "w": 41
+              },
+              {
+                "x": 1035,
+                "y": 578,
+                "h": 39,
+                "w": 39
+              },
+              {
+                "x": 883,
+                "y": 580,
+                "h": 43,
+                "w": 43
+              },
+              {
+                "x": 322,
+                "y": 148,
+                "h": 57,
+                "w": 57
+              },
+              {
+                "x": 1116,
+                "y": 222,
+                "h": 67,
+                "w": 67
+              },
+              {
+                "x": 431,
+                "y": 488,
+                "h": 60,
+                "w": 60
+              },
+              {
+                "x": 684,
+                "y": 515,
+                "h": 63,
+                "w": 63
+              },
+              {
+                "x": 266,
+                "y": 242,
+                "h": 142,
+                "w": 142
+              },
+              {
+                "x": 55,
+                "y": 387,
+                "h": 139,
+                "w": 139
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 577,
+                "y": 36,
+                "h": 23,
+                "w": 23
+              },
+              {
+                "x": 586,
+                "y": 327,
+                "h": 22,
+                "w": 22
+              },
+              {
+                "x": 500,
+                "y": 328,
+                "h": 24,
+                "w": 24
+              },
+              {
+                "x": 182,
+                "y": 84,
+                "h": 32,
+                "w": 32
+              },
+              {
+                "x": 632,
+                "y": 125,
+                "h": 38,
+                "w": 38
+              },
+              {
+                "x": 244,
+                "y": 276,
+                "h": 34,
+                "w": 34
+              },
+              {
+                "x": 387,
+                "y": 292,
+                "h": 35,
+                "w": 35
+              },
+              {
+                "x": 150,
+                "y": 137,
+                "h": 80,
+                "w": 80
+              },
+              {
+                "x": 31,
+                "y": 219,
+                "h": 78,
+                "w": 78
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 3058,
+                "y": 193,
+                "h": 123,
+                "w": 123
+              },
+              {
+                "x": 3107,
+                "y": 1736,
+                "h": 119,
+                "w": 119
+              },
+              {
+                "x": 2650,
+                "y": 1740,
+                "h": 130,
+                "w": 130
+              },
+              {
+                "x": 966,
+                "y": 446,
+                "h": 172,
+                "w": 172
+              },
+              {
+                "x": 3350,
+                "y": 667,
+                "h": 203,
+                "w": 203
+              },
+              {
+                "x": 1293,
+                "y": 1466,
+                "h": 182,
+                "w": 182
+              },
+              {
+                "x": 2053,
+                "y": 1546,
+                "h": 189,
+                "w": 189
+              },
+              {
+                "x": 798,
+                "y": 727,
+                "h": 428,
+                "w": 428
+              },
+              {
+                "x": 165,
+                "y": 1163,
+                "h": 418,
+                "w": 418
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1152,
+            "w": 2048,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 675,
+            "w": 1200,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 383,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 2025,
+          "width": 3600,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 9,
+              "w": 3600,
+              "h": 2016
+            },
+            {
+              "x": 1575,
+              "y": 0,
+              "w": 2025,
+              "h": 2025
+            },
+            {
+              "x": 1722,
+              "y": 0,
+              "w": 1776,
+              "h": 2025
+            },
+            {
+              "x": 2104,
+              "y": 0,
+              "w": 1013,
+              "h": 2025
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 3600,
+              "h": 2025
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1887980252636368896"
+          }
+        }
+      }
+    ],
+    "symbols": [
+      {
+        "indices": [
+          28,
+          33
+        ],
+        "text": "GIGA"
+      },
+      {
+        "indices": [
+          224,
+          228
+        ],
+        "text": "SPX"
+      },
+      {
+        "indices": [
+          235,
+          240
+        ],
+        "text": "GIGA"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/GjN0CW1X0AAEslo.jpg"
+  ],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1887975812130906558",
+  "url": "https://x.com/maddox00000/status/1887975812130906558",
+  "twitterUrl": "https://twitter.com/maddox00000/status/1887975812130906558",
+  "text": "RT @unclemungy: $SPX has been the first coin since $DOGE that “making the coin your personality” has been a beneficial move.\n\nCT culture is…",
+  "fullText": "RT @unclemungy: $SPX has been the first coin since $DOGE that “making the coin your personality” has been a beneficial move.\n\nCT culture is…",
+  "source": "Twitter for iPhone",
+  "retweetCount": 43,
+  "replyCount": 34,
+  "likeCount": 300,
+  "quoteCount": 3,
+  "viewCount": 8360,
+  "createdAt": "Fri Feb 07 21:24:45 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 10,
+  "isReply": false,
+  "conversationId": "1887975812130906558",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "maddox00000",
+    "url": "https://x.com/maddox00000",
+    "twitterUrl": "https://twitter.com/maddox00000",
+    "id": "160358122",
+    "name": "maddox 💹🧲",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1840121759003004928/OlCuVTrp_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/160358122/1737150371",
+    "description": "Bitcoin and Cult Memecoins. Everything else is vaporware.",
+    "location": "",
+    "followers": 42045,
+    "following": 2374,
+    "status": "",
+    "canDm": false,
+    "canMediaTag": true,
+    "createdAt": "Sun Jun 27 23:43:29 +0000 2010",
+    "entities": {
+      "description": {
+        "urls": []
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 66326,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 417,
+    "statusesCount": 1385,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1871723087080620361"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [
+      {
+        "indices": [
+          16,
+          20
+        ],
+        "text": "SPX"
+      },
+      {
+        "indices": [
+          51,
+          56
+        ],
+        "text": "DOGE"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": [
+      {
+        "id_str": "1334334396854374400",
+        "name": "mung",
+        "screen_name": "unclemungy",
+        "indices": [
+          3,
+          14
+        ]
+      }
+    ]
+  },
+  "isRetweet": true,
+  "retweet": {
+    "type": "tweet",
+    "id": "1887969976319099322",
+    "text": "$SPX has been the first coin since $DOGE that “making the coin your personality” has been a beneficial move.\n\nCT culture isn’t dissolving, it’s fragmenting itself into various culture coins and leaving the scamming filth behind. \n\nSocial clout isn’t determined by likes and followers anymore, it’s determined by the size and value of your main tokenized community. This is the real socialfi. \n\nHave you found your guild yet?",
+    "source": "Twitter for iPhone",
+    "retweetCount": 43,
+    "replyCount": 34,
+    "likeCount": 300,
+    "quoteCount": 3,
+    "viewCount": 8360,
+    "createdAt": "Fri Feb 07 21:01:33 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 10,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "unclemungy",
+      "url": "https://x.com/unclemungy",
+      "twitterUrl": "https://twitter.com/unclemungy",
+      "id": "1334334396854374400",
+      "name": "mung",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1875743921499734016/4PQOX5hi_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1334334396854374400/1724424254",
+      "description": "thank God I’m retarded. Financial nihilist + Spiritual optimist = Jester’s privilege. Angels and Spirits rule all.",
+      "location": "Faggo, Nigeria",
+      "followers": 13503,
+      "following": 1809,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": false,
+      "createdAt": "Thu Dec 03 03:11:58 +0000 2020",
+      "entities": {
+        "description": {
+          "urls": []
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 150671,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 10598,
+      "statusesCount": 40841,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1818487605207478617"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [
+        {
+          "indices": [
+            0,
+            4
+          ],
+          "text": "SPX"
+        },
+        {
+          "indices": [
+            35,
+            40
+          ],
+          "text": "DOGE"
+        }
+      ],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false
+}]

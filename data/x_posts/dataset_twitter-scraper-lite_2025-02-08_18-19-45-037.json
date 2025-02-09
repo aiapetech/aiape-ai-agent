@@ -1,0 +1,2789 @@
+[{
+  "type": "tweet",
+  "id": "1887867219712836010",
+  "url": "https://x.com/0xSleuth_/status/1887867219712836010",
+  "twitterUrl": "https://twitter.com/0xSleuth_/status/1887867219712836010",
+  "text": "$VVV is the strongest (high liquidity) token on base today \n\nChart looks super strong here https://t.co/H8nH2NQ4mi",
+  "fullText": "$VVV is the strongest (high liquidity) token on base today \n\nChart looks super strong here https://t.co/H8nH2NQ4mi",
+  "source": "Twitter for iPhone",
+  "retweetCount": 3,
+  "replyCount": 14,
+  "likeCount": 71,
+  "quoteCount": 0,
+  "viewCount": 11474,
+  "createdAt": "Fri Feb 07 14:13:14 +0000 2025",
+  "lang": "en",
+  "quoteId": "1887059556829675596",
+  "bookmarkCount": 2,
+  "isReply": false,
+  "conversationId": "1887867219712836010",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "0xSleuth_",
+    "url": "https://x.com/0xSleuth_",
+    "twitterUrl": "https://twitter.com/0xSleuth_",
+    "id": "1638485046289137664",
+    "name": "mcSleuth",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+    "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+    "location": "Base L2",
+    "followers": 34062,
+    "following": 534,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "t.me/Sigma_buyBot?s…",
+            "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+            "url": "https://t.co/XUQ7vLmTF7",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 10019,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1096,
+    "statusesCount": 5125,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1782406679432466601"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/H8nH2NQ4mi",
+        "expanded_url": "https://x.com/0xSleuth_/status/1887867219712836010/photo/1",
+        "id_str": "1887867195482423297",
+        "indices": [
+          91,
+          114
+        ],
+        "media_key": "3_1887867195482423297",
+        "media_url_https": "https://pbs.twimg.com/media/GjMNNkHXwAEuZI6.jpg",
+        "type": "photo",
+        "url": "https://t.co/H8nH2NQ4mi",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 197,
+                "y": 308,
+                "h": 218,
+                "w": 218
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 118,
+                "y": 184,
+                "h": 130,
+                "w": 130
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 67,
+                "y": 104,
+                "h": 74,
+                "w": 74
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 197,
+                "y": 308,
+                "h": 218,
+                "w": 218
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 2000,
+            "w": 1178,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 707,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 401,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 2000,
+          "width": 1178,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1178,
+              "h": 660
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1178,
+              "h": 1178
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1178,
+              "h": 1343
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1000,
+              "h": 2000
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1178,
+              "h": 2000
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1887867195482423297"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/H8nH2NQ4mi",
+        "expanded_url": "https://x.com/0xSleuth_/status/1887867219712836010/photo/1",
+        "id_str": "1887867195482423297",
+        "indices": [
+          91,
+          114
+        ],
+        "media_key": "3_1887867195482423297",
+        "media_url_https": "https://pbs.twimg.com/media/GjMNNkHXwAEuZI6.jpg",
+        "type": "photo",
+        "url": "https://t.co/H8nH2NQ4mi",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": [
+              {
+                "x": 197,
+                "y": 308,
+                "h": 218,
+                "w": 218
+              }
+            ]
+          },
+          "medium": {
+            "faces": [
+              {
+                "x": 118,
+                "y": 184,
+                "h": 130,
+                "w": 130
+              }
+            ]
+          },
+          "small": {
+            "faces": [
+              {
+                "x": 67,
+                "y": 104,
+                "h": 74,
+                "w": 74
+              }
+            ]
+          },
+          "orig": {
+            "faces": [
+              {
+                "x": 197,
+                "y": 308,
+                "h": 218,
+                "w": 218
+              }
+            ]
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 2000,
+            "w": 1178,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 707,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 401,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 2000,
+          "width": 1178,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1178,
+              "h": 660
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1178,
+              "h": 1178
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1178,
+              "h": 1343
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1000,
+              "h": 2000
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1178,
+              "h": 2000
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1887867195482423297"
+          }
+        }
+      }
+    ],
+    "symbols": [
+      {
+        "indices": [
+          0,
+          4
+        ],
+        "text": "VVV"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1887059556829675596",
+    "text": "Looks like a pretty obvious rounded bottom formed on $VVV\n\nIt has been showing some relative strength against other base coins\n\nI took a position at $5, hoping not to get burnt on this again https://t.co/M8jhFUEcol",
+    "source": "Twitter for iPhone",
+    "retweetCount": 2,
+    "replyCount": 13,
+    "likeCount": 43,
+    "quoteCount": 1,
+    "viewCount": 22216,
+    "createdAt": "Wed Feb 05 08:43:52 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 7,
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "0xSleuth_",
+      "url": "https://x.com/0xSleuth_",
+      "twitterUrl": "https://twitter.com/0xSleuth_",
+      "id": "1638485046289137664",
+      "name": "mcSleuth",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+      "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+      "location": "Base L2",
+      "followers": 34062,
+      "following": 534,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "t.me/Sigma_buyBot?s…",
+              "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+              "url": "https://t.co/XUQ7vLmTF7",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 10019,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1096,
+      "statusesCount": 5125,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1782406679432466601"
+      ]
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "display_url": "pic.x.com/M8jhFUEcol",
+          "expanded_url": "https://x.com/0xSleuth_/status/1887059556829675596/photo/1",
+          "id_str": "1887059547279253504",
+          "indices": [
+            191,
+            214
+          ],
+          "media_key": "3_1887059547279253504",
+          "media_url_https": "https://pbs.twimg.com/media/GjAuqQGW4AAZk5z.jpg",
+          "type": "photo",
+          "url": "https://t.co/M8jhFUEcol",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": []
+            },
+            "medium": {
+              "faces": []
+            },
+            "small": {
+              "faces": []
+            },
+            "orig": {
+              "faces": []
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 1875,
+              "w": 1071,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 1200,
+              "w": 685,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 680,
+              "w": 388,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 1875,
+            "width": 1071,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 776,
+                "w": 1071,
+                "h": 600
+              },
+              {
+                "x": 0,
+                "y": 541,
+                "w": 1071,
+                "h": 1071
+              },
+              {
+                "x": 0,
+                "y": 466,
+                "w": 1071,
+                "h": 1221
+              },
+              {
+                "x": 133,
+                "y": 0,
+                "w": 938,
+                "h": 1875
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1071,
+                "h": 1875
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1887059547279253504"
+            }
+          }
+        }
+      ]
+    },
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "media": [
+        {
+          "display_url": "pic.x.com/M8jhFUEcol",
+          "expanded_url": "https://x.com/0xSleuth_/status/1887059556829675596/photo/1",
+          "id_str": "1887059547279253504",
+          "indices": [
+            191,
+            214
+          ],
+          "media_key": "3_1887059547279253504",
+          "media_url_https": "https://pbs.twimg.com/media/GjAuqQGW4AAZk5z.jpg",
+          "type": "photo",
+          "url": "https://t.co/M8jhFUEcol",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": []
+            },
+            "medium": {
+              "faces": []
+            },
+            "small": {
+              "faces": []
+            },
+            "orig": {
+              "faces": []
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 1875,
+              "w": 1071,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 1200,
+              "w": 685,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 680,
+              "w": 388,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 1875,
+            "width": 1071,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 776,
+                "w": 1071,
+                "h": 600
+              },
+              {
+                "x": 0,
+                "y": 541,
+                "w": 1071,
+                "h": 1071
+              },
+              {
+                "x": 0,
+                "y": 466,
+                "w": 1071,
+                "h": 1221
+              },
+              {
+                "x": 133,
+                "y": 0,
+                "w": 938,
+                "h": 1875
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1071,
+                "h": 1875
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1887059547279253504"
+            }
+          }
+        }
+      ],
+      "symbols": [
+        {
+          "indices": [
+            53,
+            57
+          ],
+          "text": "VVV"
+        }
+      ],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "media": [
+    "https://pbs.twimg.com/media/GjMNNkHXwAEuZI6.jpg"
+  ],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1887537067384516956",
+  "url": "https://x.com/0xSleuth_/status/1887537067384516956",
+  "twitterUrl": "https://twitter.com/0xSleuth_/status/1887537067384516956",
+  "text": "4 weeks later and $AIXBT has pretty much flipped $AI16Z by FDV (2.8% away but I’ll count it)\n\nThis happened while your favorite solana kols were yapping about how #AI16Z would flip virtuals, how embarrassing is it that it got flipped by a virtuals agent\n\nThe herd is always wrong https://t.co/cQBHOf4WiG",
+  "fullText": "4 weeks later and $AIXBT has pretty much flipped $AI16Z by FDV (2.8% away but I’ll count it)\n\nThis happened while your favorite solana kols were yapping about how #AI16Z would flip virtuals, how embarrassing is it that it got flipped by a virtuals agent\n\nThe herd is always wrong https://t.co/cQBHOf4WiG",
+  "source": "Twitter for iPhone",
+  "retweetCount": 5,
+  "replyCount": 21,
+  "likeCount": 122,
+  "quoteCount": 3,
+  "viewCount": 15836,
+  "createdAt": "Thu Feb 06 16:21:20 +0000 2025",
+  "lang": "en",
+  "quoteId": "1873257422808334518",
+  "bookmarkCount": 4,
+  "isReply": false,
+  "conversationId": "1887537067384516956",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "0xSleuth_",
+    "url": "https://x.com/0xSleuth_",
+    "twitterUrl": "https://twitter.com/0xSleuth_",
+    "id": "1638485046289137664",
+    "name": "mcSleuth",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+    "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+    "location": "Base L2",
+    "followers": 34062,
+    "following": 534,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "t.me/Sigma_buyBot?s…",
+            "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+            "url": "https://t.co/XUQ7vLmTF7",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 10019,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1096,
+    "statusesCount": 5125,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1782406679432466601"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/cQBHOf4WiG",
+        "expanded_url": "https://x.com/0xSleuth_/status/1887537067384516956/photo/1",
+        "id_str": "1887537056722595848",
+        "indices": [
+          280,
+          303
+        ],
+        "media_key": "3_1887537056722595848",
+        "media_url_https": "https://pbs.twimg.com/media/GjHg89ZWMAgCKPV.jpg",
+        "type": "photo",
+        "url": "https://t.co/cQBHOf4WiG",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 401,
+            "w": 1179,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 401,
+            "w": 1179,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 231,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 401,
+          "width": 1179,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 716,
+              "h": 401
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 401,
+              "h": 401
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 352,
+              "h": 401
+            },
+            {
+              "x": 47,
+              "y": 0,
+              "w": 201,
+              "h": 401
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1179,
+              "h": 401
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1887537056722595848"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [
+      {
+        "indices": [
+          163,
+          169
+        ],
+        "text": "AI16Z"
+      }
+    ],
+    "media": [
+      {
+        "display_url": "pic.x.com/cQBHOf4WiG",
+        "expanded_url": "https://x.com/0xSleuth_/status/1887537067384516956/photo/1",
+        "id_str": "1887537056722595848",
+        "indices": [
+          280,
+          303
+        ],
+        "media_key": "3_1887537056722595848",
+        "media_url_https": "https://pbs.twimg.com/media/GjHg89ZWMAgCKPV.jpg",
+        "type": "photo",
+        "url": "https://t.co/cQBHOf4WiG",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 401,
+            "w": 1179,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 401,
+            "w": 1179,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 231,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 401,
+          "width": 1179,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 716,
+              "h": 401
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 401,
+              "h": 401
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 352,
+              "h": 401
+            },
+            {
+              "x": 47,
+              "y": 0,
+              "w": 201,
+              "h": 401
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1179,
+              "h": 401
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1887537056722595848"
+          }
+        }
+      }
+    ],
+    "symbols": [
+      {
+        "indices": [
+          18,
+          24
+        ],
+        "text": "AIXBT"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1873257422808334518",
+    "text": "Max pain would be $aixbt @aixbt_agent flipping $ai16z\n\nThe most entertaining outcome is the most likely?",
+    "source": "Twitter for iPhone",
+    "retweetCount": 13,
+    "replyCount": 52,
+    "likeCount": 299,
+    "quoteCount": 4,
+    "viewCount": 47846,
+    "createdAt": "Sun Dec 29 06:39:07 +0000 2024",
+    "lang": "en",
+    "bookmarkCount": 13,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "0xSleuth_",
+      "url": "https://x.com/0xSleuth_",
+      "twitterUrl": "https://twitter.com/0xSleuth_",
+      "id": "1638485046289137664",
+      "name": "mcSleuth",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+      "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+      "location": "Base L2",
+      "followers": 34062,
+      "following": 534,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "t.me/Sigma_buyBot?s…",
+              "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+              "url": "https://t.co/XUQ7vLmTF7",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 10019,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1096,
+      "statusesCount": 5125,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1782406679432466601"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [
+        {
+          "indices": [
+            18,
+            24
+          ],
+          "text": "aixbt"
+        }
+      ],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": [
+        {
+          "id_str": "1852674305517342720",
+          "name": "aixbt",
+          "screen_name": "aixbt_agent",
+          "indices": [
+            25,
+            37
+          ]
+        }
+      ]
+    }
+  },
+  "media": [
+    "https://pbs.twimg.com/media/GjHg89ZWMAgCKPV.jpg"
+  ],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1887059556829675596",
+  "url": "https://x.com/0xSleuth_/status/1887059556829675596",
+  "twitterUrl": "https://twitter.com/0xSleuth_/status/1887059556829675596",
+  "text": "Looks like a pretty obvious rounded bottom formed on $VVV\n\nIt has been showing some relative strength against other base coins\n\nI took a position at $5, hoping not to get burnt on this again https://t.co/M8jhFUEcol",
+  "fullText": "Looks like a pretty obvious rounded bottom formed on $VVV\n\nIt has been showing some relative strength against other base coins\n\nI took a position at $5, hoping not to get burnt on this again https://t.co/M8jhFUEcol",
+  "source": "Twitter for iPhone",
+  "retweetCount": 2,
+  "replyCount": 13,
+  "likeCount": 43,
+  "quoteCount": 1,
+  "viewCount": 22216,
+  "createdAt": "Wed Feb 05 08:43:52 +0000 2025",
+  "lang": "en",
+  "quoteId": "1885240010456142036",
+  "bookmarkCount": 7,
+  "isReply": false,
+  "conversationId": "1887059556829675596",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "0xSleuth_",
+    "url": "https://x.com/0xSleuth_",
+    "twitterUrl": "https://twitter.com/0xSleuth_",
+    "id": "1638485046289137664",
+    "name": "mcSleuth",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+    "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+    "location": "Base L2",
+    "followers": 34062,
+    "following": 534,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "t.me/Sigma_buyBot?s…",
+            "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+            "url": "https://t.co/XUQ7vLmTF7",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 10019,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1096,
+    "statusesCount": 5125,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1782406679432466601"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/M8jhFUEcol",
+        "expanded_url": "https://x.com/0xSleuth_/status/1887059556829675596/photo/1",
+        "id_str": "1887059547279253504",
+        "indices": [
+          191,
+          214
+        ],
+        "media_key": "3_1887059547279253504",
+        "media_url_https": "https://pbs.twimg.com/media/GjAuqQGW4AAZk5z.jpg",
+        "type": "photo",
+        "url": "https://t.co/M8jhFUEcol",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1875,
+            "w": 1071,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 685,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 388,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1875,
+          "width": 1071,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 776,
+              "w": 1071,
+              "h": 600
+            },
+            {
+              "x": 0,
+              "y": 541,
+              "w": 1071,
+              "h": 1071
+            },
+            {
+              "x": 0,
+              "y": 466,
+              "w": 1071,
+              "h": 1221
+            },
+            {
+              "x": 133,
+              "y": 0,
+              "w": 938,
+              "h": 1875
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1071,
+              "h": 1875
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1887059547279253504"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/M8jhFUEcol",
+        "expanded_url": "https://x.com/0xSleuth_/status/1887059556829675596/photo/1",
+        "id_str": "1887059547279253504",
+        "indices": [
+          191,
+          214
+        ],
+        "media_key": "3_1887059547279253504",
+        "media_url_https": "https://pbs.twimg.com/media/GjAuqQGW4AAZk5z.jpg",
+        "type": "photo",
+        "url": "https://t.co/M8jhFUEcol",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1875,
+            "w": 1071,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 1200,
+            "w": 685,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 680,
+            "w": 388,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1875,
+          "width": 1071,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 776,
+              "w": 1071,
+              "h": 600
+            },
+            {
+              "x": 0,
+              "y": 541,
+              "w": 1071,
+              "h": 1071
+            },
+            {
+              "x": 0,
+              "y": 466,
+              "w": 1071,
+              "h": 1221
+            },
+            {
+              "x": 133,
+              "y": 0,
+              "w": 938,
+              "h": 1875
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 1071,
+              "h": 1875
+            }
+          ]
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1887059547279253504"
+          }
+        }
+      }
+    ],
+    "symbols": [
+      {
+        "indices": [
+          53,
+          57
+        ],
+        "text": "VVV"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1885240010456142036",
+    "text": "Well seems like being bullish on crime during the crime season didn’t work out\n\n$VVV retraced all the way down to $5.5\n\nI cut some of my position earlier due to the weak chart which I mentioned \n\nAfter such a drawdown you would expect some sort of bounce but instead it looks like we are getting the classic stairway to hell pattern\n\nI would wait for the formation of a clear bottom to have the highest chance of making a profitable trade here, it is too dangerous to knife catch especially considering the coin is on perps. \n\nI’m sure we had some big whales taking advantage of the fud by dumping spot + opening shorts giving us this chart pattern \n\nBut at the same time this is a horrible look on Jesse + the Coinbase listing team for shilling this dogshit especially since it was the first base AI coin they listed",
+    "source": "Twitter for iPhone",
+    "retweetCount": 4,
+    "replyCount": 47,
+    "likeCount": 152,
+    "quoteCount": 6,
+    "viewCount": 44381,
+    "createdAt": "Fri Jan 31 08:13:39 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 5,
+    "possiblySensitive": false,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "0xSleuth_",
+      "url": "https://x.com/0xSleuth_",
+      "twitterUrl": "https://twitter.com/0xSleuth_",
+      "id": "1638485046289137664",
+      "name": "mcSleuth",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+      "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+      "location": "Base L2",
+      "followers": 34062,
+      "following": 534,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "t.me/Sigma_buyBot?s…",
+              "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+              "url": "https://t.co/XUQ7vLmTF7",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 10019,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1096,
+      "statusesCount": 5125,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1782406679432466601"
+      ]
+    },
+    "extendedEntities": {
+      "media": [
+        {
+          "display_url": "pic.x.com/tU2yVr20fF",
+          "expanded_url": "https://x.com/0xSleuth_/status/1885240010456142036/photo/1",
+          "id_str": "1885239707618971648",
+          "indices": [
+            281,
+            304
+          ],
+          "media_key": "3_1885239707618971648",
+          "media_url_https": "https://pbs.twimg.com/media/Gim3hpEXEAApOYv.jpg",
+          "type": "photo",
+          "url": "https://t.co/tU2yVr20fF",
+          "ext_media_availability": {
+            "status": "Available"
+          },
+          "features": {
+            "large": {
+              "faces": []
+            },
+            "medium": {
+              "faces": []
+            },
+            "small": {
+              "faces": []
+            },
+            "orig": {
+              "faces": []
+            }
+          },
+          "sizes": {
+            "large": {
+              "h": 2048,
+              "w": 1148,
+              "resize": "fit"
+            },
+            "medium": {
+              "h": 1200,
+              "w": 673,
+              "resize": "fit"
+            },
+            "small": {
+              "h": 680,
+              "w": 381,
+              "resize": "fit"
+            },
+            "thumb": {
+              "h": 150,
+              "w": 150,
+              "resize": "crop"
+            }
+          },
+          "original_info": {
+            "height": 2048,
+            "width": 1148,
+            "focus_rects": [
+              {
+                "x": 0,
+                "y": 856,
+                "w": 1148,
+                "h": 643
+              },
+              {
+                "x": 0,
+                "y": 603,
+                "w": 1148,
+                "h": 1148
+              },
+              {
+                "x": 0,
+                "y": 523,
+                "w": 1148,
+                "h": 1309
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1024,
+                "h": 2048
+              },
+              {
+                "x": 0,
+                "y": 0,
+                "w": 1148,
+                "h": 2048
+              }
+            ]
+          },
+          "media_results": {
+            "result": {
+              "media_key": "3_1885239707618971648"
+            }
+          }
+        }
+      ]
+    },
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [
+        {
+          "indices": [
+            80,
+            84
+          ],
+          "text": "VVV"
+        }
+      ],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "media": [
+    "https://pbs.twimg.com/media/GjAuqQGW4AAZk5z.jpg"
+  ],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1886704156158677071",
+  "url": "https://x.com/0xSleuth_/status/1886704156158677071",
+  "twitterUrl": "https://twitter.com/0xSleuth_/status/1886704156158677071",
+  "text": "I was looking to bid some creatorbid: $BID a few days ago after the airdrop sell pressure was over\n\nBut instead of getting it over and done with, the team decided to delay the airdrop claim for two more weeks\n\nMeanwhile the entire market dumped, $BID dumped even more and there is STILL the airdrop overhang for two weeks\n\nWould have been so much better to get it over and done with, but now even if the market does bounce within the next two weeks, people (like me) will be scared to bid because of the airdrop overhang\n\nSeriously one of the most incompetent teams I have seen in crypto",
+  "fullText": "I was looking to bid some creatorbid: $BID a few days ago after the airdrop sell pressure was over\n\nBut instead of getting it over and done with, the team decided to delay the airdrop claim for two more weeks\n\nMeanwhile the entire market dumped, $BID dumped even more and there is",
+  "source": "Twitter for iPhone",
+  "retweetCount": 2,
+  "replyCount": 18,
+  "likeCount": 84,
+  "quoteCount": 0,
+  "viewCount": 19009,
+  "createdAt": "Tue Feb 04 09:11:38 +0000 2025",
+  "lang": "en",
+  "quoteId": "1882810707391185089",
+  "bookmarkCount": 10,
+  "isReply": false,
+  "conversationId": "1886704156158677071",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "0xSleuth_",
+    "url": "https://x.com/0xSleuth_",
+    "twitterUrl": "https://twitter.com/0xSleuth_",
+    "id": "1638485046289137664",
+    "name": "mcSleuth",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+    "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+    "location": "Base L2",
+    "followers": 34062,
+    "following": 534,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "t.me/Sigma_buyBot?s…",
+            "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+            "url": "https://t.co/XUQ7vLmTF7",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 10019,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1096,
+    "statusesCount": 5125,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1782406679432466601"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [
+      {
+        "indices": [
+          38,
+          42
+        ],
+        "text": "BID"
+      },
+      {
+        "indices": [
+          246,
+          250
+        ],
+        "text": "BID"
+      }
+    ],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1882810707391185089",
+    "text": "I agree with @aixbt_agent here\n\n$LAY seems more grassroots and legit, $BID seems like a massive cash grab\n\nI bought some for a flip but I don’t have much faith in the team long term\n\nBinance wallet presale was a mess, excluded many different countries and the people that actually got in didn’t care about the project and just jeeted their free money\n\nAnd because of the Binance wallet presale they had to add liquidity to bsc which killed the chart early on due to the arbitrage \n\nAnd also they took way too long to launch, by the time it finally launched the platform was dead and the narrative was much weaker\n\nIf the $bid token launched after the fjord lbp (instead of the stupid refund fiasco they did) it would be trading many multiples higher rn",
+    "source": "Twitter for iPhone",
+    "retweetCount": 16,
+    "replyCount": 35,
+    "likeCount": 110,
+    "quoteCount": 2,
+    "viewCount": 40712,
+    "createdAt": "Fri Jan 24 15:20:28 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 16,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "0xSleuth_",
+      "url": "https://x.com/0xSleuth_",
+      "twitterUrl": "https://twitter.com/0xSleuth_",
+      "id": "1638485046289137664",
+      "name": "mcSleuth",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+      "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+      "location": "Base L2",
+      "followers": 34062,
+      "following": 534,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "t.me/Sigma_buyBot?s…",
+              "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+              "url": "https://t.co/XUQ7vLmTF7",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 10019,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1096,
+      "statusesCount": 5125,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1782406679432466601"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [
+        {
+          "indices": [
+            32,
+            36
+          ],
+          "text": "LAY"
+        },
+        {
+          "indices": [
+            70,
+            74
+          ],
+          "text": "BID"
+        },
+        {
+          "indices": [
+            621,
+            625
+          ],
+          "text": "bid"
+        }
+      ],
+      "urls": [],
+      "user_mentions": [
+        {
+          "id_str": "1852674305517342720",
+          "name": "aixbt",
+          "screen_name": "aixbt_agent",
+          "indices": [
+            13,
+            25
+          ]
+        }
+      ]
+    }
+  },
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1886539659188023567",
+  "url": "https://x.com/0xSleuth_/status/1886539659188023567",
+  "twitterUrl": "https://twitter.com/0xSleuth_/status/1886539659188023567",
+  "text": "In my opinion, its a great time to add $ETH. You can thank me later.",
+  "fullText": "In my opinion, its a great time to add $ETH. You can thank me later.",
+  "source": "Twitter for iPhone",
+  "retweetCount": 3,
+  "replyCount": 11,
+  "likeCount": 122,
+  "quoteCount": 2,
+  "viewCount": 7858,
+  "createdAt": "Mon Feb 03 22:17:59 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 3,
+  "isReply": false,
+  "conversationId": "1886539659188023567",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "0xSleuth_",
+    "url": "https://x.com/0xSleuth_",
+    "twitterUrl": "https://twitter.com/0xSleuth_",
+    "id": "1638485046289137664",
+    "name": "mcSleuth",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+    "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+    "location": "Base L2",
+    "followers": 34062,
+    "following": 534,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "t.me/Sigma_buyBot?s…",
+            "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+            "url": "https://t.co/XUQ7vLmTF7",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 10019,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1096,
+    "statusesCount": 5125,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1782406679432466601"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [
+      {
+        "indices": [
+          39,
+          43
+        ],
+        "text": "ETH"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1886490086742569381",
+  "url": "https://x.com/0xSleuth_/status/1886490086742569381",
+  "twitterUrl": "https://twitter.com/0xSleuth_/status/1886490086742569381",
+  "text": "GM\n\nMarket has bounced really well.\n\n$FLAY up 72% and $ANON is up 54% on the day\n\nwas worth it to bid hard",
+  "fullText": "GM\n\nMarket has bounced really well.\n\n$FLAY up 72% and $ANON is up 54% on the day\n\nwas worth it to bid hard",
+  "source": "Twitter Web App",
+  "retweetCount": 2,
+  "replyCount": 7,
+  "likeCount": 28,
+  "quoteCount": 0,
+  "viewCount": 6846,
+  "createdAt": "Mon Feb 03 19:01:00 +0000 2025",
+  "lang": "en",
+  "quoteId": "1886324736839323872",
+  "bookmarkCount": 3,
+  "isReply": false,
+  "conversationId": "1886490086742569381",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "0xSleuth_",
+    "url": "https://x.com/0xSleuth_",
+    "twitterUrl": "https://twitter.com/0xSleuth_",
+    "id": "1638485046289137664",
+    "name": "mcSleuth",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+    "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+    "location": "Base L2",
+    "followers": 34062,
+    "following": 534,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "t.me/Sigma_buyBot?s…",
+            "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+            "url": "https://t.co/XUQ7vLmTF7",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 10019,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1096,
+    "statusesCount": 5125,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1782406679432466601"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [
+      {
+        "indices": [
+          37,
+          42
+        ],
+        "text": "FLAY"
+      },
+      {
+        "indices": [
+          54,
+          59
+        ],
+        "text": "ANON"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1886324736839323872",
+    "text": "I think it’s time to bid some shitcoins\n\nLook for those that bounced the strongest \n\nAnd there are some which are even green on the daily like $ANON",
+    "source": "Twitter for iPhone",
+    "retweetCount": 5,
+    "replyCount": 15,
+    "likeCount": 42,
+    "quoteCount": 1,
+    "viewCount": 32262,
+    "createdAt": "Mon Feb 03 08:03:58 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 3,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "0xSleuth_",
+      "url": "https://x.com/0xSleuth_",
+      "twitterUrl": "https://twitter.com/0xSleuth_",
+      "id": "1638485046289137664",
+      "name": "mcSleuth",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+      "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+      "location": "Base L2",
+      "followers": 34062,
+      "following": 534,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "t.me/Sigma_buyBot?s…",
+              "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+              "url": "https://t.co/XUQ7vLmTF7",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 10019,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1096,
+      "statusesCount": 5125,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1782406679432466601"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [
+        {
+          "indices": [
+            143,
+            148
+          ],
+          "text": "ANON"
+        }
+      ],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1886453680532025729",
+  "url": "https://x.com/0xSleuth_/status/1886453680532025729",
+  "twitterUrl": "https://twitter.com/0xSleuth_/status/1886453680532025729",
+  "text": "$FLAY chart looks very clean here\n\nwe need something to kick off the flywheel, and then maybe we can have a go at a virtuals like run for it\n\nthere are a few other coins with a flywheel, but this is the only one that has support from jesse, hayden etc https://t.co/8QlhLe1CNV",
+  "fullText": "$FLAY chart looks very clean here\n\nwe need something to kick off the flywheel, and then maybe we can have a go at a virtuals like run for it\n\nthere are a few other coins with a flywheel, but this is the only one that has support from jesse, hayden etc https://t.co/8QlhLe1CNV",
+  "source": "Twitter Web App",
+  "retweetCount": 1,
+  "replyCount": 18,
+  "likeCount": 37,
+  "quoteCount": 0,
+  "viewCount": 5569,
+  "createdAt": "Mon Feb 03 16:36:20 +0000 2025",
+  "lang": "en",
+  "bookmarkCount": 7,
+  "isReply": false,
+  "conversationId": "1886453680532025729",
+  "possiblySensitive": false,
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "0xSleuth_",
+    "url": "https://x.com/0xSleuth_",
+    "twitterUrl": "https://twitter.com/0xSleuth_",
+    "id": "1638485046289137664",
+    "name": "mcSleuth",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+    "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+    "location": "Base L2",
+    "followers": 34062,
+    "following": 534,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "t.me/Sigma_buyBot?s…",
+            "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+            "url": "https://t.co/XUQ7vLmTF7",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 10019,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1096,
+    "statusesCount": 5125,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1782406679432466601"
+    ]
+  },
+  "extendedEntities": {
+    "media": [
+      {
+        "display_url": "pic.x.com/8QlhLe1CNV",
+        "expanded_url": "https://x.com/0xSleuth_/status/1886453680532025729/photo/1",
+        "id_str": "1886453372036820994",
+        "indices": [
+          252,
+          275
+        ],
+        "media_key": "3_1886453372036820994",
+        "media_url_https": "https://pbs.twimg.com/media/Gi4HWNWXsAIgD4s.jpg",
+        "type": "photo",
+        "url": "https://t.co/8QlhLe1CNV",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1138,
+            "w": 2048,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 667,
+            "w": 1200,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 378,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1259,
+          "width": 2265,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 2248,
+              "h": 1259
+            },
+            {
+              "x": 446,
+              "y": 0,
+              "w": 1259,
+              "h": 1259
+            },
+            {
+              "x": 523,
+              "y": 0,
+              "w": 1104,
+              "h": 1259
+            },
+            {
+              "x": 760,
+              "y": 0,
+              "w": 630,
+              "h": 1259
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 2265,
+              "h": 1259
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1886453372036820994"
+          }
+        }
+      }
+    ]
+  },
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "media": [
+      {
+        "display_url": "pic.x.com/8QlhLe1CNV",
+        "expanded_url": "https://x.com/0xSleuth_/status/1886453680532025729/photo/1",
+        "id_str": "1886453372036820994",
+        "indices": [
+          252,
+          275
+        ],
+        "media_key": "3_1886453372036820994",
+        "media_url_https": "https://pbs.twimg.com/media/Gi4HWNWXsAIgD4s.jpg",
+        "type": "photo",
+        "url": "https://t.co/8QlhLe1CNV",
+        "ext_media_availability": {
+          "status": "Available"
+        },
+        "features": {
+          "large": {
+            "faces": []
+          },
+          "medium": {
+            "faces": []
+          },
+          "small": {
+            "faces": []
+          },
+          "orig": {
+            "faces": []
+          }
+        },
+        "sizes": {
+          "large": {
+            "h": 1138,
+            "w": 2048,
+            "resize": "fit"
+          },
+          "medium": {
+            "h": 667,
+            "w": 1200,
+            "resize": "fit"
+          },
+          "small": {
+            "h": 378,
+            "w": 680,
+            "resize": "fit"
+          },
+          "thumb": {
+            "h": 150,
+            "w": 150,
+            "resize": "crop"
+          }
+        },
+        "original_info": {
+          "height": 1259,
+          "width": 2265,
+          "focus_rects": [
+            {
+              "x": 0,
+              "y": 0,
+              "w": 2248,
+              "h": 1259
+            },
+            {
+              "x": 446,
+              "y": 0,
+              "w": 1259,
+              "h": 1259
+            },
+            {
+              "x": 523,
+              "y": 0,
+              "w": 1104,
+              "h": 1259
+            },
+            {
+              "x": 760,
+              "y": 0,
+              "w": 630,
+              "h": 1259
+            },
+            {
+              "x": 0,
+              "y": 0,
+              "w": 2265,
+              "h": 1259
+            }
+          ]
+        },
+        "allow_download_status": {
+          "allow_download": true
+        },
+        "media_results": {
+          "result": {
+            "media_key": "3_1886453372036820994"
+          }
+        }
+      }
+    ],
+    "symbols": [
+      {
+        "indices": [
+          0,
+          5
+        ],
+        "text": "FLAY"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": false,
+  "media": [
+    "https://pbs.twimg.com/media/Gi4HWNWXsAIgD4s.jpg"
+  ],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1886373548660318321",
+  "url": "https://x.com/0xSleuth_/status/1886373548660318321",
+  "twitterUrl": "https://twitter.com/0xSleuth_/status/1886373548660318321",
+  "text": "I think it’s time to have a read of this tweet again\n\nI personally made a few more mistakes this time by being too stubborn to sell $ETH to fiat and experienced quite a large drawdown due to it. I’m finding it quite hard to get rid of the $ETH bias this time\n\nNeed to remember that most of the gains were due to luck, and at any time the market can humble you very hard",
+  "fullText": "I think it’s time to have a read of this tweet again\n\nI personally made a few more mistakes this time by being too stubborn to sell $ETH to fiat and experienced quite a large drawdown due to it. I’m finding it quite hard to get rid of the $ETH bias this time\n\nNeed to remember",
+  "source": "Twitter for iPhone",
+  "retweetCount": 0,
+  "replyCount": 12,
+  "likeCount": 75,
+  "quoteCount": 2,
+  "viewCount": 15092,
+  "createdAt": "Mon Feb 03 11:17:55 +0000 2025",
+  "lang": "en",
+  "quoteId": "1820429770854981709",
+  "bookmarkCount": 15,
+  "isReply": false,
+  "conversationId": "1886373548660318321",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "0xSleuth_",
+    "url": "https://x.com/0xSleuth_",
+    "twitterUrl": "https://twitter.com/0xSleuth_",
+    "id": "1638485046289137664",
+    "name": "mcSleuth",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+    "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+    "location": "Base L2",
+    "followers": 34062,
+    "following": 534,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "t.me/Sigma_buyBot?s…",
+            "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+            "url": "https://t.co/XUQ7vLmTF7",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 10019,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1096,
+    "statusesCount": 5125,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1782406679432466601"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [
+      {
+        "indices": [
+          132,
+          136
+        ],
+        "text": "ETH"
+      },
+      {
+        "indices": [
+          239,
+          243
+        ],
+        "text": "ETH"
+      }
+    ],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1820429770854981709",
+    "text": "if you have gotten rekted today, take it as a lesson and admit that most of the gains made were due to luck\n\njust as quickly as you can make it, you can lose it all due to factors not in your control\n\nalthough i have also had spot trades open, and took a hit, I have been converting my portfolio to fiat from a couple months ago so my crypto portfolio % is just a fraction of how much it was at the peak\n\nwhy and how was i doing this? because i admitted to myself and knew that alot of the gains were due to luck, and being in the right place and the right time\n\nalthough at one point i was on a huge winning streak and did like 4-5 trades in a row (with compounded gains), basically 5-10xing my portfolio in a couple weeks I knew that this was not reproducible and although some skill was involved it was mostly due to luck; therefore i was always playing super conservatively and converting profits to fiat when i had the chance, i knew this 'lucky' environment i was in would not last forever\n\nthis proved to be true the past couple of months because although my initial portfolio run up was due to compounding wins on eth utility coins, there was basically 0 big eth utility coin winners the past few months so my portfolio was quite stagnant, this proved what i was saying earlier true, that my gains were made due to luck and being in the right place (and some skill aswell ofc), which no one wants to admit but its simply the truth\n\naltho this is the quite opposite of what most KOLs will tell you, that 'if you work and grind hard enough you will surely make it' that is quite literally impossible due to crypto being zero-sum, its impossible for everyone to win, there HAS to be losers for there to be winners\n\n[ and any KOLs selling you the idea that everyone will win is simply lying to your face ]\n\nsure working hard and grinding will help, but doing so and making money and thinking that the money was due to only 'grinding' and not partly or fully due to luck will make it much more likely u get blown up like today with so much 'hard work' but nothing real to show for it",
+    "source": "Twitter Web App",
+    "retweetCount": 8,
+    "replyCount": 11,
+    "likeCount": 114,
+    "quoteCount": 2,
+    "viewCount": 25366,
+    "createdAt": "Mon Aug 05 12:00:53 +0000 2024",
+    "lang": "en",
+    "bookmarkCount": 43,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "0xSleuth_",
+      "url": "https://x.com/0xSleuth_",
+      "twitterUrl": "https://twitter.com/0xSleuth_",
+      "id": "1638485046289137664",
+      "name": "mcSleuth",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+      "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+      "location": "Base L2",
+      "followers": 34062,
+      "following": 534,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "t.me/Sigma_buyBot?s…",
+              "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+              "url": "https://t.co/XUQ7vLmTF7",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 10019,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1096,
+      "statusesCount": 5125,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1782406679432466601"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1886366503945027600",
+  "url": "https://x.com/0xSleuth_/status/1886366503945027600",
+  "twitterUrl": "https://twitter.com/0xSleuth_/status/1886366503945027600",
+  "text": "Hoping uni v4/ $FLAY is the next onchain narrative for eth/base as the potential is pretty high in terms of innovation\n\n$ETH with that 20% candle is not helping though",
+  "fullText": "Hoping uni v4/ $FLAY is the next onchain narrative for eth/base as the potential is pretty high in terms of innovation\n\n$ETH with that 20% candle is not helping though",
+  "source": "Twitter for iPhone",
+  "retweetCount": 2,
+  "replyCount": 6,
+  "likeCount": 39,
+  "quoteCount": 0,
+  "viewCount": 7326,
+  "createdAt": "Mon Feb 03 10:49:56 +0000 2025",
+  "lang": "en",
+  "quoteId": "1886142046546911426",
+  "bookmarkCount": 4,
+  "isReply": false,
+  "conversationId": "1886366503945027600",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "0xSleuth_",
+    "url": "https://x.com/0xSleuth_",
+    "twitterUrl": "https://twitter.com/0xSleuth_",
+    "id": "1638485046289137664",
+    "name": "mcSleuth",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+    "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+    "location": "Base L2",
+    "followers": 34062,
+    "following": 534,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "t.me/Sigma_buyBot?s…",
+            "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+            "url": "https://t.co/XUQ7vLmTF7",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 10019,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1096,
+    "statusesCount": 5125,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1782406679432466601"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [
+      {
+        "indices": [
+          15,
+          20
+        ],
+        "text": "FLAY"
+      },
+      {
+        "indices": [
+          120,
+          124
+        ],
+        "text": "ETH"
+      }
+    ],
+    "timestamps": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1886142046546911426",
+    "text": "When the market bottoms, I think $FLAY is a good pickup \n\nIt’s the main coin of a new narrative: Uniswap v4 hooks and was solidified as this coin as it was shilled by @haydenzadams (Uniswap founder)\n\nIt’s a legit pump fun competitor on base that has a flywheel and it’s also possible to see a Coinbase listing for it\n\nI think we can see some explosive PA if uni v4 hooks pick up as a new narrative, it has very high potential",
+    "source": "Twitter for iPhone",
+    "retweetCount": 5,
+    "replyCount": 20,
+    "likeCount": 84,
+    "quoteCount": 2,
+    "viewCount": 17878,
+    "createdAt": "Sun Feb 02 19:58:01 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 29,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "0xSleuth_",
+      "url": "https://x.com/0xSleuth_",
+      "twitterUrl": "https://twitter.com/0xSleuth_",
+      "id": "1638485046289137664",
+      "name": "mcSleuth",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+      "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+      "location": "Base L2",
+      "followers": 34062,
+      "following": 534,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "t.me/Sigma_buyBot?s…",
+              "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+              "url": "https://t.co/XUQ7vLmTF7",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 10019,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1096,
+      "statusesCount": 5125,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1782406679432466601"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [
+        {
+          "indices": [
+            33,
+            38
+          ],
+          "text": "FLAY"
+        }
+      ],
+      "urls": [],
+      "user_mentions": [
+        {
+          "id_str": "702654540387127296",
+          "name": "Hayden Adams 🦄",
+          "screen_name": "haydenzadams",
+          "indices": [
+            167,
+            180
+          ]
+        }
+      ]
+    }
+  },
+  "media": [],
+  "isConversationControlled": false
+},
+{
+  "type": "tweet",
+  "id": "1886326823195152785",
+  "url": "https://x.com/0xSleuth_/status/1886326823195152785",
+  "twitterUrl": "https://twitter.com/0xSleuth_/status/1886326823195152785",
+  "text": "During the recent market dump, shitcoins didn’t really dump hard\n\nI think the reason for that is the people who wanted to sell, already sold so these coins quite literally ran out of sellers\n\nA lot of trash got cleansed, so I think there should be a flight to quality now which is why I’m looking for the strongest coins only",
+  "fullText": "During the recent market dump, shitcoins didn’t really dump hard\n\nI think the reason for that is the people who wanted to sell, already sold so these coins quite literally ran out of sellers\n\nA lot of trash got cleansed, so I think there should be a flight to quality now which is",
+  "source": "Twitter for iPhone",
+  "retweetCount": 6,
+  "replyCount": 25,
+  "likeCount": 87,
+  "quoteCount": 3,
+  "viewCount": 22417,
+  "createdAt": "Mon Feb 03 08:12:15 +0000 2025",
+  "lang": "en",
+  "quoteId": "1886324736839323872",
+  "bookmarkCount": 5,
+  "isReply": false,
+  "conversationId": "1886326823195152785",
+  "isPinned": false,
+  "author": {
+    "type": "user",
+    "userName": "0xSleuth_",
+    "url": "https://x.com/0xSleuth_",
+    "twitterUrl": "https://twitter.com/0xSleuth_",
+    "id": "1638485046289137664",
+    "name": "mcSleuth",
+    "isVerified": false,
+    "isBlueVerified": true,
+    "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+    "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+    "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+    "location": "Base L2",
+    "followers": 34062,
+    "following": 534,
+    "status": "",
+    "canDm": true,
+    "canMediaTag": true,
+    "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+    "entities": {
+      "description": {
+        "urls": []
+      },
+      "url": {
+        "urls": [
+          {
+            "display_url": "t.me/Sigma_buyBot?s…",
+            "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+            "url": "https://t.co/XUQ7vLmTF7",
+            "indices": [
+              0,
+              23
+            ]
+          }
+        ]
+      }
+    },
+    "fastFollowersCount": 0,
+    "favouritesCount": 10019,
+    "hasCustomTimelines": true,
+    "isTranslator": false,
+    "mediaCount": 1096,
+    "statusesCount": 5125,
+    "withheldInCountries": [],
+    "affiliatesHighlightedLabel": {},
+    "possiblySensitive": false,
+    "pinnedTweetIds": [
+      "1782406679432466601"
+    ]
+  },
+  "extendedEntities": {},
+  "card": {},
+  "place": {},
+  "entities": {
+    "hashtags": [],
+    "symbols": [],
+    "urls": [],
+    "user_mentions": []
+  },
+  "isRetweet": false,
+  "isQuote": true,
+  "quote": {
+    "type": "tweet",
+    "id": "1886324736839323872",
+    "text": "I think it’s time to bid some shitcoins\n\nLook for those that bounced the strongest \n\nAnd there are some which are even green on the daily like $ANON",
+    "source": "Twitter for iPhone",
+    "retweetCount": 5,
+    "replyCount": 15,
+    "likeCount": 42,
+    "quoteCount": 1,
+    "viewCount": 32262,
+    "createdAt": "Mon Feb 03 08:03:58 +0000 2025",
+    "lang": "en",
+    "bookmarkCount": 3,
+    "isPinned": false,
+    "author": {
+      "type": "user",
+      "userName": "0xSleuth_",
+      "url": "https://x.com/0xSleuth_",
+      "twitterUrl": "https://twitter.com/0xSleuth_",
+      "id": "1638485046289137664",
+      "name": "mcSleuth",
+      "isVerified": false,
+      "isBlueVerified": true,
+      "profilePicture": "https://pbs.twimg.com/profile_images/1762381335791054848/mSMeyQDS_normal.jpg",
+      "coverPicture": "https://pbs.twimg.com/profile_banners/1638485046289137664/1709018590",
+      "description": "onchain pirate trading attention. tweets are my thoughts only and NOT financial advice @leftcurvedao",
+      "location": "Base L2",
+      "followers": 34062,
+      "following": 534,
+      "status": "",
+      "canDm": true,
+      "canMediaTag": true,
+      "createdAt": "Wed Mar 22 10:17:40 +0000 2023",
+      "entities": {
+        "description": {
+          "urls": []
+        },
+        "url": {
+          "urls": [
+            {
+              "display_url": "t.me/Sigma_buyBot?s…",
+              "expanded_url": "https://t.me/Sigma_buyBot?start=ref=5632718696",
+              "url": "https://t.co/XUQ7vLmTF7",
+              "indices": [
+                0,
+                23
+              ]
+            }
+          ]
+        }
+      },
+      "fastFollowersCount": 0,
+      "favouritesCount": 10019,
+      "hasCustomTimelines": true,
+      "isTranslator": false,
+      "mediaCount": 1096,
+      "statusesCount": 5125,
+      "withheldInCountries": [],
+      "affiliatesHighlightedLabel": {},
+      "possiblySensitive": false,
+      "pinnedTweetIds": [
+        "1782406679432466601"
+      ]
+    },
+    "extendedEntities": {},
+    "card": {},
+    "place": {},
+    "entities": {
+      "hashtags": [],
+      "symbols": [
+        {
+          "indices": [
+            143,
+            148
+          ],
+          "text": "ANON"
+        }
+      ],
+      "timestamps": [],
+      "urls": [],
+      "user_mentions": []
+    }
+  },
+  "media": [],
+  "isConversationControlled": false
+}]

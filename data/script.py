@@ -4,6 +4,13 @@ sys.path.append(os.getcwd())
 from core.db import engine as postgres_engine
 from models.postgres_models import Tokens
 from sqlmodel import Field, Session
+import glob
+import pymongo
+
+
+txtfiles = []
+for file in glob.glob("*.txt"):
+    txtfiles.append(file)
 
 def remove_id_field(file_path,new_file_name):
     with open(file_path, 'r') as file:
@@ -35,5 +42,23 @@ def import_tokens():
             session.add(token)
         session.commit()
 # Example usage
+
+def insert_post_mongo():
+    my_json_list = [f for f in glob.glob("/Users/jean/Work/SightSea-AI/demo/backend/data/x_posts/dataset_twitter-scraper-lite_*.json")]
+    data = []
+    for file in my_json_list:
+        with open(file) as f:
+            json_data = json.load(f)
+        data += json_data
+    ## Initialize the mongo client
+    client = pymongo.MongoClient('')
+    a = client.list_database_names()
+    mydb = client["sightsea"]
+    mycol = mydb["posts"]
+    x = mycol.delete_many({})
+
+    x = mycol.insert_many(data)
+    print(x)
+    ## Create a database    
 if __name__ == '__main__':
-    import_tokens()
+    insert_post_mongo()

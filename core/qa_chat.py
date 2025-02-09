@@ -1,53 +1,56 @@
-
-
-
-from langchain_openai import OpenAIEmbeddings
-import os
-from langchain.document_loaders import CSVLoader
-
-from langchain_openai import OpenAI
-
-from dotenv import load_dotenv, find_dotenv
-
-_ = load_dotenv(find_dotenv())
-
-from langchain.chains.retrieval_qa.base import RetrievalQA
 from langchain.vectorstores.docarray import DocArrayInMemorySearch
-from langchain_community.document_loaders.csv_loader import CSVLoader
+from langchain_openai import OpenAIEmbeddings
+from langchain.chains.retrieval_qa.base import RetrievalQA
+
+import os,sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from models.postgres_models import *
+import dotenv
+from datetime import datetime
+from sqlalchemy import func
+from langchain_core.prompts import PromptTemplate
+from core.query_templates import prompt as prompt_template
 from langchain_openai import ChatOpenAI
-from langchain.indexes import VectorstoreIndexCreator
+from langchain.chains.combine_documents import create_stuff_documents_chain
+from core.config import settings as app_settings
+#from core.components.vector_store import QdrantVectorStore
 from langchain_community.document_loaders import WebBaseLoader
 
 
 
-url = "https://raw.githubusercontent.com/UKPLab/sentence-transformers/master/examples/datasets/faq-ukp.csv"
-loader = WebBaseLoader(url)
-docs = loader.load()
-openai_api_key = os.environ.get("OPENAI_API_KEY")
-embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
-index = VectorstoreIndexCreator(vectorstore_cls=DocArrayInMemorySearch, embedding=embeddings).from_loaders([loader])
+class QARetriver:
+    def __init__(self,url,token_data,settings):
+        self.llm = ChatOpenAI(model=settings.OPENAI_MODEL_NAME)
+        self.embeddings = OpenAIEmbeddings(model=settings.OPENAI_EMBEDDING_MODEL_NAME)
+        loader= WebBaseLoader(url)
+        self.docs = loader.load()
+        self.db = DocArrayInMemorySearch.from_documents(self.docs, embedding=self.embeddings)
+        self.token_data = token_data
+        project_name = token_data['name']
+        description = token_data['description']['en']
+        market_data = token_data['market_data']
+        self.prompt = PromptTemplate(
+            template = prompt_template.TOKEN_ASSITANT,
+            input_variables=["context","question"],
+            partial_variables={
+                "project_name":project_name,
+                "project_description":description,
+                "today_market_data":market_data,
 
+                }
+            )
+        #self.prompt=PromptTemplate(template=prompt_template,input_variables=["context","question"])
 
-from langchain.indexes import VectorstoreIndexCreator
+    def retrieve(self,query):
+        retriever = self.db.as_retriever()
+        retrievalQA=RetrievalQA.from_chain_type(
+            llm=self.llm,
+            chain_type="stuff",
+            retriever=retriever,
+            return_source_documents=True,
+            chain_type_kwargs={"prompt":self.prompt}
+        )
 
-from langchain_openai import ChatOpenAI
-
-db = DocArrayInMemorySearch.from_documents(docs, embedding=embeddings)
-query = "Please suggest a shirt with sunblocking"
-docs = db.similarity_search(query)
-retriever = db.as_retriever()
-llm = ChatOpenAI(temperature=0.0, model="gpt-3.5-turbo")
-
-qa_stuff = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever, verbose=True)
-
-response = qa_stuff.invoke(query)
-
-
-index = VectorstoreIndexCreator(
-
-    vectorstore_cls=DocArrayInMemorySearch,
-
-    embedding=embeddings,
-
-).from_loaders([loader])
-response = index.query(query, llm=llm)
+        result = retrievalQA.invoke({"query": query})
+        return result['result']
+    

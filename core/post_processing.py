@@ -17,8 +17,10 @@ from langchain.schema.document import Document
 from stqdm import stqdm
 from core.config import settings as app_settings
 from langchain_google_genai import ChatGoogleGenerativeAI
-
+#from core.components.vector_store import QdrantVectorStore
 from langchain_community.document_loaders import WebBaseLoader
+from core.mongodb import init_mongo 
+import pandas as pd
 
 
 
@@ -31,15 +33,18 @@ class ChainSetting:
     QDRANT_COLLECTION_NAME = app_settings.QDRANT_COLLECTION_NAME
     with open(f"{CWD}/data/list_of_project.json") as f:
         LIST_OF_PROJECT_INFO = json.load(f)
+    with open(f"{CWD}/data/cgc_coin_list.json") as f:
+        LIST_OF_CGC_PROJECT_INFO = json.load(f)
     OPENAI_MODEL_NAME = app_settings.OPENAI_MODEL_NAME
     OPENAI_EMBEDDING_MODEL_NAME = app_settings.OPENAI_EMBEDDING_MODEL_NAME
 
 class PostProcessor:
     def __init__(self, settings: ChainSetting, postgres_engine):
         self.text_embedder_component = embedding.TextEmbeddingComponent(model_provider=settings.MODEL_PROVIDER)
-        #self.vector_store_component = vector_store.QdrantVectorStoreComponent(embedding_model=self.text_embedder_component.embedding_model,collection_name=settings.QDRANT_COLLECTION_NAME)
+        #self.vector_store_component = QdrantVectorStore(embedding_model=self.text_embedder_component.embedding_model,collection_name=settings.QDRANT_COLLECTION_NAME)
         self.text_splitter_component = text_splitter.TextSplitterComponent(chunk_size=settings.CHUNCK_SIZE,chunk_overlap=settings.CHUNK_OVERLAP)
         self.postgres_engine = postgres_engine
+        self.mongo_client = init_mongo()
         if settings.MODEL_PROVIDER == "openai":
             self.llm = ChatOpenAI(model=settings.OPENAI_MODEL_NAME)
         elif settings.MODEL_PROVIDER == "google":
@@ -56,9 +61,65 @@ class PostProcessor:
             results = session.exec(statement).fetchall()
         return results
 
+    def extract_project_name_mongo(self):
+        def check_two_out_of_three(a, b, c):
+            count = 0
+            if a > 0:
+                count += 1
+            if b > 0:
+                count += 3
+            if c > 0:
+                count += 1
+            if a == c:
+                count -= 1
+
+            return count
+        
+        db = self.mongo_client.sightsea
+        records = db.posts.find({})
+        full_text = ""
+        for content in records:
+            full_text += content['text']
+        result = []
+        full_text = full_text.replace("\n","").lower()
+        for project in self.settings.LIST_OF_CGC_PROJECT_INFO:
+            if project['symbol'] == '':
+                continue
+            project_symbol_with_char = f"${project['symbol'].strip().lower()} "
+            project_symbol = f"{project['symbol'].strip().lower()} "
+            project_name = f"{project['name'].strip().lower()} "
+            result.append({
+                "project_id": project['id'],
+                "symbol": project['symbol'],
+                "name": project['name'],
+                "project_symbol_count": full_text.count(project_symbol),
+                "project_symbol_with_char": full_text.count(project_symbol_with_char),
+                "project_name_count": full_text.count(project_name)
+            })
+        df = pd.DataFrame(result)
+        df.drop_duplicates(subset=['project_id'],keep='first',inplace=True)
+        df ["ai_logic_count"] = df.apply(lambda x: check_two_out_of_three(x['project_symbol_count'],x['project_symbol_with_char'],x['project_name_count']),axis=1)
+        #df["is_mentioned"] = df.apply(lambda x: check_two_out_of_three(x['project_symbol_count'],x['project_symbol_with_char'],x['project_name_count']),axis=1)
+        df = df[df['ai_logic_count'] > 1].sort_values(by="ai_logic_count",ascending=False)
+        df_grouped = df.groupby(['symbol'])['project_id'].apply(list)
+        grouped_records = df_grouped.reset_index().to_dict(orient='records')
+        filtered_project_ids = []
+        for item in grouped_records:
+            filtered_project_ids.append(self.get_highest_market_cap(item['project_id']))
+        return df[df['project_id'].isin(filtered_project_ids)]
+    def get_highest_market_cap(self,project_ids):
+        if len(project_ids) == 1:
+            return project_ids[0]
+        with open(f"{CWD}/data/cgc_coin_price.json") as f:
+            market_cap_data = json.load(f)
+        df_market_cap = pd.DataFrame(market_cap_data)
+        df_filter = df_market_cap[df_market_cap['id'].isin(project_ids)].sort_values(by="market_cap_rank",ascending=True)
+        if len(df_filter) == 0:
+            return project_ids[0]
+        return df_filter.iloc[0]['id']
     def store_vectors(self, contents: list, metadata: list):
         if len(contents):
-            #result = self.vector_store_component.bulk_upsert_vectors(contents,metadata)
+            result = self.vector_store_component.bulk_upsert_vectors(contents,metadata)
             post_id = metadata[0]["post_id"]
             #Update the status in the database
             with Session(self.postgres_engine) as session:
@@ -66,7 +127,6 @@ class PostProcessor:
                 results = session.exec(statement)
                 post = results.one()
                 post.status = "processed"
-                
                 session.add(post)
                 session.commit()
                 session.refresh(post)
@@ -284,50 +344,6 @@ class PostProcessor:
             return res
 
 
-from langchain.vectorstores.docarray import DocArrayInMemorySearch
-from langchain_openai import OpenAIEmbeddings
-from langchain.chains.retrieval_qa.base import RetrievalQA
-
-
-
-class QARetriver:
-    def __init__(self,url,token_data,settings):
-        self.llm = ChatOpenAI(model=settings.OPENAI_MODEL_NAME)
-        self.embeddings = OpenAIEmbeddings(model=settings.OPENAI_EMBEDDING_MODEL_NAME)
-        loader= WebBaseLoader(url)
-        self.docs = loader.load()
-        self.db = DocArrayInMemorySearch.from_documents(self.docs, embedding=self.embeddings)
-        self.token_data = token_data
-        project_name = token_data['name']
-        description = token_data['description']['en']
-        market_data = token_data['market_data']
-        self.prompt = PromptTemplate(
-            template = prompt_template.TOKEN_ASSITANT,
-            input_variables=["context","question"],
-            partial_variables={
-                "project_name":project_name,
-                "project_description":description,
-                "today_market_data":market_data,
-
-                }
-            )
-        #self.prompt=PromptTemplate(template=prompt_template,input_variables=["context","question"])
-        
-
-
-    def retrieve(self,query):
-        retriever = self.db.as_retriever()
-        retrievalQA=RetrievalQA.from_chain_type(
-            llm=self.llm,
-            chain_type="stuff",
-            retriever=retriever,
-            return_source_documents=True,
-            chain_type_kwargs={"prompt":self.prompt}
-        )
-
-        result = retrievalQA.invoke({"query": query})
-        return result['result']
-    
 
         
         
@@ -335,11 +351,13 @@ class QARetriver:
 if __name__ == "__main__":
     settings = ChainSetting()
     post_processor = PostProcessor(settings, postgres_engine)
-    with open(f"{CWD}/token_market_data.json") as f:
-        token_data = json.load(f)
-    reports = []
-    for token in token_data:
-        report = post_processor.generate_content(token)
-        reports.append(report)
+    df  = post_processor.extract_project_name_mongo()
+    post_processor
+    # with open(f"{CWD}/token_market_data.json") as f:
+    #     token_data = json.load(f)
+    # reports = []
+    # for token in token_data:
+    #     report = post_processor.generate_content(token)
+    #     reports.append(report)
     #post_processor.analyze_posts(date = "2025-01-29")
     pass

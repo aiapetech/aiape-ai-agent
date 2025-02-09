@@ -59,6 +59,7 @@ class Settings(BaseSettings):
     POSTGRES_DB: str = os.getenv("POSTGRES_DB")
 
     QDRANT_SERVER: str = os.getenv("QDRANT_SERVER")
+    MONGODB_CONNECTION_STRING: str = os.getenv("MONGODB_CONNECTION_STRING")
 
     @computed_field  # type: ignore[prop-decorator]
     @property

@@ -1,0 +1,53 @@
+project_id,symbol,name,project_symbol_count,project_symbol_with_char,project_name_count,ai_logic_count
+mantle,mnt,Mantle,4,2,1,5
+staika,stik,Staika,2,2,1,5
+berachain-bera,bera,Berachain,3,2,1,5
+spx6900,spx,SPX6900,6,5,3,5
+aerodrome-finance,aero,Aerodrome Finance,1,1,0,4
+nova-eth,eth,Nova Merged ETH (zkLink),6,4,0,4
+gigaswap,giga,GigaSwap,2,2,0,4
+heyanon,anon,Hey Anon,1,1,0,4
+immutable-zkevm-bridged-eth,eth,Immutable zkEVM Bridged ETH,6,4,0,4
+laika-bridged-eth-laika,eth,Laika Bridged ETH (Laika),6,4,0,4
+meld-bridged-eth-meld,eth,Meld Bridged ETH (Meld),6,4,0,4
+mr-mint,mnt,Mr. Mint,4,2,0,4
+mundoteam,mnt,Mundoteam,4,2,0,4
+mynth,mnt,Mynth,4,2,0,4
+osmosis-alleth,eth,Osmosis allETH,6,4,0,4
+ondo-finance,ondo,Ondo,1,1,1,4
+flayer,flay,Flayer,3,3,0,4
+osmosis-allton,ton,Osmosis allTON,4,1,0,4
+sosovalue,soso,SoSoValue,2,2,0,4
+super-anon,anon,Anon,1,1,1,4
+the-infinite-garden,eth,The Infinite Garden,6,4,0,4
+the-open-network,ton,Toncoin,4,1,0,4
+the-ticker-is-eth,eth,The Ticker Is ETH,6,4,0,4
+tokamak-network,ton,Tokamak Network,4,1,0,4
+tontoken,ton,TON Community,4,1,0,4
+gigachad-2,giga,Gigachad,2,2,0,4
+ethereum-wormhole,eth,Ethereum (Wormhole),6,4,0,4
+aerovek-aviation,aero,Aerovek Aviation,1,1,0,4
+bridged-binance-peg-ethereum-opbnb,eth,Bridged Binance-Peg Ethereum (opBNB),6,4,0,4
+ai16z,ai16z,ai16z,2,1,2,4
+aixbt,aixbt,aixbt by Virtuals,1,1,0,4
+aixcb-by-virtuals,aixcb,aixCB by Virtuals,1,1,0,4
+anon,anon,ANON,1,1,1,4
+anonfi,anon,AnonFi,1,1,0,4
+anon-ton,anon,ANON,1,1,1,4
+anonymous,anon,Anonymous,1,1,0,4
+bidao,bid,Bidao,5,2,0,4
+bifrost-bridged-eth-bifrost,eth,Bifrost Bridged ETH (Bifrost),6,4,0,4
+binance-peg-dogecoin,doge,Binance-Peg Dogecoin,3,2,0,4
+bridged-wrapped-ether-eclipse,eth,Bridged Wrapped Ether (Eclipse),6,4,0,4
+ethereum,eth,Ethereum,6,4,0,4
+bridged-wrapped-ether-starkgate,eth,Bridged Ether (StarkGate),6,4,0,4
+chadgpt,giga,ChadGPT,2,2,0,4
+coinbase-wrapped-btc,cbbtc,Coinbase Wrapped BTC,1,1,0,4
+creatorbid,bid,CreatorBid,5,2,0,4
+department-of-gov-efficiency,doge,Department of Gov Efficiency,3,2,0,4
+department-of-government-efficiency,doge,Department Of Government Efficiency,3,2,0,4
+department-of-government-efficiency-2,doge,Department Of Government Efficiency,3,2,0,4
+department-of-government-efficiency-4,doge,Department Of Government Efficiency,3,2,0,4
+dogecoin,doge,Dogecoin,3,2,0,4
+doge-on-pulsechain,doge,Doge on Pulsechain,3,2,0,4
+venice-token,vvv,Venice Token,1,1,0,4

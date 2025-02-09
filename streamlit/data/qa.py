@@ -2,7 +2,8 @@ from openai import OpenAI
 import streamlit as st
 import pandas as pd
 from core.db import engine as postgres_engine
-from core.post_processing import QARetriver, ChainSetting
+from core.post_processing import ChainSetting
+from core.qa_chat import QARetriver 
 from core.score_calculation import TokenInfo, ScoreSetting
 import time
 
