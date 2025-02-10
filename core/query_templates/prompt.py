@@ -104,9 +104,10 @@ Write a funny and useful insight or fact with maximum of 3 sentences about the f
 {context}
 </context>
 4. Today market data as Json file format: {today_market_data}
-Do not focus on the price or the market data, but focus on the project itself.
+Please mention only one number data from the today market data.
+Focus more on the project itself. 
 The style of the report should be as the combination of Elon Musk's tweet and funny.
-FUNNY INSIGHT:"""
+FUNNY AND USEFUL INSIGHT:"""
 
 
 TOKEN_ASSITANT = """You are an crypto investor consultancy with 10 years of experience in cryptocurrency investment and analysis.

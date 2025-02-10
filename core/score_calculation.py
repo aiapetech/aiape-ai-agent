@@ -112,7 +112,7 @@ class TokenInfo:
             }
         info_url = f"{self.settings.COINGECKO_API_BASE_URL}/coins/{cgc_id}"
         token_info =  requests.get(url=info_url,params=params,headers=headers).json()
-        time.sleep(0.3)
+        time.sleep(0.6)
         return token_info
     def get_list_of_token_in_category(self,category_id,params=None):
         url =f"{self.settings.COINGECKO_API_BASE_URL}/coins/markets"
@@ -270,7 +270,7 @@ class TokenInfo:
         df_top_potential_tokens['score'] = df_top_potential_tokens.apply(lambda x: self.calculate_score(x),axis=1)
         df_top_potential_tokens.drop_duplicates(subset=['id'],inplace=True)
         df_top_potential_tokens = df_top_potential_tokens.sort_values(by='score',ascending=False)
-        
+        df_top_potential_tokens = df_top_potential_tokens[(df_top_potential_tokens['market_cap'].notnull()) &(df_top_potential_tokens['market_cap'] > 20000000)]
         final_token_data = []
         # for token in top_token_each_category:
         #     final_token_data.append(self.get_token_info(token))
