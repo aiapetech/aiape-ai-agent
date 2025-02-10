@@ -96,7 +96,7 @@ CONCISE SUMMARY:"""
 
 
 PROJECT_SUMMARIZATION_PROMPT = """You are an crypto investor consultancy with 10 years of experience in cryptocurrency investment and analysis.
-Write a concise report with maximum of 3 sentences and focus on number data about the following project based on the information provided:
+Write a funny and useful insight or fact with maximum of 3 sentences about the following project based on the information provided:
 1. Project name: {project_name}
 2. Project description: {project_description}
 3. Website content: 
@@ -104,8 +104,9 @@ Write a concise report with maximum of 3 sentences and focus on number data abou
 {context}
 </context>
 4. Today market data as Json file format: {today_market_data}
-Please provide a concise report summary based on the information provided and the style of the report should be as the combination of Elon Musk's tweet and funny.
-CONCISE REPORT SUMMARY:"""
+Do not focus on the price or the market data, but focus on the project itself.
+The style of the report should be as the combination of Elon Musk's tweet and funny.
+FUNNY INSIGHT:"""
 
 
 TOKEN_ASSITANT = """You are an crypto investor consultancy with 10 years of experience in cryptocurrency investment and analysis.

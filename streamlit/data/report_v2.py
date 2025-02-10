@@ -203,7 +203,7 @@ try:
         st.subheader("3. Extract category data from hot project tokens")
         df_category = df_category[['id','name','market_cap_change_24h','top_3_coins_id']].sort_values(by="market_cap_change_24h",ascending=False)
         st.dataframe(df_category,hide_index=True)
-        st.subheader("4. Find out next potential token")
+        st.subheader("4. Find out next potential tokens")
         # final_token_data = df_potential_tokens.to_dict('records')
         # #df_final_token_data = pd.DataFrame([f['market_data'] for f in final_token_data]).sort_values(by="score",ascending=True)
         # v = []
