@@ -13,6 +13,7 @@ from sqlmodel import Session, select
 from core.mongodb import init_mongo
 from core.qa_chat import QARetriver 
 import time
+from core.x import post_to_twitter
 
 mongo_client = init_mongo()
 mongo_client_db = mongo_client['sightsea'] 
@@ -107,14 +108,26 @@ def generate_x_post(final_token_data):
         st.session_state.token_content.append(content)
     return True
 
+def post_to_x(content):
+    post_to_twitter(content)
+    return True
 
 @st.fragment
 def generate_x_content_button(final_token_data):
     content = st.button('Generate X Post', on_click=generate_x_post,kwargs={"final_token_data":final_token_data[:2]})
     if content:
-        for i,token in enumerate(final_token_data[:2]):
-            st.session_state.potential_post = True
-            st.text_area(f"Post for {token['name'].upper()}:",st.session_state.token_content[i])
+        token_1 = final_token_data[0]
+        token_2 = final_token_data[1]
+        st.session_state.potential_post = True
+        st.text_area(f"Post for {token_1['name'].upper()}:",st.session_state.token_content[0])
+        result_1 = st.button(f"Post to X for {token_1['name']}", on_click=post_to_x,kwargs={"content":st.session_state.token_content[0]})
+        if result_1:
+            st.success(f"Post for {token_1['name']} posted successfully.")
+        
+        st.text_area(f"Post for {token_2['name'].upper()}:",st.session_state.token_content[1])
+        result_2 = st.button(f"Post to X for {token_2['name']}", on_click=post_to_x,kwargs={"content":st.session_state.token_content[1]})
+        if result_2:
+            st.success(f"Post for {token_2['name']} posted successfully.")
 
 @st.fragment
 def generate_content_button():
