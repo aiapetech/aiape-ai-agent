@@ -44,17 +44,19 @@ def extract_most_mentioned_project_name():
     df_project_name.sort_values(by="ai_logic_count",ascending=False).reset_index(drop=True,inplace=True)
     st.session_state.project_name_extraction = True
     st.session_state.df_project_name = df_project_name
-    st.success("Project name extracted successfully.")
+    
 
-
-def generate_report(processed_date):
+def generate_report(processed_data):
     
     # for project_name in set(project_names):
     #     token_info.get_token_data(project_name)
     token_info = TokenInfo(ScoreSetting(),postgres_engine)
-    df_project_tokens, df_category, df_potential_tokens = token_info.generate_report_v2(processed_date)
+    st.session_state.df_project_tokens, st.session_state.df_category, st.session_state.df_potential_tokens = token_info.generate_report_v2(processed_data)
+    st.session_state.df_project_tokens['price_change_percentage_24h'] = st.session_state.df_project_tokens.apply(lambda x: f"{x['market_data']['price_change_percentage_24h']}%", axis=1)
+    st.session_state.df_project_tokens['market_cap_change_percentage_24h'] = st.session_state.df_project_tokens.apply(lambda x: x['market_data']['market_cap_change_percentage_24h'], axis=1)
+    st.session_state.df_project_tokens = st.session_state.df_project_tokens[['symbol','price_change_percentage_24h','market_cap_change_percentage_24h','categories','score']].sort_values(by="score",ascending=False)
     st.session_state.generate_report = True
-    return df_project_tokens, df_category, df_potential_tokens        
+    #return df_project_tokens, df_category, df_potential_tokens        
         
     
 def check_processed_result():
@@ -99,7 +101,7 @@ def generate_content():
 def generate_x_post(final_token_data):
     settings = ScoreSetting()
     token_info = TokenInfo(settings,postgres_engine)
-    st.session_state.token_content= []
+   
     for token in final_token_data:
         tokendata = token_info.get_token_info(token['id'])
         settings = ChainSetting()
@@ -108,25 +110,32 @@ def generate_x_post(final_token_data):
         st.session_state.token_content.append(content)
     return True
 
-def post_to_x(content):
+def post_1st_post(content):
     post_to_twitter(content)
-    return True
+    st.session_state.posted_1st = True
+
+def post_2nd_post(content):
+    post_to_twitter(content)
+    st.session_state.posted_2nd = True
+
 
 @st.fragment
 def generate_x_content_button(final_token_data):
     content = st.button('Generate X Post', on_click=generate_x_post,kwargs={"final_token_data":final_token_data[:2]})
+    st.session_state.posted_1st = False
+    st.session_state.posted_2nd = False
     if content:
         token_1 = final_token_data[0]
         token_2 = final_token_data[1]
         st.session_state.potential_post = True
         st.text_area(f"Post for {token_1['name'].upper()}:",st.session_state.token_content[0])
-        result_1 = st.button(f"Post to X for {token_1['name']}", on_click=post_to_x,kwargs={"content":st.session_state.token_content[0]})
-        if result_1:
+        result_1 = st.button(f"Post to X for {token_1['name']}", on_click=post_1st_post,kwargs={"content":st.session_state.token_content[0]})
+        if  st.session_state.posted_1st:
             st.success(f"Post for {token_1['name']} posted successfully.")
         
         st.text_area(f"Post for {token_2['name'].upper()}:",st.session_state.token_content[1])
-        result_2 = st.button(f"Post to X for {token_2['name']}", on_click=post_to_x,kwargs={"content":st.session_state.token_content[1]})
-        if result_2:
+        result_2 = st.button(f"Post to X for {token_2['name']}", on_click=post_2nd_post,kwargs={"content":st.session_state.token_content[1]})
+        if st.session_state.posted_2nd:
             st.success(f"Post for {token_2['name']} posted successfully.")
 
 @st.fragment
@@ -147,6 +156,7 @@ def token_selectbox(token_lists):
     st.session_state.token_id = option
 
     # st.write(f'contact: {ss.contact}') 
+
 if 'df_project_name' not in st.session_state:
     st.session_state.df_project_name = None
 if 'token_id' not in  st.session_state:
@@ -159,12 +169,24 @@ if 'generate_report' not in st.session_state:
     st.session_state.generate_report = None
 if 'qa_token_content' not in st.session_state:
     st.session_state.qa_token_content = None
-
+if 'posted_1st' not in st.session_state:
+    st.session_state.posted_1st = None
+if 'posted_2nd' not in st.session_state:
+    st.session_state.posted_2nd = None
+if 'token_content' not in st.session_state:
+    st.session_state.token_content = []
+list_session_state = [
+    'df_project_name',
+    'df_potential_tokens',
+    'project_name_extraction',
+    'df_project_tokens'
+]
+for state in list_session_state:
+    if state not in st.session_state:
+        st.session_state[state] = None
 try:
-    
     if 'clicked' not in st.session_state:
         st.session_state.clicked = False
-    st.session_state.generate_report = False
     #df_post = get_postgres_data()
     df_post = get_mongo_x_post()
     # col1, col2 = st.columns([1,2])
@@ -192,29 +214,23 @@ try:
     display_data = df_post[["post_id","content","author_name","posted_at"]].sort_values(by="post_id",ascending=True)
     if not st.checkbox("Hide Posts"):
         placeholder_post.dataframe(display_data,hide_index=True)
-    extracted_button_clicked = st.button('1-Extract top most mentioned project name')
-    if extracted_button_clicked:
-        extract_most_mentioned_project_name()
-       
+    st.button('1-Extract top most mentioned project name',on_click=extract_most_mentioned_project_name)
+    
     if st.session_state.project_name_extraction:
+        st.success("Project name extracted successfully.")
         st.subheader("1. Top most mentioned projects in X")
         placeholder_procressed = st.empty()
         placeholder_procressed.dataframe(st.session_state.df_project_name[['project_id','name','symbol']])
-        report_button_clicked = st.button('2-Generate AI Report')
-        if report_button_clicked:
-            df_project_tokens, df_category, df_potential_tokens  = generate_report(st.session_state.df_project_name)
+        st.button('2-Generate AI Report',on_click=generate_report,kwargs={"processed_data":st.session_state.df_project_name})
             
-
     if st.session_state.generate_report:
         #placeholder_report = st.empty()
         st.success("Report generated successfully.")
         st.subheader("2. Find out hot project tokens")
-        df_project_tokens['price_change_percentage_24h'] = df_project_tokens.apply(lambda x: f"{x['market_data']['price_change_percentage_24h']}%", axis=1)
-        df_project_tokens['market_cap_change_percentage_24h'] = df_project_tokens.apply(lambda x: x['market_data']['market_cap_change_percentage_24h'], axis=1)
-        df_project_tokens = df_project_tokens[['symbol','price_change_percentage_24h','market_cap_change_percentage_24h','categories','score']].sort_values(by="score",ascending=False)
-        st.dataframe(df_project_tokens,hide_index=True)
+        
+        st.dataframe(st.session_state.df_project_tokens,hide_index=True)
         st.subheader("3. Extract category data from hot project tokens")
-        df_category = df_category[['id','name','market_cap_change_24h','top_3_coins_id']].sort_values(by="market_cap_change_24h",ascending=False)
+        df_category = st.session_state.df_category[['id','name','market_cap_change_24h','top_3_coins_id']].sort_values(by="market_cap_change_24h",ascending=False)
         st.dataframe(df_category,hide_index=True)
         st.subheader("4. Find out next potential tokens")
         # final_token_data = df_potential_tokens.to_dict('records')
@@ -233,12 +249,29 @@ try:
         #     }
         #     v.append(a)
         # df_final_token_data = pd.DataFrame(v)
-        st.dataframe(df_potential_tokens,hide_index=True)
+        st.dataframe(st.session_state.df_potential_tokens,hide_index=True)
         st.subheader("5. Generate Content")
 
-        token_lists = df_potential_tokens.id.to_list()
-        potential_tokens = df_potential_tokens.to_dict('records')[:2]
-        generate_x_content_button(potential_tokens)
+        token_lists = st.session_state.df_potential_tokens.id.to_list()
+        potential_tokens = st.session_state.df_potential_tokens.to_dict('records')[:2]
+        content = st.button('Generate X Post', on_click=generate_x_post,kwargs={"final_token_data":potential_tokens[:2]})
+    if st.session_state.token_content:
+        token_1 = potential_tokens[0]
+        token_2 = potential_tokens[1]
+        st.session_state.potential_post = True
+        st.text_area(f"Post for {token_1['name'].upper()}:",st.session_state.token_content[0])
+        result_1 = st.button(f"Post to X for {token_1['name']}",on_click=post_1st_post,kwargs={"content":st.session_state.token_content[0]})
+        if st.session_state.posted_1st:
+            st.success(f"{token_1['name']} posted successfully to X.")
+            
+        
+        st.text_area(f"Post for {token_2['name'].upper()}:",st.session_state.token_content[1])
+        result_2 = st.button(f"Post to X for {token_2['name']}",on_click=post_2nd_post,kwargs={"content":st.session_state.token_content[1]})
+        if st.session_state.posted_2nd:
+            st.success(f"{token_2['name']} posted successfully to X.")
+        
+    
+    #generate_x_content_button(potential_tokens)
         token_selectbox(token_lists)
         generate_content_button()
         # st.button('Analyze posts', on_click=process_post_data)
