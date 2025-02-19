@@ -6,6 +6,8 @@ import asyncio
 import requests
 from PIL import Image
 from io import StringIO , BytesIO
+from telegram.request import HTTPXRequest
+import telegram
 
 
 load_dotenv()
@@ -15,7 +17,8 @@ class TelegramBot():
             self.token = token
         else:
             self.token = os.getenv('TELEGRAM_BOT_TOKEN')
-        self.bot = telegram.Bot(token=self.token)
+        trequest = HTTPXRequest(connection_pool_size=20)
+        self.bot = telegram.Bot(token=self.token,request=trequest)
     
     async def send_message(self, chat_id, msg, image_url=None):
         chat_ids = ['-596174527']

@@ -75,10 +75,7 @@ persona_option = st.selectbox(
                 index=None,
                 placeholder="Select a persona...",
             )
-selected_options = st.multiselect("Select channels to post",
-    ['Telegram','X'])
 
-all_options = st.checkbox("Select all options")
 if raw_content:
     st.button('Rephrase Content', on_click=rephrase_content,
         kwargs={"content":st.session_state.raw_content,'persona':persona_option})
@@ -97,7 +94,8 @@ if st.session_state.rephrased:
         st.error("Please select a persona.")
     
     rephase_content_edit_box = st.text_input("Rephrased Content", value=st.session_state.rephrased_content,key="updated_rephrased_content", on_change=update_rephrased_content)
-
+    selected_options = st.multiselect("Select channels to post",
+    ['Telegram','X'])
     st.button('Post to X and Telegram', on_click=post_to_x_and_telegram)
 
     
