@@ -1,3 +1,7 @@
+import sys, os
+from pathlib import Path
+CWD = Path(__file__).parents[2]
+sys.path.append(str(CWD))
 from openai import OpenAI
 import streamlit as st
 import pandas as pd
@@ -6,6 +10,7 @@ from core.post_processing import ChainSetting
 from core.qa_chat import QARetriver 
 from core.digital_ocean import DigitalOceanClient
 from core.telegram_bot import TelegramBot
+from core.x import post_to_twitter_with_credentials
 import time
 import streamlit as st
 import asyncio
@@ -50,6 +55,10 @@ def post_to_x_and_telegram():
     telegram_bot = TelegramBot()
     st.session_state.rephrased_content = st.session_state.updated_rephrased_content
     asyncio.run(telegram_bot.send_message(chat_id='addas',msg = st.session_state.rephrased_content,image_url=st.session_state.image_url))
+    df_twitter_credentials = pd.read_sql("SELECT * from twitter_credentials", postgres_engine)
+    twitter_credentials = df_twitter_credentials.to_dict(orient='records')
+    for i, twitter_credential in enumerate(twitter_credentials):
+        res = post_to_twitter_with_credentials(st.session_state.rephrased_content, twitter_credential['consumer_key'], twitter_credential['consumer_secret'], twitter_credential['access_token'], twitter_credential['access_secret'])
     st.session_state.posted = True
     st.success("Content posted to X and Telegram successfully.")
 
