@@ -76,19 +76,15 @@ persona_option = st.selectbox(
                 placeholder="Select a persona...",
             )
 selected_options = st.multiselect("Select channels to post",
-    ['A', 'B', 'C'])
+    ['Telegram','X'])
 
 all_options = st.checkbox("Select all options")
-
-if all_options:
-    selected_options = ['A', 'B', 'C']
-
-uploaded_files = st.file_uploader(
-            "Choose a images file", accept_multiple_files=False, type=["jpg", "png", "jpeg"]
-        )
 if raw_content:
     st.button('Rephrase Content', on_click=rephrase_content,
         kwargs={"content":st.session_state.raw_content,'persona':persona_option})
+uploaded_files = st.file_uploader(
+            "Choose a images file", accept_multiple_files=False, type=["jpg", "png", "jpeg"]
+        )
 if uploaded_files:
     upload_images(uploaded_files)
     st.success("Images uploaded successfully.")
