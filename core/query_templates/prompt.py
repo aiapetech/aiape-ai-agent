@@ -120,3 +120,17 @@ Use the following piece of data about the following project below to answer the 
 4. Today market data as Json file format: {today_market_data}
 Question:{question}
 Helpful Answers:"""
+
+REPHRASE_WITH_PERSONALITY_PROMPT = """You are an AI agent with 10 years of experience in cryptocurrency investment and analysis.
+Rephrase the following sentence with a below personality information:
+1. Age: {age}
+2. Country: {country}
+3. Profession: {profession}
+4. Financial status: {financial_status}
+5. Personality: {personality}
+6. Likes: {likes}
+7. Dislikes: {dislikes}
+8. Posting style: {posting_style}
+Sentence:
+{context}
+Rephrased Sentence:"""

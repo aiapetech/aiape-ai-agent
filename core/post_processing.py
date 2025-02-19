@@ -21,6 +21,8 @@ from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_community.document_loaders import WebBaseLoader
 from core.mongodb import init_mongo 
 import pandas as pd
+from langchain.retrievers import RePhraseQueryRetriever
+
 
 
 
@@ -215,7 +217,7 @@ class PostProcessor:
             partial_variables={"list_of_project_names": self.settings.LIST_OF_PROJECT_INFO}
             )
         #llm_chain = LLMChain(llm=self.llm, prompt=prompt)
-        stuff_chain = create_stuff_documents_chain(llm=self.llm, document_variable_name="text",prompt=prompt)
+        stuff_chain = LLMChain(llm=self.llm, document_variable_name="text",prompt=prompt)
         res = stuff_chain.invoke({"text":docs})
         if isinstance(res,dict):
             return res['output_text']
@@ -342,6 +344,28 @@ class PostProcessor:
             return res['output_text']
         else:
             return res
+    
+    def add_persona_to_content(self, content: str, persona: dict):
+        prompt = PromptTemplate(
+            template = prompt_template.REPHRASE_WITH_PERSONALITY_PROMPT,
+            input_variables=["context"],
+            partial_variables={
+                "age":persona['age'],
+                "country":persona['country'],
+                "profession":persona['profession'],
+                "financial_status":persona['financial_status'],
+                "personality":persona['personality'],
+                "likes":persona['likes'],
+                "dislikes":persona['dislikes'],
+                "posting_style":persona['posting_style']
+                }
+            )
+        chain = chain = prompt | self.llm
+        res = chain.invoke({"context": content})
+        if isinstance(res,dict):
+            return res['output_text']
+        else:
+            return res.content
 
 
 
@@ -351,8 +375,9 @@ class PostProcessor:
 if __name__ == "__main__":
     settings = ChainSetting()
     post_processor = PostProcessor(settings, postgres_engine)
-    df  = post_processor.extract_project_name_mongo()
-    post_processor
+    persona = pd.read_sql("SELECT * FROM post_personas",postgres_engine)
+    persona = persona.to_dict(orient='records')[0]
+    post_processor.add_persona_to_content("Good morning",persona)
     # with open(f"{CWD}/token_market_data.json") as f:
     #     token_data = json.load(f)
     # reports = []
