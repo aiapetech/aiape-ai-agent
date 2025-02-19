@@ -4,6 +4,9 @@ import dotenv
 import os,sys
 sys.path.append(os.getcwd())
 dotenv.load_dotenv()
+from core.db import engine as postgres_engine
+import pandas as pd
+
 
 def post_to_twitter(tweet_text):
     # Authenticate to Twitter
@@ -18,9 +21,7 @@ def post_to_twitter(tweet_text):
     consumer_secret=consumer_secret,
     access_token=access_token,
     access_token_secret=access_token_secret
-)
-
-
+)    
     try:
         # Create a tweet
         client.create_tweet(text=tweet_text)
@@ -30,10 +31,38 @@ def post_to_twitter(tweet_text):
         print(f"An error occurred: {e}")
         return False
 
+def post_to_twitter_with_credentials(tweet_text, consumer_key, consumer_secret, access_token, access_token_secret):
+    client = tweepy.Client(
+    consumer_key=consumer_key,
+    consumer_secret=consumer_secret,
+    access_token=access_token,
+    access_token_secret=access_token_secret
+)    
+    
 
+    try:
+        # Create a tweet
+        client.create_tweet(text=tweet_text)
+        
+        print("Tweet posted successfully!")
+        return True
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return False
 # Example usage
 if __name__ == "__main__":
-    post_to_twitter("Hello, Twitter!")
-
+    failed_app = []
+    tweet_text = "Meme of the year? Definitely 'Distracted Boyfriend'. The volume of this meme has exploded, with millions of variations from every corner of the globe. Who doesn't love a little drama in life? #MemeTrends #DistractedBoyfriend"
+    df_twitter_credentials = pd.read_sql("SELECT * from twitter_credentials", postgres_engine)
+    twitter_credentials = df_twitter_credentials.to_dict(orient='records')
+    for i, twitter_credential in enumerate(twitter_credentials):
+        res = post_to_twitter_with_credentials(tweet_text, twitter_credential['consumer_key'], twitter_credential['consumer_secret'], twitter_credential['access_token'], twitter_credential['access_secret'])
+        if res:
+            print(f"Tweet posted with credentials {i} successfully!")
+            
+        else:
+            print(f"Tweet posting with credentials {i} failed!")
+            failed_app.append(twitter_credential['app_id'])
+    pass
 
     
