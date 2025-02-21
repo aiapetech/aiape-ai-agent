@@ -141,9 +141,10 @@ if st.session_state.rephrased:
     # if not persona_option:    
     #     st.error("Please select a persona.")
     #rephase_content_edit_box = st.text_area("Rephrased Content", value=st.session_state.rephrased_content,key="updated_rephrased_content", on_change=update_rephrased_content)
-    selected_options = st.multiselect("Select channels to post",
-    ['Telegram','X'])
+    selected_options = st.multiselect("Select channels to post",['Telegram','X'])
     st.button('Post to X and Telegram', on_click=post_to_x_and_telegram)
+    if st.session_state.posted:
+        st.success("Content posted to X and Telegram successfully.")
 
     
     
