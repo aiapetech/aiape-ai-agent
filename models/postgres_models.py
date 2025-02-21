@@ -101,6 +101,7 @@ class ROI(SQLModel):
     times: float
     currency: str
     percentage: float
+
 class TokenMarketData(BaseSQLModel,table=True):
     __tablename__ = 'token_market_data'
     token_id: int = Field(default=None,foreign_key='tokens.id')
@@ -130,6 +131,29 @@ class TokenMarketData(BaseSQLModel,table=True):
     atl_date: datetime
     roi: dict = Field(sa_type=JSONB, nullable=True)
     last_updated: datetime
+
+class PostPersonas(BaseSQLModel,table=True):
+    __tablename__ = "post_personas"
+    username: str = Field(default=None,nullable=True)
+    age: int = Field(default=None,nullable=True)
+    country: str = Field(default=None,nullable=True)
+    profession: str = Field(default=None,nullable=True)
+    financial_status: str = Field(default=None,nullable=True)
+    personality: str = Field(default=None,nullable=True)
+    likes: str =Field(default=None,nullable=True)
+    dislikes: str = Field(default=None,nullable=True)
+    posting_style: str = Field(default=None,nullable=True)
+    daily_post_frequency: str = Field(default=None,nullable=True)
+    twitter_app_id: str = Field(default=None,nullable=True)
+
+class TwitterCredentials(BaseSQLModel,table=True):
+    __tablename__ = "twitter_credentials"
+    app_id: str =Field(default=None,nullable=True)
+    consumer_key: str =Field(default=None,nullable=True)
+    consumer_secret: str =Field(default=None,nullable=True)
+    bearer_token: str =Field(default=None,nullable=True)
+    access_token: str =Field(default=None,nullable=True)
+    access_secret: str =Field(default=None,nullable=True)
 
 class User(UserBase, table=True):
     #id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)

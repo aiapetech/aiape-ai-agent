@@ -30,7 +30,7 @@ def upload_images(uploaded_file):
     
 
 def persona_list():
-    persona = pd.read_sql("SELECT * from post_personas", postgres_engine)
+    persona = pd.read_sql("SELECT * from post_personas where twitter_app_id is not null", postgres_engine)
     return persona.username.values.tolist()
 
 def response_generator(response):
@@ -38,71 +38,109 @@ def response_generator(response):
         yield word + " "
         time.sleep(0.05)
 
-def rephrase_content(content,persona):
+def rephrase_content(content,persona=None,limit=2):
     settings = ChainSetting()
     processor = PostProcessor(settings, postgres_engine)
-    persona = pd.read_sql(f"SELECT * from post_personas where username = '{
-        persona}'", postgres_engine)
-    persona_content = persona.to_dict(orient='records')[0]
-    st.session_state.rephrased_content = processor.add_persona_to_content(content, persona_content)
+    if persona:
+        personas = pd.read_sql(f"SELECT * from post_personas where username = '{persona}'", postgres_engine)
+    else:
+        personas = pd.read_sql(f"SELECT * from post_personas where twitter_app_id is not null limit 2", postgres_engine)
+    st.session_state.rephrased_content = personas.to_dict(orient='records')
+    for record in  st.session_state.rephrased_content:
+        record['rephrased_content'] = processor.add_persona_to_content(content, record)
     st.session_state.rephrased = True
 
-def update_rephrased_content():
-    if st.session_state.updated_rephrased_content != st.session_state.rephrased_content:
-        st.session_state.rephrased_content = st.session_state.updated_rephrased_content
+def update_rephrased_content(username):
+    for record in st.session_state.rephrased_content:
+        if record['username'] == username:
+            record['rephrased_content'] = st.session_state[f"{username}_content"]
 
 def post_to_x_and_telegram():
     telegram_bot = TelegramBot()
-    st.session_state.rephrased_content = st.session_state.updated_rephrased_content
-    asyncio.run(telegram_bot.send_message(chat_id='addas',msg = st.session_state.rephrased_content,image_url=st.session_state.image_url))
-    df_twitter_credentials = pd.read_sql("SELECT * from twitter_credentials", postgres_engine)
-    twitter_credentials = df_twitter_credentials.to_dict(orient='records')
-    for i, twitter_credential in enumerate(twitter_credentials):
-        res = post_to_twitter_with_credentials(st.session_state.rephrased_content, twitter_credential['consumer_key'], twitter_credential['consumer_secret'], twitter_credential['access_token'], twitter_credential['access_secret'])
+    #asyncio.run(telegram_bot.send_message(chat_id='addas',msg = st.session_state.rephrased_content,image_url=st.session_state.image_url))
+    df_twitter_credentials = pd.read_sql(f"SELECT * from twitter_credentials", postgres_engine)
+    for record in st.session_state.rephrased_content:
+        if record['posted']:
+            twitter_credential = df_twitter_credentials[df_twitter_credentials.app_id == record['twitter_app_id']].to_dict(orient='records')[0]
+            res = post_to_twitter_with_credentials(record['rephrased_content'], twitter_credential['consumer_key'], twitter_credential['consumer_secret'], twitter_credential['access_token'], twitter_credential['access_secret'])
+            if not res:
+                st.error("Failed to post to X and Telegram.")
+    
     st.session_state.posted = True
     st.success("Content posted to X and Telegram successfully.")
+
+def is_selected(username):
+    st.session_state.updated_rephrased_content[username]['posted'] != st.session_state.rephrased_content[username]['posted']
+
 
 list_session_state = [
     'raw_content',
     'rephrased',
     'rephase_content_edit_box',
     'image_url',
-    'posted',
-    'rephrased_content'
+    'posted'
 ]
 for state in list_session_state:
     if state not in st.session_state:
         st.session_state[state] = None
 if "image_urls" not in st.session_state:
     st.session_state.image_urls = []
-personas = persona_list()
-raw_content = st.text_input("Please input your content",key="raw_content")
+if "rephrased_content" not in st.session_state:
+    st.session_state.rephrased_content = []
+raw_content = st.text_area("Please input your content",key="raw_content")
+# personas = persona_list()
+# 
 
-persona_option = st.selectbox(
-                "Please select a persona",
-                options = personas,
-                index=None,
-                placeholder="Select a persona...",
-            )
+# persona_option = st.selectbox(
+#                 "Please select a persona",
+#                 options = personas,
+#                 index=None,
+#                 placeholder="Select a persona...",
+#             )
 
 if raw_content:
     st.button('Rephrase Content', on_click=rephrase_content,
-        kwargs={"content":st.session_state.raw_content,'persona':persona_option})
-uploaded_files = st.file_uploader(
-            "Choose a images file", accept_multiple_files=False, type=["jpg", "png", "jpeg"]
-        )
-if uploaded_files:
-    upload_images(uploaded_files)
-    st.success("Images uploaded successfully.")
-    st.image(st.session_state.image_url)
-    
+        kwargs={"content":st.session_state.raw_content,'persona':None})
+# uploaded_files = st.file_uploader(
+#             "Choose a images file", accept_multiple_files=False, type=["jpg", "png", "jpeg"]
+#         )
+# if uploaded_files:
+#     upload_images(uploaded_files)
+#     st.success("Images uploaded successfully.")
+#     st.image(st.session_state.image_url)
+
+
+
 if st.session_state.rephrased:
     if not raw_content:
         st.error("Please input content.")
-    if not persona_option:
-        st.error("Please select a persona.")
-    
-    rephase_content_edit_box = st.text_input("Rephrased Content", value=st.session_state.rephrased_content,key="updated_rephrased_content", on_change=update_rephrased_content)
+    col1, col2, col3 = st.columns([5,5,1])
+    with col1:
+        st.text("Rephrased Content")
+    with col2:
+        st.text("Images")
+    with col3:
+        st.text("Select")
+    for record in st.session_state.rephrased_content:
+        col1, col2, col3 = st.columns([5,5,1])
+        with col1:
+            st.text_area(label= record['username'],value=record['rephrased_content'],key=f"{record['username']}_content",on_change=update_rephrased_content,label_visibility="hidden",kwargs={"username":record['username']})
+        with col2:
+            record['image'] = st.file_uploader(
+                record['username'],key=f"{record['username']}_images", accept_multiple_files=False, type=["jpg", "png", "jpeg"],label_visibility="hidden"
+            )
+            if record['image']:
+                upload_images(record['image'])
+                st.success("Images uploaded successfully.")
+                st.image(st.session_state.image_url)
+        with col3:
+            record['posted'] = st.checkbox("post",key=f"{record['username']}_post",label_visibility="hidden")
+
+        
+        
+    # if not persona_option:    
+    #     st.error("Please select a persona.")
+    #rephase_content_edit_box = st.text_area("Rephrased Content", value=st.session_state.rephrased_content,key="updated_rephrased_content", on_change=update_rephrased_content)
     selected_options = st.multiselect("Select channels to post",
     ['Telegram','X'])
     st.button('Post to X and Telegram', on_click=post_to_x_and_telegram)
