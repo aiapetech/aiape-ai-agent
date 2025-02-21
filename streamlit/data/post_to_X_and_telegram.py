@@ -44,7 +44,7 @@ def rephrase_content(content,persona=None,limit=2):
     if persona:
         personas = pd.read_sql(f"SELECT * from post_personas where username = '{persona}'", postgres_engine)
     else:
-        personas = pd.read_sql(f"SELECT * from post_personas where twitter_app_id is not null limit 2", postgres_engine)
+        personas = pd.read_sql(f"SELECT * from post_personas where twitter_app_id is not null", postgres_engine)
     st.session_state.rephrased_content = personas.to_dict(orient='records')
     for record in  st.session_state.rephrased_content:
         record['rephrased_content'] = processor.add_persona_to_content(content, record)
