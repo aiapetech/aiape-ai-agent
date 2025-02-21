@@ -27,7 +27,7 @@ def upload_images(uploaded_file):
         f.write(uploaded_file.getbuffer())
     url = digital_ocean_client.upload_file(image_file)
     st.session_state.image_url = url
-    
+    return image_file, url    
 
 def persona_list():
     persona = pd.read_sql("SELECT * from post_personas where twitter_app_id is not null", postgres_engine)
@@ -44,7 +44,7 @@ def rephrase_content(content,persona=None,limit=2):
     if persona:
         personas = pd.read_sql(f"SELECT * from post_personas where username = '{persona}'", postgres_engine)
     else:
-        personas = pd.read_sql(f"SELECT * from post_personas where twitter_app_id is not null", postgres_engine)
+        personas = pd.read_sql(f"SELECT * from post_personas where twitter_app_id is not null limit 5", postgres_engine)
     st.session_state.rephrased_content = personas.to_dict(orient='records')
     for record in  st.session_state.rephrased_content:
         record['rephrased_content'] = processor.add_persona_to_content(content, record)
@@ -55,19 +55,25 @@ def update_rephrased_content(username):
         if record['username'] == username:
             record['rephrased_content'] = st.session_state[f"{username}_content"]
 
-def post_to_x_and_telegram():
+def post_to_x_and_telegram(channels_option):
     telegram_bot = TelegramBot()
     #asyncio.run(telegram_bot.send_message(chat_id='addas',msg = st.session_state.rephrased_content,image_url=st.session_state.image_url))
     df_twitter_credentials = pd.read_sql(f"SELECT * from twitter_credentials", postgres_engine)
-    for record in st.session_state.rephrased_content:
-        if record['posted']:
-            twitter_credential = df_twitter_credentials[df_twitter_credentials.app_id == record['twitter_app_id']].to_dict(orient='records')[0]
-            res = post_to_twitter_with_credentials(record['rephrased_content'], twitter_credential['consumer_key'], twitter_credential['consumer_secret'], twitter_credential['access_token'], twitter_credential['access_secret'])
-            if not res:
-                st.error("Failed to post to X and Telegram.")
-    
+    if 'X' in channels_option:
+        for record in st.session_state.rephrased_content:
+            if record['posted']:
+                twitter_credential = df_twitter_credentials[df_twitter_credentials.app_id == record['twitter_app_id']].to_dict(orient='records')[0]
+                res = post_to_twitter_with_credentials(record['rephrased_content'], twitter_credential['consumer_key'], twitter_credential['consumer_secret'], twitter_credential['access_token'], twitter_credential['access_secret'],media_path=record.get('image_path'))
+                if not res:
+                    st.error("Failed to post to X and Telegram.")
+                st.success("Content posted to X successfully.")
+    if 'Telegram' in channels_option:
+        for record in st.session_state.rephrased_content:
+            if record['posted']:
+                asyncio.run(telegram_bot.send_message(chat_id='addas',msg = record['rephrased_content'],image_url=record.get('image_public_url')))
+                st.success("Content posted to Telegram successfully.")
     st.session_state.posted = True
-    st.success("Content posted to X and Telegram successfully.")
+    
 
 def is_selected(username):
     st.session_state.updated_rephrased_content[username]['posted'] != st.session_state.rephrased_content[username]['posted']
@@ -130,21 +136,21 @@ if st.session_state.rephrased:
                 record['username'],key=f"{record['username']}_images", accept_multiple_files=False, type=["jpg", "png", "jpeg"],label_visibility="hidden"
             )
             if record['image']:
-                upload_images(record['image'])
+                local_path, public_url = upload_images(record['image'])
+                record['image_path'] = local_path
+                record['image_public_url'] = public_url
                 st.success("Images uploaded successfully.")
-                st.image(st.session_state.image_url)
+                st.image(st.session_state[f"{record['username']}_images"])
         with col3:
             record['posted'] = st.checkbox("post",key=f"{record['username']}_post",label_visibility="hidden")
 
-        
-        
-    # if not persona_option:    
-    #     st.error("Please select a persona.")
-    #rephase_content_edit_box = st.text_area("Rephrased Content", value=st.session_state.rephrased_content,key="updated_rephrased_content", on_change=update_rephrased_content)
     selected_options = st.multiselect("Select channels to post",['Telegram','X'])
-    st.button('Post to X and Telegram', on_click=post_to_x_and_telegram)
-    if st.session_state.posted:
-        st.success("Content posted to X and Telegram successfully.")
+    if not selected_options:
+        st.error("Please select at least one channel.")
+    else:
+        st.button('Post to X and Telegram', on_click=post_to_x_and_telegram,kwargs={"channels_option":selected_options})
+        if st.session_state.posted:
+            st.success("Content posted to X and Telegram successfully.")
 
     
     
