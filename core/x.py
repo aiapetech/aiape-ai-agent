@@ -75,13 +75,37 @@ def delete_tweet(tweet_id, consumer_key, consumer_secret, access_token, access_t
     except Exception as e:
         print(f"An error occurred: {e}")
         return False
+
+def list_profiles(consumer_key, consumer_secret, access_token, access_token_secret):
+    client = tweepy.Client(
+    consumer_key=consumer_key,
+    consumer_secret=consumer_secret,
+    access_token=access_token,
+    access_token_secret=access_token_secret
+)    
+    try:
+        # Delete a tweet
+        res = client.get_me()
+        print("Tweet deleted successfully!")
+        return res
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return False
 # Example usage
 if __name__ == "__main__":
     failed_app = []
     tweet_text = "Meme of the year? Definitely 'Distracted Boyfriend'. The volume of this meme has exploded, with millions of variations from every corner of the globe. Who doesn't love a little drama in life? #MemeTrends #DistractedBoyfriend"
     df_twitter_credentials = pd.read_sql("SELECT * from twitter_credentials", postgres_engine)
-    twitter_credentials = df_twitter_credentials.to_dict(orient='records')[0]
-    delete_tweet("1892890663982944726", twitter_credentials['consumer_key'], twitter_credentials['consumer_secret'], twitter_credentials['access_token'], twitter_credentials['access_secret'])
+    twitter_credentials = df_twitter_credentials.to_dict(orient='records')
+    for i, twitter_credential in enumerate(twitter_credentials):
+        res = list_profiles(twitter_credential['consumer_key'], twitter_credential['consumer_secret'], twitter_credential['access_token'], twitter_credential['access_secret'])
+        if res:
+            print(twitter_credential["app_id"],res.data.username)
+            
+        else:
+            print(f"Tweet posting with credentials {i} failed!")
+            failed_app.append(twitter_credential['app_id'])
+
     # for i, twitter_credential in enumerate(twitter_credentials):
     #     res = post_to_twitter_with_credentials(tweet_text, twitter_credential['consumer_key'], twitter_credential['consumer_secret'], twitter_credential['access_token'], twitter_credential['access_secret'])
     #     if res:

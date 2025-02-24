@@ -154,6 +154,8 @@ class TwitterCredentials(BaseSQLModel,table=True):
     bearer_token: str =Field(default=None,nullable=True)
     access_token: str =Field(default=None,nullable=True)
     access_secret: str =Field(default=None,nullable=True)
+    username: str =Field(default=None,nullable=True)
+    language: str =Field(default=None,nullable=True)
 
 class User(UserBase, table=True):
     #id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)

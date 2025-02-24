@@ -357,7 +357,8 @@ class PostProcessor:
                 "personality":persona['personality'],
                 "likes":persona['likes'],
                 "dislikes":persona['dislikes'],
-                "posting_style":persona['posting_style']
+                "posting_style":persona['posting_style'],
+                "language":persona["language"]
                 }
             )
         chain = chain = prompt | self.llm

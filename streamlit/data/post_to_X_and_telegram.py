@@ -42,9 +42,9 @@ def rephrase_content(content,persona=None,limit=2):
     settings = ChainSetting()
     processor = PostProcessor(settings, postgres_engine)
     if persona:
-        personas = pd.read_sql(f"SELECT * from post_personas where username = '{persona}'", postgres_engine)
+        personas = pd.read_sql(f"SELECT p.*,t.language from post_personas p left join twitter_credentials t on p.twitter_app_id = t.app_id where p.username = '{persona}'", postgres_engine)
     else:
-        personas = pd.read_sql(f"SELECT * from post_personas where twitter_app_id is not null limit 5", postgres_engine)
+        personas = pd.read_sql(f"SELECT p.*,t.language from post_personas p left join twitter_credentials t on p.twitter_app_id = t.app_id where p.twitter_app_id is not null", postgres_engine)
     st.session_state.rephrased_content = personas.to_dict(orient='records')
     for record in  st.session_state.rephrased_content:
         record['rephrased_content'] = processor.add_persona_to_content(content, record)

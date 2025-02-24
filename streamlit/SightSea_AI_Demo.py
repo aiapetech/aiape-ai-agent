@@ -63,7 +63,7 @@ if "authenticated" not in st.session_state:
 #data_processing_page = st.Page("./data/post_processing.py", title="2. Analyze post", icon=":material/transform:")
 report_page = st.Page("./data/report_v2.py", title="1. AI Report Generator", icon=":material/insert_chart_outlined:")#
 qa_page = st.Page("./data/qa.py", title="2. Q&A", icon=":material/transform:")#
-post_to_telegram_x = st.Page("./data/post_to_X_and_telegram.py", title="3. Post to Telegram and X", icon=":material/transform:")#
+post_to_telegram_x = st.Page("./data/post_to_X_and_telegram.py", title="3. Post to Telegram and X", icon=":material/dataset:")#
 
 #db_admin = st.Page("./data/db_admin.py", title="DB Admin", icon=":material/insert_chart_outlined:")
 
