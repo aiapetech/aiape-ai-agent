@@ -39,15 +39,16 @@ def format_df_w_lp(tokens):
         display_data.append(data)
     return pd.DataFrame(display_data)
 def get_new_pair():
-    cgc_latest_pools = liquidity_bot_client.get_new_pairs_cgc_pro(pool_created_hour_max="2h")
+    cgc_latest_pools = liquidity_bot_client.get_new_pairs_cgc_pro(pool_created_hour_max=st.session_state.pool_created_hour_max)
     new_address = [pool['attributes']['address'] for pool in cgc_latest_pools]
     new_tokens = liquidity_bot_client.get_pool_data_cmc(new_address)
-    return new_tokens
-if "tokens" not in st.session_state:
-    st.session_state["tokens"] =  get_new_pair()
+    st.session_state["tokens"] = new_tokens
+    st.session_state.latest_data = True
 
 states = [
     "All",
+    "tokens",
+    "latest_data",
     "security",
     "security_filter",
     "liquidity",
@@ -85,40 +86,46 @@ def filter_rug():
     st.session_state.rug_filter = True
 
 
-placeholder_post = st.empty()
-st.caption("New pairs from Coinmarketcap")
-df = pd.DataFrame(format_df(st.session_state["tokens"]))
-st.dataframe(df)
-st.button("Filtered token with security",on_click=filter_token_with_security)
-if st.session_state.security_filter:
-    st.caption("Filter security")
-    df = pd.DataFrame(format_df(st.session_state.security))
+col1, col2 = st.columns([1,1])
+with col2:
+    st.button("Get latest on-chain data",on_click=get_new_pair)
+with col1:
+    st.number_input("Choose duration in hour",value=1,key="pool_created_hour_max")
+if st.session_state.latest_data:
+    placeholder_post = st.empty()
+    st.caption("New pairs from Coinmarketcap")
+    df = pd.DataFrame(format_df(st.session_state["tokens"]))
     st.dataframe(df)
-    col1, col2, col3 = st.columns([1,1,1])
-    with col3:
-        st.button("Filtered token with liquidity",on_click=filter_token_liquidity)
-    with col1:
-        st.number_input("Max liquidity",value=100,key="max_liquidity")
-    with col2:
-        st.number_input("Pool asset percentage %",value=100,key="pool_asset_percentage")
-    if st.session_state.liquidity_filter:
-        st.caption("Filter liquidity")
-        df = pd.DataFrame(format_df(st.session_state.liquidity))
+    st.button("Filtered token with security",on_click=filter_token_with_security)
+    if st.session_state.security_filter:
+        st.caption("Filter security")
+        df = pd.DataFrame(format_df(st.session_state.security))
         st.dataframe(df)
-        col1, col2 = st.columns([1,1])
-        with col2:
-            st.button("Get holders data",on_click=filter_holder)
+        col1, col2, col3 = st.columns([1,1,1])
+        with col3:
+            st.button("Filtered token with liquidity",on_click=filter_token_liquidity)
         with col1:
-            st.number_input("Mininum total locked and burned %",key="min_locked_burned")
-        if st.session_state.filter_holder:
-            st.caption("New pairs with holder data")
-            df = pd.DataFrame(format_df(st.session_state.holder_data))
+            st.number_input("Max liquidity",value=100,key="max_liquidity")
+        with col2:
+            st.number_input("Pool asset percentage %",value=100,key="pool_asset_percentage")
+        if st.session_state.liquidity_filter:
+            st.caption("Filter liquidity")
+            df = pd.DataFrame(format_df(st.session_state.liquidity))
             st.dataframe(df)
-            st.caption("Filter holders")
-            df = pd.DataFrame(format_df(st.session_state.filterd_holders))
-            st.dataframe(df)
-            st.button("Filtered rug pull",on_click=filter_rug)
-            if st.session_state.rug_filter:
-                st.caption("Rug pull tokens")
-                df = pd.DataFrame(format_df(st.session_state.rug))
+            col1, col2 = st.columns([1,1])
+            with col2:
+                st.button("Get holders data",on_click=filter_holder)
+            with col1:
+                st.number_input("Mininum total locked and burned %",key="min_locked_burned")
+            if st.session_state.filter_holder:
+                st.caption("New pairs with holder data")
+                df = pd.DataFrame(format_df(st.session_state.holder_data))
                 st.dataframe(df)
+                st.caption("Filter holders")
+                df = pd.DataFrame(format_df(st.session_state.filterd_holders))
+                st.dataframe(df)
+                st.button("Filtered rug pull",on_click=filter_rug)
+                if st.session_state.rug_filter:
+                    st.caption("Rug pull tokens")
+                    df = pd.DataFrame(format_df(st.session_state.rug))
+                    st.dataframe(df)
