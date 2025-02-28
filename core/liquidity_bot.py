@@ -309,7 +309,7 @@ class LiquidityBot:
             time.sleep(0.5)
         return data
 
-    def filter_holders(self,data):
+    def filter_holders(self,data, percentage = 99):
         filtered_data = []
         locked_holder_keyword = ['pinksale']
         burned_holder_keyword = ['0x000']
@@ -325,7 +325,7 @@ class LiquidityBot:
                     for j in burned_holder_keyword:
                         if j in holder['address'].lower():
                             burned_percentage += float(holder['percentage'])
-                if locked_percentage + burned_percentage > 99:
+                if locked_percentage + burned_percentage > percentage:
                     filtered_data.append(item)            
         return filtered_data
     
@@ -365,7 +365,7 @@ if __name__ == "__main__":
     cgc_latest_pools = client.get_new_pairs_cgc_pro(pool_created_hour_max="4h")
     new_address = [pool['attributes']['address'] for pool in cgc_latest_pools]
     new_tokens = client.get_pool_data_cmc(new_address)
-    
+
     result = client.filter_security_tokens(new_tokens)
     filter_liquidity = client.liquidity_filter(result,100)
     filter_total_supply = client.total_supply_percentage_filter(filter_liquidity,0.99)

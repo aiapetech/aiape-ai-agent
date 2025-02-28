@@ -69,13 +69,14 @@ def filter_token_with_security():
     st.session_state.security_filter = True
 
 def filter_token_liquidity():
-    filter_liquidity = liquidity_bot_client.liquidity_filter(st.session_state.security ,100)
-    st.session_state.liquidity = liquidity_bot_client.total_supply_percentage_filter(filter_liquidity,0.99)
+    filter_liquidity = liquidity_bot_client.liquidity_filter(st.session_state.security ,int(st.session_state.max_liquidity))
+
+    st.session_state.liquidity = liquidity_bot_client.total_supply_percentage_filter(filter_liquidity,int(st.session_state.pool_asset_percentage)/100)
     st.session_state.liquidity_filter = True
 
 def filter_holder():
     st.session_state.holder_data = liquidity_bot_client.get_holders(st.session_state.liquidity)
-    st.session_state.filterd_holders = liquidity_bot_client.filter_holders(st.session_state.holder_data)
+    st.session_state.filterd_holders = liquidity_bot_client.filter_holders(st.session_state.holder_data,st.session_state.min_locked_burned)
     st.session_state.filter_holder = True
 
 
@@ -93,12 +94,22 @@ if st.session_state.security_filter:
     st.caption("Filter security")
     df = pd.DataFrame(format_df(st.session_state.security))
     st.dataframe(df)
-    st.button("Filtered token with liquidity",on_click=filter_token_liquidity)
+    col1, col2, col3 = st.columns([1,1,1])
+    with col3:
+        st.button("Filtered token with liquidity",on_click=filter_token_liquidity)
+    with col1:
+        st.number_input("Max liquidity",value=100,key="max_liquidity")
+    with col2:
+        st.number_input("Pool asset percentage %",value=100,key="pool_asset_percentage")
     if st.session_state.liquidity_filter:
         st.caption("Filter liquidity")
         df = pd.DataFrame(format_df(st.session_state.liquidity))
         st.dataframe(df)
-        st.button("Get holders data",on_click=filter_holder)
+        col1, col2 = st.columns([1,1])
+        with col2:
+            st.button("Get holders data",on_click=filter_holder)
+        with col1:
+            st.number_input("Mininum total locked and burned %",key="min_locked_burned")
         if st.session_state.filter_holder:
             st.caption("New pairs with holder data")
             df = pd.DataFrame(format_df(st.session_state.holder_data))
