@@ -284,9 +284,9 @@ class LiquidityBot:
             response = requests.get(url,headers=headers)
             soup = BeautifulSoup(response.text)
             table = soup.find_all('table')
+            holders = []
             if len(table) > 0:
                 tr = table[0].find_all('tr')
-                holders = []
                 if len(tr) > 0:
                     for row in tr:
                         holder = []
