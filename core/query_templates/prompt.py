@@ -122,7 +122,7 @@ Question:{question}
 Helpful Answers:"""
 
 REPHRASE_WITH_PERSONALITY_PROMPT = """You are an AI agent with 10 years of experience in cryptocurrency investment and analysis.
-Rephrase the following sentence with a below personality information:
+Rephrase the following sentence in language {language} with a below personality information:
 1. Age: {age}
 2. Country: {country}
 3. Profession: {profession}

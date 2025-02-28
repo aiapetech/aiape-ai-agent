@@ -1,0 +1,381 @@
+import requests
+import os,sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import dotenv
+import time
+import asyncio
+from apify_client import ApifyClient
+import json
+from bs4 import BeautifulSoup
+import websocket
+from websocket import create_connection
+import pandas as pd
+
+
+dotenv.load_dotenv()
+CWD = os.getcwd()
+
+BURNED_ADDRESSES = ["0x000000000000000000000000000000000000dEaD"]
+def batch(iterable, n=1):
+    l = len(iterable)
+    for ndx in range(0, l, n):
+        yield iterable[ndx:min(ndx + n, l)]
+
+
+class LiquidityBot:
+    def __init__(self):
+        self.dex_screener_base_url = "https://api.dexscreener.com/"
+        #self.moralis_base_url = os.get
+        self.cmc_headers = {
+            "accept":"application/json",
+            "X-CMC_PRO_API_KEY":os.getenv("CMC_DEXSCAN_API_KEY")
+        }
+        self.apify_client = ApifyClient(token=os.getenv("APIFY_TOKEN"))
+        self.cgc_headers = {
+            "accept": "application/json",
+            "x-cg-pro-api-key": os.getenv('COINGECKO_API_KEY')
+        }
+    
+    def get_new_pairs_cmc(self):
+        params = {
+            "pageSize":50,
+            "page":1,
+            "age":2,
+            "platformId":14,
+            "liquidity":0,
+            "volume":0
+        }
+        url = "https://api.coinmarketcap.com/dexer/v3/dexer/new-pair-list"
+        response = requests.get(url,params=params)
+        total = response.json()['data']['total']
+        total_pages = int(total)//50
+        data=  response.json()['data']['pageList']
+        if total_pages == 0:
+            return response.json()['data']['pageList']
+        else:
+             for page in range(1,total_pages+1):
+                params["page"] = page
+                response = requests.get(url,params=params)
+                data += response.json()['data']['pageList']
+                
+                time.sleep(0.5)
+        res = [
+            {"cmc_data":record} for record in data
+        ]
+        return res
+    
+    def get_new_pool_cgc(self,network="bsc"):
+        params = {
+            "network":'bsc'
+        }
+        url = f"https://pro-api.coingecko.com/api/v3/onchain/networks/{network}/new_pools"
+        response = requests.get(url,headers=self.cgc_headers)
+
+        return response
+    def get_token_holder_list(self,token_address):
+        url = f"https://api.dexscreener.com/token/{token_address}/holders"
+        response = requests.get(url)
+        return response.json()
+    
+    def get_new_pairs_dextool_ws(self):
+        headers = {
+            "sec-websocket-key":"rOrinjpxeVlx53Q4h/LjSA==",
+            "user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36",
+            "sec-websocket-extensions":"permessage-deflate; client_no_context_takeover; server_no_context_takeover",
+            "host":"ws.dextools.io",
+            "origin":"https://www.dextools.io",
+            "pragma":"no-cache",
+            "upgrade":"websocket",
+            "uwebsockets":"20",
+        }
+        ws = create_connection("wss://ws.dextools.io",header = headers)
+        ws.send('{jsonrpc: "2.0", method: "subscribe", params: {chain: "bsc", channel: "bsc:pools"}, id: 1}')
+        ws.send('{jsonrpc: "2.0", method: "subscribe", params: {chain: "bsc", channel: "bsc:common"}, id: 2}')
+        while True:
+            result = ws.recv()
+            print(result)
+        return data    
+    
+    def get_trending_bsc_pools(self):
+        url = "https://pro-api.coingecko.com/api/v3/onchain/networks/bsc/trending_pools?duration=1h"
+        headers = {
+            "accept": "application/json",
+            "x-cg-pro-api-key": os.getenv("COINGECKO_API_KEY")
+        }
+        response = requests.get(url, headers=headers)
+        return response.json()
+
+    def get_new_pairs_cmc_pro(self,network="bsc",limit=2000):
+        url = "https://pro-api.coinmarketcap.com/v4/dex/spot-pairs/latest"
+        params = {
+            "network_slug":network,
+            'liquidity_max':100,
+            "aux":"security_scan,pool_created,percent_pooled_base_asset,pool_base_asset,holders",
+            "sort_dir":"asc",
+        }
+        response = requests.get(url,params=params,headers=self.cmc_headers)
+        cmc_data = []
+        total_pages = int(limit/50)+1
+        for i in range(1,total_pages):
+            params["scroll_id"] = i*50
+            response = requests.get(url,params=params,headers=self.cmc_headers)
+            cmc_data += response.json()['data']
+        with open(f"{CWD}/cmc_token_data.json","w") as f:
+            json.dump(cmc_data,f)
+        return cmc_data
+    
+    def get_new_pairs_cgc_pro(self,network="bsc",limit=2000,pool_created_hour_max="1h"):
+        url = "https://pro-api.coingecko.com/api/v3/onchain/pools/megafilter"
+        
+        #url = f"https://pro-api.coingecko.com/api/v3/onchain/networks/{network}/new_pools"
+        cgc_data = []
+        total_pages = int(limit/20)+1
+        for page in range(1,total_pages):
+            params = {
+            "networks":network,
+            "page":page,
+            "sort":"pool_created_at_desc",
+            "pool_created_hour_max":pool_created_hour_max,
+            "checks":"no_honeypot"
+        }
+            response = requests.get(url, headers=self.cgc_headers,params=params)
+            if len(response.json()['data']) == 0:
+                break
+            cgc_data+= response.json()['data']
+        with open(f"{CWD}/cgc_token_data.json","w") as f:
+            json.dump(cgc_data,f)
+        return cgc_data
+    
+    def filter_image_url(self,tokens):
+        filter_data = []
+        for token in tokens:
+            network =token['cmc_data']['platform']['name'].lower()
+            address = token['cmc_data']['baseToken']['address']
+            url = f"https://pro-api.coingecko.com/api/v3/onchain/networks/{network}/tokens/{address}"
+            response = requests.get(url, headers=self.cgc_headers).json()
+            token['cgc_data'] = response['data']
+            if token['cgc_data']['attributes'].get('image_url'):
+                filter_data.append(token)
+        return filter_data
+
+    def get_pool_data_cmc(self,contract_addresses):
+        tokens = []
+        for batch_address in batch(contract_addresses, 20):
+            batch_address = ",".join(batch_address)
+            params = {
+                "contract_address":batch_address,
+                "network_slug":"bsc",
+                "aux":"pool_created,percent_pooled_base_asset,num_transactions_24h,pool_base_asset,pool_quote_asset,24h_volume_quote_asset,total_supply_quote_asset,total_supply_base_asset,holders,buy_tax,sell_tax,security_scan,24h_no_of_buys,24h_no_of_sells,24h_buy_volume,24h_sell_volume"
+            }
+            url = "https://pro-api.coinmarketcap.com/v4/dex/pairs/quotes/latest"
+            response = requests.get(url, params=params,headers=self.cmc_headers).json()
+            tokens += response['data']
+            time.sleep(0.3)
+        # with open(f"{CWD}/latest_token_data.json","w") as f:
+        #     json.dump(tokens,f)
+        return tokens
+    def filter_security_tokens(self,data):
+        filtered_data = []
+        key_failed = []
+        for record in data:
+            if record['contract_address'] in ['0x9afdd172ae444a0c99a3148eae72ac02c846421e']:
+                pass
+            passed = True
+            item = record['security_scan'][0]
+            if item['aggregated']['contract_verified'] != True:
+                continue
+            if item['aggregated']['honeypot'] == True:
+                continue
+            third_party = item['third_party']
+            false_keys = [
+                'proxy',
+                'owner_address',
+                'owner_change_balance',
+                'hidden_owner',
+                'self_destruct',
+                'external_call',
+                'gas_abuse',
+                'slippage_modifiable'
+            ]
+            true_keys = [
+                'open_source',
+                'trust_list'   
+            ]
+            true_retricted_keys = [
+                'airdrop_scam',
+                'mintable',
+                'blacklisted',
+                'whitelist',
+                'can_take_back_ownership'
+            ]
+            false_retricted_keys = [
+                'open_source'
+            ]
+            for key,value in third_party.items():
+                if key in true_retricted_keys and value == True:
+                    passed = False
+                    key_failed.append(key)
+                    continue
+                if key in false_retricted_keys and value != True:
+                    passed = False
+                    key_failed.append(key)
+                    continue
+                if key in false_keys and value == True :
+                    passed = False
+                    key_failed.append(key)
+                    continue
+                if key in true_keys and value == False:
+                    passed = False
+                    key_failed.append(key)
+                    continue
+            if passed:
+                filtered_data.append(record)
+        return filtered_data
+    def get_pool_data_cgc(self,tokens):
+        for token in tokens:
+            pools = token['cgc_data']['relationships']['top_pools']['data']
+            pool_address = ",".join([pool['id'][4:] for pool in pools])
+            network = token['cmc_data']['platform']['name'].lower()
+            url = f"https://pro-api.coingecko.com/api/v3/onchain/networks/{network}/pools/multi/{pool_address}"
+            response = requests.get(url, headers=self.cgc_headers).json()
+            token['cgc_data']['pool_data'] = response['data']
+        return tokens
+
+    def get_top_pair(self):
+        data = self.get_new_pairs_cmc()
+        filtered_data = self.filter_security_tokens(data)
+        return filtered_data
+    
+    def filter_burned_tokens(self,data):
+        filtered_data = []
+        for item in data:
+            if item['address'] not in BURNED_ADDRESSES:
+                filtered_data.append(item)
+        return filtered_data
+
+    def calculate_liquidity_metrics(self,tokens):
+        for token in tokens:
+            token["%_pooled"] = token['cmc_data']['pool_data']['percent_pooled_base_asset']
+    
+    def calculate_percentage_burned(self,tokens):
+        for token in tokens:
+            from_address = token['cmc_data']['pairContractAddress']
+            to_address = BURNED_ADDRESSES 
+            pass
+    def liquidity_filter(self,data,filter_value = 100):
+        filtered_data = []
+        for item in data:
+            if item['quote'][0].get('liquidity') and item['quote'][0]['liquidity'] <= filter_value:
+                filtered_data.append(item)
+        return filtered_data
+    
+    def total_supply_percentage_filter(self,data,filter_value = 0.99):
+        filtered_data = []
+        for item in data:
+            if item['percent_pooled_base_asset'] >= filter_value:
+                filtered_data.append(item)
+        return filtered_data
+    
+    def get_holders(self,data):
+        for item in data:
+            address = item['contract_address']
+            url = f"https://bscscan.com/token/tokenholderchart/{address}"
+            headers = {"user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"}
+            response = requests.get(url,headers=headers)
+            soup = BeautifulSoup(response.text)
+            table = soup.find_all('table')
+            if len(table) > 0:
+                tr = table[0].find_all('tr')
+                holders = []
+                if len(tr) > 0:
+                    for row in tr:
+                        holder = []
+                        td = row.find_all('td')
+                        if len(td) > 0:
+                            for cell in row.contents[:-1]:
+                                holder.append(cell.text.replace('\n',"").strip())
+                            holders.append(holder.copy())
+            if len(holders) > 0:
+                formated_holders = []
+                for holder in holders:
+                    record = {
+                        "ranking":holder[0],
+                        "address":holder[1],
+                        "quantity":holder[2],
+                        "percentage":holder[3].replace("%","")
+                    }
+                    formated_holders.append(record)
+                item['holders'] = formated_holders
+            time.sleep(0.5)
+        return data
+
+    def filter_holders(self,data):
+        filtered_data = []
+        locked_holder_keyword = ['pinksale']
+        burned_holder_keyword = ['0x000']
+        
+        for item in data:
+            if len(item['holders']) > 0:
+                locked_percentage = 0
+                burned_percentage = 0
+                for holder in item['holders']:
+                    for k in locked_holder_keyword:
+                        if k in holder['address'].lower():
+                            locked_percentage += float(holder['percentage'])
+                    for j in burned_holder_keyword:
+                        if j in holder['address'].lower():
+                            burned_percentage += float(holder['percentage'])
+                if locked_percentage + burned_percentage > 99:
+                    filtered_data.append(item)            
+        return filtered_data
+    
+    def add_validation_links(tokens,network="bsc"):
+        if network == "bsc":
+            goplus_network_id = '56'
+        for token in tokens:
+            token['validation_links'] = {
+                "goplus":f"https://www.gopluslabs.io/token-security/{goplus_network_id}/{token['contract_address']}",
+                "dexscreener":f"dexscreener.com/{network}/{token['contract_address']}",
+                "bscscan":f"https://bscscan.com/token/tokenholderchart/{token['contract_address']}"
+
+            }
+        return tokens
+    def rug_filter(self,tokens):
+        filtered_tokens = []
+        for token in tokens:
+            if token['quote'][0].get('percent_change_price_1h')  > -0.97:
+                filtered_tokens.append(token)
+        return filtered_tokens
+    
+    def scan_quickintel(self,tokens,network="bsc"):
+        for token in tokens:
+            url = "https://app.quickintel.io/api/quicki/getquickiauditfull"
+            body = {
+                "chain": network,
+                "tier": "basic",
+                "tokenAddress": token['contract_address']
+            }
+            response = requests.post(url,json=body)
+            token['quickintel_scan'] = response.json()
+        return tokens
+    
+if __name__ == "__main__":
+    client = LiquidityBot()
+    #cmc_pools = client.get_new_pairs_cmc_pro()
+    cgc_latest_pools = client.get_new_pairs_cgc_pro(pool_created_hour_max="4h")
+    new_address = [pool['attributes']['address'] for pool in cgc_latest_pools]
+    new_tokens = client.get_pool_data_cmc(new_address)
+    
+    result = client.filter_security_tokens(new_tokens)
+    filter_liquidity = client.liquidity_filter(result,100)
+    filter_total_supply = client.total_supply_percentage_filter(filter_liquidity,0.99)
+    token_w_holders = client.get_holders(filter_total_supply)
+    filterd_holders = client.filter_holders(token_w_holders)
+    rug_filter = client.rug_filter(filterd_holders)
+    add_quickintel = client.scan_quickintel(rug_filter)
+
+    pass
+    
+    
+    
+    #0x9afdd172ae444a0c99a3148eae72ac02c846421e
