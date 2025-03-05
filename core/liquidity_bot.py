@@ -272,7 +272,7 @@ class LiquidityBot:
     def total_supply_percentage_filter(self,data,filter_value = 0.99):
         filtered_data = []
         for item in data:
-            if item['percent_pooled_base_asset'] >= filter_value:
+            if item['percent_pooled_base_asset'] >= filter_value and item['percent_pooled_base_asset'] <= 1:
                 filtered_data.append(item)
         return filtered_data
     
@@ -358,6 +358,16 @@ class LiquidityBot:
             response = requests.post(url,json=body)
             token['quickintel_scan'] = response.json()
         return tokens
+
+    def scan_tokensniffer(self,tokens,network="bsc"):
+        for token in tokens:
+            url = f"https://tokensniffer.com/token/{network}/{token['contract_address']}"
+            headers = {
+                "user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
+            }
+            response = requests.get(url,headers=headers)
+            token['tokensnifferscan'] = response.json()
+        return tokens
     
 if __name__ == "__main__":
     client = LiquidityBot()
@@ -371,8 +381,9 @@ if __name__ == "__main__":
     filter_total_supply = client.total_supply_percentage_filter(filter_liquidity,0.99)
     token_w_holders = client.get_holders(filter_total_supply)
     filterd_holders = client.filter_holders(token_w_holders)
-    rug_filter = client.rug_filter(filterd_holders)
-    add_quickintel = client.scan_quickintel(rug_filter)
+    #rug_filter = client.rug_filter(filterd_holders)
+    add_quickintel = client.scan_quickintel(filterd_holders)
+    token_sniffer_scan = client.scan_tokensniffer(add_quickintel)
 
     pass
     
