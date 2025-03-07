@@ -1,6 +1,8 @@
 import logging
 
-from sqlmodel import Session
+#from sqlmodel import Session
+from sqlalchemy.orm import Session
+
 
 from core.db import engine, init_db
 

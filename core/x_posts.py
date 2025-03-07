@@ -1,6 +1,7 @@
 from apify_client import ApifyClient
 import requests
 
+
 def test():
     API_TOKEN = 'apify_api_tphFwXnlK4ZjIqKErblfavUoLekgVe3pYeid'
     params = {

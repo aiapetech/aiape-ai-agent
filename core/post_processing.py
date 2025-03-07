@@ -2,8 +2,9 @@
 import os,sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from core.db import engine as postgres_engine
-from models.postgres_models import *
-from sqlmodel import Field, Session, select
+#from models.postgres_models import *
+#from sqlmodel import Field, Session, select
+from sqlalchemy.orm import Session
 from core.components import embedding, text_splitter
 import dotenv
 from datetime import datetime
@@ -22,6 +23,7 @@ from langchain_community.document_loaders import WebBaseLoader
 from core.mongodb import init_mongo 
 import pandas as pd
 from langchain.retrievers import RePhraseQueryRetriever
+import requests
 
 
 
@@ -39,6 +41,7 @@ class ChainSetting:
         LIST_OF_CGC_PROJECT_INFO = json.load(f)
     OPENAI_MODEL_NAME = app_settings.OPENAI_MODEL_NAME
     OPENAI_EMBEDDING_MODEL_NAME = app_settings.OPENAI_EMBEDDING_MODEL_NAME
+    COINGECKO_API_KEY = app_settings.COINGECKO_API_KEY
 
 class PostProcessor:
     def __init__(self, settings: ChainSetting, postgres_engine):
@@ -62,8 +65,22 @@ class PostProcessor:
                 statement = select(Posts).where(func.date(Posts.posted_at) == date_obj.date())
             results = session.exec(statement).fetchall()
         return results
+    
+    def get_cgc_project_info(self):
+        url = f"{app_settings.COINGECKO_API_BASE_URL}/coins/list"
+        query_params = {
+            "include_platform" : False,
+            "status":"active"
+        }
+        headers = {
+            'accept': 'application/json',
+            'x-cg-pro-api-key': self.settings.COINGECKO_API_KEY
+        }
+        response = requests.get(url, headers=headers,params=query_params)
+        data = response.json()
+        return data
 
-    def extract_project_name_mongo(self):
+    def extract_project_name_mongo(self,date = None):
         def check_two_out_of_three(a, b, c):
             count = 0
             if a > 0:
@@ -78,13 +95,19 @@ class PostProcessor:
             return count
         
         db = self.mongo_client.sightsea
-        records = db.posts.find({})
+        if date:
+            end_date = date.replace(hour=23,minute=59,second=59)
+            #records = db.posts.find({'createdAt': {'$gte': date, '$lt': date}})
+            records = db.posts.find({'createdAt': {'$gte': date, '$lt': end_date}})
+        else:
+            records = db.posts.find({})
         full_text = ""
         for content in records:
             full_text += content['text']
         result = []
         full_text = full_text.replace("\n","").lower()
-        for project in self.settings.LIST_OF_CGC_PROJECT_INFO:
+        cgc_project_info = self.get_cgc_project_info()
+        for project in cgc_project_info:
             if project['symbol'] == '':
                 continue
             project_symbol_with_char = f"${project['symbol'].strip().lower()} "

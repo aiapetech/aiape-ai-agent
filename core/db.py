@@ -1,9 +1,18 @@
-from sqlmodel import Session, create_engine, select
 
+#from sqlmodel import Session, select
+from sqlalchemy import create_engine
+import os, sys
+sys.path.append(os.getcwd())
 import crud
 from core.config import settings
-from models.postgres_models import User, UserCreate
+#from models.postgres_models import User, UserCreate
+from pathlib import Path
+from dotenv import load_dotenv
+from sqlalchemy.orm import Session
 
+
+
+CWD = Path(__file__).parents[1]
 engine = create_engine(str(settings.SQLALCHEMY_DATABASE_URI))
 
 

@@ -1,10 +1,11 @@
 import os,sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from core.db import engine as postgres_engine
-from models.postgres_models import *
+#from models.postgres_models import *
 import dotenv
 from datetime import datetime
-from sqlmodel import  Session,select
+#from sqlmodel import  Session,select
+from sqlalchemy.orm import Session
 import json
 import requests
 from sqlalchemy import or_, and_
@@ -102,7 +103,8 @@ class TokenInfo:
             cgc_id = token_obj.cgc_id
         headers = {
             'accept': 'application/json',
-            'x-cg-demo-api-key': self.settings.COINGECKO_API_KEY
+            #'x-cg-demo-api-key': self.settings.COINGECKO_API_KEY,
+            'x-cg-pro-api-key': self.settings.COINGECKO_API_KEY
         }
         if params is None:
             params = {
@@ -118,7 +120,8 @@ class TokenInfo:
         url =f"{self.settings.COINGECKO_API_BASE_URL}/coins/markets"
         headers = {
             'accept': 'application/json',
-            'x-cg-demo-api-key': self.settings.COINGECKO_API_KEY
+            #'x-cg-demo-api-key': self.settings.COINGECKO_API_KEY,
+            'x-cg-pro-api-key': self.settings.COINGECKO_API_KEY
         }
         if params is None:
             params = {
@@ -137,7 +140,8 @@ class TokenInfo:
     def get_category_list(self):
         headers = {
             'accept': 'application/json',
-            'x-cg-demo-api-key': self.settings.COINGECKO_API_KEY
+            #'x-cg-demo-api-key': self.settings.COINGECKO_API_KEY,
+            'x-cg-pro-api-key': self.settings.COINGECKO_API_KEY
         }
         data = []
         url = f"{self.settings.COINGECKO_API_BASE_URL}/coins/categories"
@@ -304,12 +308,6 @@ class TokenInfo:
     #     return df_scrores, df_token_market_data
 
 if __name__ == '__main__':
-    # settings = ScoreSetting()
-    # token_info = TokenInfo(settings,postgres_engine)
-    # tokens = ['ETH, Ethereum','BANANA, Banana Gun']
-    # for token in tokens:
-    #     token_market_data = token_info.get_token_data(token)
-    #     score = token_info.calculate_score(token)
     settings = ScoreSetting()
     token_info = TokenInfo(settings,postgres_engine)
     df = pd.read_csv('test_project.csv')
