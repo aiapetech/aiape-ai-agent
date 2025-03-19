@@ -11,7 +11,7 @@ router = APIRouter(prefix="/liquidity-bot", tags=["AI Bot"])
 mongo_client = init_mongo()
 @router.get("/output/contents", response_model=liquidity_bot_schema.Contents)
 def get_contents(
-    duration:int = 1, time_unit:str = 'hour', page: int = 1, limit: int = 100
+    duration:int = 1, time_unit:str = 'hour', page: int = 0, limit: int = 100
 ) -> Any:
     """
     Retrieve contents.
@@ -19,11 +19,11 @@ def get_contents(
     mydb = mongo_client["sightsea"]
     mycol = mydb["liquidity_contents"]
     if time_unit == 'hour':
-        mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(hours=duration)}}).sort([("created_at", -1)]).skip(page-1*limit).limit(limit)
+        mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(hours=duration)}}).sort([("created_at", -1)]).skip(page*limit).limit(limit)
     elif time_unit == 'day':
-        mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(days=duration)}}).sort([("created_at", -1)]).skip(page-1*limit).limit(limit)
+        mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(days=duration)}}).sort([("created_at", -1)]).skip(page*limit).limit(limit)
     elif time_unit == 'minute':
-        mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(minutes=duration)}}).sort([("created_at", -1)]).skip(page-1*limit).limit(limit)
+        mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(minutes=duration)}}).sort([("created_at", -1)]).skip(page*limit).limit(limit)
     else:
         mongo_result = mycol.find().sort([("created_at", -1)]).skip(page*limit).limit(limit)
     result = liquidity_bot_schema.Contents(
