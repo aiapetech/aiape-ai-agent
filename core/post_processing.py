@@ -102,13 +102,15 @@ class PostProcessor:
         else:
             records = db.posts.find({})
         full_text = ""
+        content_raw = []
         for content in records:
             full_text += content['text']
+            content_raw.append(content)
         result = []
         full_text = full_text.replace("\n","").lower()
         cgc_project_info = self.get_cgc_project_info()
         for project in cgc_project_info:
-            if project['symbol'] == '':
+            if project.get(['symbol']) == '':
                 continue
             project_symbol_with_char = f"${project['symbol'].strip().lower()} "
             project_symbol = f"{project['symbol'].strip().lower()} "

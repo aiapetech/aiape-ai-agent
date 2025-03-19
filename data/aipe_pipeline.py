@@ -269,7 +269,7 @@ class AIPEPipeline():
             post_to_twitter(post)
 if __name__ == "__main__":
     aipae_pipeline = AIPEPipeline(datetime.now()-timedelta(days=1))
-    #data = aipae_pipeline.get_x_post("2025-03-06")
+    #aipae_pipeline.get_x_post()
     aipae_pipeline.extract_most_mentioned_project_name() 
     aipae_pipeline.process_data()
     aipae_pipeline.generate_x_post()

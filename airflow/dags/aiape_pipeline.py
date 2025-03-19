@@ -5,6 +5,7 @@ from airflow import DAG
 from airflow.operators.python import PythonOperator, ExternalPythonOperator
 cwd = os.getcwd()
 sys.path.append(cwd)
+sys.path.append('/home/azureuser/data/datawarehouse')
 sys.path.append(f'{cwd}/../data/')
 # # Set up import paths
 # def setup_import_paths():
