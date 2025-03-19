@@ -18,15 +18,14 @@ def get_contents(
     """
     mydb = mongo_client["sightsea"]
     mycol = mydb["liquidity_contents"]
-    if duration == 1:
-        if time_unit == 'hour':
-            mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(hours=1)}}).sort([("created_at", -1)]).skip(page-1*limit).limit(limit)
-        elif time_unit == 'day':
-            mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(days=1)}}).sort([("created_at", -1)]).skip(page-1*limit).limit(limit)
-        elif time_unit == 'minute':
-            mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(minutes=1)}}).sort([("created_at", -1)]).skip(page-1*limit).limit(limit)
-        else:
-            mongo_result = mycol.find().sort([("created_at", -1)]).skip(page*limit).limit(limit)
+    if time_unit == 'hour':
+        mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(hours=duration)}}).sort([("created_at", -1)]).skip(page-1*limit).limit(limit)
+    elif time_unit == 'day':
+        mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(days=duration)}}).sort([("created_at", -1)]).skip(page-1*limit).limit(limit)
+    elif time_unit == 'minute':
+        mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(minutes=duration)}}).sort([("created_at", -1)]).skip(page-1*limit).limit(limit)
+    else:
+        mongo_result = mycol.find().sort([("created_at", -1)]).skip(page*limit).limit(limit)
     result = liquidity_bot_schema.Contents(
         result=list(mongo_result),
         count=mycol.count_documents({}),
