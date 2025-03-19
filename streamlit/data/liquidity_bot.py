@@ -7,7 +7,8 @@ sys.path.append(str(CWD))
 from core.db import engine as postgres_engine
 from datetime import datetime
 from core.liquidity_bot import LiquidityBot
-
+from core.telegram_bot import TelegramBot
+#0x2ddC7513240A7B5b9CfFceC7c9092d345e55Bb2f
 
 liquidity_bot_client = LiquidityBot()
 def format_df(tokens):

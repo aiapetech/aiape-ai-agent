@@ -10,6 +10,11 @@ from bs4 import BeautifulSoup
 import websocket
 from websocket import create_connection
 import pandas as pd
+from core.telegram_bot import TelegramBot
+from moralis import evm_api
+from datetime import datetime
+from mongodb import init_mongo
+
 
 
 dotenv.load_dotenv()
@@ -35,6 +40,13 @@ class LiquidityBot:
             "accept": "application/json",
             "x-cg-pro-api-key": os.getenv('COINGECKO_API_KEY')
         }
+        self.telegram_bot = TelegramBot()
+        self.moralis_api_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjgxZTY1Yjk4LTc5OGMtNDZlOS04Yjg2LTYzNTc5ZTgzMzBiMSIsIm9yZ0lkIjoiNDIyMDcxIiwidXNlcklkIjoiNDM0MDgxIiwidHlwZUlkIjoiZTU2MGEwNmQtMWUzYS00OTY3LWFlNTMtMjc3YzBkMjgxMmM2IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MzQ4MzY1NzgsImV4cCI6NDg5MDU5NjU3OH0.HRZOSN3-iN5hcWbIot444zcoY5_BIfD5322cuZWDCUE'
+        self.moralis_headers = {
+            "Accept": "application/json",
+            "X-API-Key": self.moralis_api_key
+        }
+        self.mongo_client = init_mongo()
     
     def get_new_pairs_cmc(self):
         params = {
@@ -125,26 +137,33 @@ class LiquidityBot:
         return cmc_data
     
     def get_new_pairs_cgc_pro(self,network="bsc",limit=2000,pool_created_hour_max="1h"):
-        url = "https://pro-api.coingecko.com/api/v3/onchain/pools/megafilter"
+        #url = "https://pro-api.coingecko.com/api/v3/onchain/pools/megafilter"
         
-        #url = f"https://pro-api.coingecko.com/api/v3/onchain/networks/{network}/new_pools"
-        cgc_data = []
+        url = f"https://pro-api.coingecko.com/api/v3/onchain/networks/{network}/new_pools"
+        self.cgc_data = []
         total_pages = int(limit/20)+1
+        date_format = "%Y-%m-%dT%H:%M:%SZ"
         for page in range(1,total_pages):
             params = {
             "networks":network,
             "page":page,
             "sort":"pool_created_at_desc",
             "pool_created_hour_max":pool_created_hour_max,
-            "checks":"no_honeypot"
         }
             response = requests.get(url, headers=self.cgc_headers,params=params)
-            if len(response.json()['data']) == 0:
+            if len(response.json()['data']) == 0 :
                 break
-            cgc_data+= response.json()['data']
+            last_pool = response.json()['data'][-1]
+            pool_created_at = datetime.strptime(last_pool['attributes']['pool_created_at'], date_format)
+            time_diff = datetime.now().utcnow() - pool_created_at
+            
+            
+            self.cgc_data+= response.json()['data']
+            if time_diff.seconds > int(pool_created_hour_max[:-1]) * 60 * 60:
+                break
         with open(f"{CWD}/cgc_token_data.json","w") as f:
-            json.dump(cgc_data,f)
-        return cgc_data
+            json.dump(self.cgc_data,f)
+        return self.cgc_data
     
     def filter_image_url(self,tokens):
         filter_data = []
@@ -157,10 +176,17 @@ class LiquidityBot:
             if token['cgc_data']['attributes'].get('image_url'):
                 filter_data.append(token)
         return filter_data
+    
+    def get_token_price_data(self,network,contract_address):
+        url = f"https://pro-api.coingecko.com/api/v3/onchain/networks/{network}/tokens/{contract_address}"
+        response = requests.get(url, headers=self.cgc_headers)
+        return response.json()
 
-    def get_pool_data_cmc(self,contract_addresses):
+    def get_pool_data_cmc(self,cgc_tokens):
         tokens = []
-        for batch_address in batch(contract_addresses, 20):
+        new_address = [pool['attributes']['address'] for pool in cgc_latest_pools]
+        cmc_tokens = []
+        for batch_address in batch(new_address, 20):
             batch_address = ",".join(batch_address)
             params = {
                 "contract_address":batch_address,
@@ -169,8 +195,28 @@ class LiquidityBot:
             }
             url = "https://pro-api.coinmarketcap.com/v4/dex/pairs/quotes/latest"
             response = requests.get(url, params=params,headers=self.cmc_headers).json()
-            tokens += response['data']
+            cmc_tokens += response['data']
             time.sleep(0.3)
+        for cgc_token in cgc_tokens:
+            for record in cmc_tokens:
+                if record['contract_address'] in cgc_token['id']:
+                    cmc_pool_name = record['name']
+                    cmc_base_asset =  cmc_pool_name.split("/")[0]
+                    cmc_quote_asset = cmc_pool_name.split("/")[1]
+                    cgc_pool_name = cgc_token['attributes']['name']
+                    cgc_base_asset = cgc_pool_name.split("/")[0].strip()
+                    cgc_quote_asset = cgc_pool_name.split("/")[1].strip()
+                    if cgc_base_asset.lower() == cmc_base_asset.lower():
+                        is_base_asset = True
+                    else:
+                        is_base_asset = False
+                    token = {
+                        "cmc_data":record,
+                        "cgc_data":cgc_token,
+                        "is_base_asset":is_base_asset
+                    }
+                    tokens.append(token)
+            
         # with open(f"{CWD}/latest_token_data.json","w") as f:
         #     json.dump(tokens,f)
         return tokens
@@ -178,7 +224,7 @@ class LiquidityBot:
         filtered_data = []
         key_failed = []
         for record in data:
-            if record['contract_address'] in ['0x9afdd172ae444a0c99a3148eae72ac02c846421e']:
+            if record['contract_address'] in ['0x88449fb49fb3fac195cb7731e2fd1780fb33d77a']:
                 pass
             passed = True
             item = record['security_scan'][0]
@@ -265,20 +311,23 @@ class LiquidityBot:
     def liquidity_filter(self,data,filter_value = 100):
         filtered_data = []
         for item in data:
-            if item['quote'][0].get('liquidity') and item['quote'][0]['liquidity'] <= filter_value:
+            if item['cmc_data']['quote'][0].get('liquidity') and item['cmc_data']['quote'][0]['liquidity'] <= filter_value:
                 filtered_data.append(item)
         return filtered_data
     
     def total_supply_percentage_filter(self,data,filter_value = 0.99):
         filtered_data = []
         for item in data:
-            if item['percent_pooled_base_asset'] >= filter_value and item['percent_pooled_base_asset'] <= 1:
+            if item['is_base_asset']:
+                if (item['cmc_data'].get('percent_pooled_base_asset')) and (item['cmc_data']['percent_pooled_base_asset'] >= filter_value and item['cmc_data']['percent_pooled_base_asset'] <= 1):
+                    filtered_data.append(item)
+            else:
                 filtered_data.append(item)
         return filtered_data
     
     def get_holders(self,data):
         for item in data:
-            address = item['contract_address']
+            address = item['cmc_data']['contract_address']
             url = f"https://bscscan.com/token/tokenholderchart/{address}"
             headers = {"user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"}
             response = requests.get(url,headers=headers)
@@ -349,19 +398,42 @@ class LiquidityBot:
     
     def scan_quickintel(self,tokens,network="bsc"):
         for token in tokens:
+            if token['is_base_asset']:
+                token_address = token['cmc_data']['base_asset_contract_address']
+            else:
+                token_address = token['cmc_data']['quote_asset_contract_address']
             url = "https://app.quickintel.io/api/quicki/getquickiauditfull"
             body = {
                 "chain": network,
                 "tier": "basic",
-                "tokenAddress": token['contract_address']
+                "tokenAddress": token_address
             }
             response = requests.post(url,json=body)
             token['quickintel_scan'] = response.json()
         return tokens
+    
+    def scan_goplus(self,tokens,network="bsc"):
+        if network == "bsc":
+            goplus_network_id = '56'
+        
+        for token in tokens:
+            if token['is_base_asset']:
+                token_address = token['cmc_data']['base_asset_contract_address']
+            else:
+                token_address = token['cmc_data']['quote_asset_contract_address']
+            url = f"https://api.gopluslabs.io/api/v1/token_security/{goplus_network_id}?contract_addresses={token_address}"
+            headers = {
+                "user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
+            }
+            response = requests.get(url,headers=headers)
+            if response.status_code == 200:
+                token['goplus_scan'] = response.json()['result'][token_address]
+                time.sleep(0.5)
+        return tokens
 
     def scan_tokensniffer(self,tokens,network="bsc"):
         for token in tokens:
-            url = f"https://tokensniffer.com/token/{network}/{token['contract_address']}"
+            url = f"https://tokensniffer.com/token/{network}/{token['cmc_data']['contract_address']}"
             headers = {
                 "user-agent":"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/133.0.0.0 Safari/537.36"
             }
@@ -369,24 +441,131 @@ class LiquidityBot:
             token['tokensnifferscan'] = response.json()
         return tokens
     
+    def get_token_owner(self,token_address,network='bsc'):
+        params = {
+        "chain":network,
+        "order": "DESC",
+        "token_address": token_address
+        }
+        result = evm_api.token.get_token_owners(
+        api_key=self.moralis_api_key,
+        params=params,
+        )
+
+        print(result)
+    
+    def format_output(self,token):
+        if token['is_base_asset']:
+            token_address = token['cmc_data']['base_asset_contract_address']
+            token_name = token['cmc_data']['base_asset_symbol']
+        else:
+            token_address = token['cmc_data']['quote_asset_contract_address']
+            token_name = token['cmc_data']['quote_asset_symbol']
+        pool_created_at = datetime.strptime(token['cgc_data']['attributes']['pool_created_at'], "%Y-%m-%dT%H:%M:%SZ")
+        time_diff = datetime.now().utcnow() - pool_created_at
+        pool_age_hour = time_diff.seconds//3600
+        pool_age_min = (time_diff.seconds - pool_age_hour*3600)//60
+        pool_age = f"{pool_age_hour}h {pool_age_min}m"
+        token_price = self.get_token_price_data('bsc',token_address)    
+        if token['goplus_scan'].get('is_mintable') is None:
+            mintable = True
+        else:
+            mintable = bool(int(token['goplus_scan'].get('is_mintable')))
+        if token['cgc_data']['attributes']['market_cap_usd'] is None:
+            market_cap  = "N/A"
+        else:
+            market_cap = token['cgc_data']['attributes']['market_cap_usd']
+        if mintable:
+            mintable = 'Yes'
+        else:
+            mintable = 'No'
+
+        freezeable = token['quickintel_scan']['quickiAudit'].get('contract_Renounced')
+        if freezeable is None:
+            freezeable = bool(int(token['goplus_scan']['can_take_back_ownership']))
+        if freezeable:
+            freezeable = 'Yes'
+        else:
+            freezeable = 'No'
+        holder_percentage = 0
+        for holder in token['goplus_scan']['lp_holders']:
+            holder_percentage += float(holder['percent'])
+        content = f"""<b>🚀 Token Details:  {token['cmc_data']['base_asset_name']}</b> ${token_name}
+- 💳 Contract: <code>{token_address}</code>
+- USD: {token['cgc_data']['attributes']['base_token_price_usd']}
+- Market cap: {market_cap}
+- Vol 24h: {token['cgc_data']['attributes']['volume_usd']['h24']}
+- Pool age: {pool_age}
+  
+<b>💡Security:</b>
+- Top 10: {int(holder_percentage*100)}%
+- LP: {int(token['cmc_data']['percent_pooled_base_asset']*100)}%
+- Mintable: {mintable}
+- Freezable: {freezeable}
+<b>Links:</b>
+<a href="https://dexscreener.com/bsc/{token['cmc_data']['contract_address']}">DexScreener</a>
+<a href="https://gmgn.ai/bsc/token/{token_address}">Gmgn</a>
+<a href="https://t.me/GMGN_sol_bot?start=i_BNKuCPoo">Gmgn Bot</a>
+"""
+        return content
+    def post_to_telegram(self,content):
+        asyncio.run(self.telegram_bot.send_message(chat_id='addas',msg = content, parse_mode="HTML"))
+        self.telegram_bot.send_message(chat_id='addas',msg = content)
+        print("Content posted to Telegram successfully.")
+    
+
+    def insert_to_mongo(self,content,token):
+        mydb = self.mongo_client["sightsea"]
+        mycol = mydb["liquidity_contents"]
+        record = {
+            "content":content,
+            "created_at":datetime.now(),
+            "updated_at":datetime.now(),
+            "token_data":token
+        }
+        mycol.insert_one(record)
+    
+    def filter_security_project(self,tokens):
+        filtered_data = []
+        for token in tokens:
+            if token['quickintel_scan']['contractVerified'] == False:
+                continue
+            if bool(int(token['goplus_scan']['is_open_source'])) == False:
+                continue
+            filtered_data.append(token)
+        return filtered_data
+        
+        
+    
 if __name__ == "__main__":
     client = LiquidityBot()
     #cmc_pools = client.get_new_pairs_cmc_pro()
-    cgc_latest_pools = client.get_new_pairs_cgc_pro(pool_created_hour_max="4h")
-    new_address = [pool['attributes']['address'] for pool in cgc_latest_pools]
-    new_tokens = client.get_pool_data_cmc(new_address)
+    cgc_latest_pools = client.get_new_pairs_cgc_pro(pool_created_hour_max="1h")
+    new_tokens = client.get_pool_data_cmc(cgc_latest_pools)
+    #result = client.filter_security_tokens(new_tokens)
+    filter_liquidity = client.liquidity_filter(new_tokens,1000)
+    filter_total_supply = client.total_supply_percentage_filter(filter_liquidity,0)
+    scan_goplus = client.scan_goplus(filter_total_supply)
+    scan_quickintel = client.scan_quickintel(filter_total_supply)
+    #token_w_holders = client.get_holders(scan_quickintel)
+    filter_security = client.filter_security_project(scan_quickintel)
 
-    result = client.filter_security_tokens(new_tokens)
-    filter_liquidity = client.liquidity_filter(result,100)
-    filter_total_supply = client.total_supply_percentage_filter(filter_liquidity,0.99)
-    token_w_holders = client.get_holders(filter_total_supply)
-    filterd_holders = client.filter_holders(token_w_holders)
+    for token in filter_security:
+        content = client.format_output(token)
+        client.insert_to_mongo(content,token)
+        #client.post_to_telegram(content)
+    # token_w_holders = client.get_holders(filter_total_supply)
+    
+    # filterd_holders = client.filter_holders(token_w_holders)
     #rug_filter = client.rug_filter(filterd_holders)
-    add_quickintel = client.scan_quickintel(filterd_holders)
-    token_sniffer_scan = client.scan_tokensniffer(add_quickintel)
+    # add_quickintel = client.scan_quickintel(filterd_holders)
+    # token_sniffer_scan = client.scan_tokensniffer(add_quickintel)
 
     pass
     
     
     
     #0x9afdd172ae444a0c99a3148eae72ac02c846421e
+
+
+
