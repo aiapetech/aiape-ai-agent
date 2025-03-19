@@ -21,4 +21,4 @@ EXPOSE 8000
 
 # Run app.py when the container launches
 #ENTRYPOINT ["streamlit","run","streamlit/SightSea_AI_Demo.py","--server.port=8080","--server.address=0.0.0.0"]
-CMD ["fastapi", "run", "main.py", "--port", "8000"]
+ENTRYPOINT ["python", "main.py"]
