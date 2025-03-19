@@ -1,9 +1,9 @@
 import uuid
 
 from pydantic import EmailStr, model_validator,field_validator
-#rom sqlmodel import Field, Relationship, SQLModel
+from sqlmodel import Field, Relationship, SQLModel
 from datetime import datetime
-# from sqlmodel import SQLModel, Field, String
+from sqlmodel import SQLModel, Field, String
 from sqlalchemy.dialects.postgresql import JSONB
 
 from typing import List, Optional, Set
@@ -14,7 +14,6 @@ from sqlalchemy.ext.declarative import declarative_base
 
 from sqlalchemy.dialects import postgresql #ARRAY contains requires dialect specific type
 
-SQLModel = declarative_base()
 
 
 class BaseSQLModel(SQLModel):
