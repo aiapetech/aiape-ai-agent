@@ -61,11 +61,14 @@ class Settings(BaseSettings):
     QDRANT_SERVER: str = os.getenv("QDRANT_SERVER")
     MONGODB_CONNECTION_STRING: str = os.getenv("MONGODB_CONNECTION_STRING")
 
+    COINGECKO_API_KEY: str = os.getenv("COINGECKO_API_KEY")
+    COINGECKO_API_BASE_URL: str = os.getenv("COINGECKO_API_BASE_URL")
+
     @computed_field  # type: ignore[prop-decorator]
     @property
     def SQLALCHEMY_DATABASE_URI(self) -> PostgresDsn:
         return MultiHostUrl.build(
-            scheme="postgresql+psycopg",
+            scheme="postgresql+psycopg2",
             username=self.POSTGRES_USER,
             password=self.POSTGRES_PASSWORD,
             host=self.POSTGRES_SERVER,

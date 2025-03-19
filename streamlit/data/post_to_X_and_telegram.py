@@ -64,9 +64,9 @@ def post_to_x_and_telegram(channels_option):
             if record['posted']:
                 twitter_credential = df_twitter_credentials[df_twitter_credentials.app_id == record['twitter_app_id']].to_dict(orient='records')[0]
                 res = post_to_twitter_with_credentials(record['rephrased_content'], twitter_credential['consumer_key'], twitter_credential['consumer_secret'], twitter_credential['access_token'], twitter_credential['access_secret'],media_path=record.get('image_path'))
-                if not res:
-                    st.error("Failed to post to X and Telegram.")
-                st.success("Content posted to X successfully.")
+            if not res: 
+                st.error("Failed to post to X and Telegram.")
+            st.success("Content posted to X successfully.")
     if 'Telegram' in channels_option:
         for record in st.session_state.rephrased_content:
             if record['posted']:

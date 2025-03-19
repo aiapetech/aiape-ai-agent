@@ -4,7 +4,7 @@ from langchain.chains.retrieval_qa.base import RetrievalQA
 
 import os,sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from models.postgres_models import *
+#from models.postgres_models import *
 import dotenv
 from datetime import datetime
 from sqlalchemy import func

@@ -29,11 +29,13 @@ class TelegramBot():
             else:
                 await asyncio.gather(self.bot.send_message(chat_id=chat_id, text=msg))
 
-    def list_all_chats(self):
-        for a in self.bot.getUpdates():
+    async def list_all_chats(self):
+        info = await self.bot.getUpdates() 
+        me = await self.bot.getMe()
+        for a in info:
             print(a.message.chat_id)
-
 if __name__ == "__main__":
     telegram_bot = TelegramBot()
-    asyncio.run(telegram_bot.send_message(chat_id='addas',msg = "Good morning!!!!",image_url='https://sightsea-ai-space-bucket.sgp1.digitaloceanspaces.com/images/tmp/images/download%20(2)2025021900185920250219013356.png'))
+    asyncio.run(telegram_bot.list_all_chats())
+    #asyncio.run(telegram_bot.send_message(chat_id='addas',msg = "Hi there!!!!",image_url='https://sightsea-ai-space-bucket.sgp1.digitaloceanspaces.com/images/tmp/images/download%20(2)2025021900185920250219013356.png'))
 

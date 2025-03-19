@@ -78,6 +78,8 @@ def get_token_category():
         time.sleep(1)
     with open('cgc_coin_categories_1.json', 'w') as f:
         json.dump(token_category, f)
-        
+
+
+
 if __name__ == "__main__":
    get_token_category()
