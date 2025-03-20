@@ -8,6 +8,10 @@ class Content(BaseModel):
     created_at: datetime
     updated_at: datetime
     content: str
+    token_name:Union[str, None] = None
+    token_symbol:Union[str, None] = None
+    token_address:Union[str, None] = None
+    token_img:Union[str, None] = None
     #token_data: Union[dict, None] = None
 
 class Contents(BaseModel):

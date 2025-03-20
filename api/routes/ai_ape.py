@@ -26,8 +26,19 @@ def get_contents(
         mongo_result = mycol.find({"created_at": {"$gte": datetime.now() - timedelta(minutes=duration)}}).sort([("created_at", -1)]).skip(page*limit).limit(limit)
     else:
         mongo_result = mycol.find().sort([("created_at", -1)]).skip(page*limit).limit(limit)
+    results =[]
+    for record in mongo_result:
+        if record["token_data"].get('token_details'):
+            token_detail =  record["token_data"]['token_details']['data']
+            record['token_img'] = token_detail['attributes']['image_url']
+            record['token_name'] = token_detail['attributes']['name']
+            record['token_symbol'] = token_detail['attributes']['symbol']
+            record['token_address'] = token_detail['attributes']['address']
+        results.append(record)
+       
+
     result = liquidity_bot_schema.Contents(
-        result=list(mongo_result),
+        result=results,
         count=mycol.count_documents({}),
         page=page,
         limit=limit,

@@ -454,6 +454,17 @@ class LiquidityBot:
 
         print(result)
     
+    def add_token_details(self,tokens):
+        for token in tokens:
+            if token['is_base_asset']:
+                token_address = token['cmc_data']['base_asset_contract_address']
+            else:
+                token_address = token['cmc_data']['quote_asset_contract_address']
+            url = f"https://pro-api.coingecko.com/api/v3/onchain/networks/bsc/tokens/{token_address}"
+            response = requests.get(url, headers=self.cgc_headers)
+            token['token_details'] = response.json()
+        return tokens
+    
     def format_output(self,token):
         if token['is_base_asset']:
             token_address = token['cmc_data']['base_asset_contract_address']
@@ -466,7 +477,7 @@ class LiquidityBot:
         pool_age_hour = time_diff.seconds//3600
         pool_age_min = (time_diff.seconds - pool_age_hour*3600)//60
         pool_age = f"{pool_age_hour}h {pool_age_min}m"
-        token_price = self.get_token_price_data('bsc',token_address)    
+        
         if token['goplus_scan'].get('is_mintable') is None:
             mintable = True
         else:
@@ -488,8 +499,12 @@ class LiquidityBot:
         else:
             freezeable = 'No'
         holder_percentage = 0
-        for holder in token['goplus_scan']['lp_holders']:
-            holder_percentage += float(holder['percent'])
+        if token['goplus_scan'].get('holders'):
+            for holder in token['goplus_scan']['holders']:
+                holder_percentage += float(holder['percent'])
+        elif token['goplus_scan'].get('lp_holders'):
+            for holder in token['goplus_scan']['lp_holders']:
+                holder_percentage += float(holder['percent'])
         content = f"""<b>🚀 Token Details:  {token['cmc_data']['base_asset_name']}</b> ${token_name}
 - 💳 Contract: <code>{token_address}</code>
 - USD: {token['cgc_data']['attributes']['base_token_price_usd']}
@@ -549,9 +564,10 @@ if __name__ == "__main__":
     scan_quickintel = client.scan_quickintel(filter_total_supply)
     #token_w_holders = client.get_holders(scan_quickintel)
     filter_security = client.filter_security_project(scan_quickintel)
+    add_token_price = client.add_token_details(filter_security)
 
-    for token in filter_security:
-        content = client.format_output(token)
+    for token in add_token_price:
+        content = client.format_output(token)   
         client.insert_to_mongo(content,token)
         #client.post_to_telegram(content)
     # token_w_holders = client.get_holders(filter_total_supply)
