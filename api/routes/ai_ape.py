@@ -34,6 +34,9 @@ def get_contents(
             record['token_name'] = token_detail['attributes']['name']
             record['token_symbol'] = token_detail['attributes']['symbol']
             record['token_address'] = token_detail['attributes']['address']
+            record["gmgn_url"] = f"https://gmgn.ai/bsc/token/{record['token_address']}"
+            record["dexscreener_url"] = f"https://dexscreener.com/bsc/{record['token_address']}"
+            record["gmgn_bot_url"] = f"https://t.me/GMGN_sol_bot?start=i_BNKuCPoo"
         results.append(record)
        
 
