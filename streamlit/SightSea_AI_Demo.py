@@ -65,6 +65,7 @@ report_page = st.Page("./data/report_v2.py", title="1. AI Report Generator", ico
 qa_page = st.Page("./data/qa.py", title="2. Q&A", icon=":material/transform:")#
 post_to_telegram_x = st.Page("./data/post_to_X_and_telegram.py", title="3. Post to Telegram and X", icon=":material/dataset:")#
 liquidity_bot_page = st.Page("./data/liquidity_bot.py", title="4. Liquidity Bot", icon=":material/smart_toy:")#
+contract_address_message = st.Page("./data/contract_address_message.py", title="5. Contract Address Message", icon=":material/check_box:")#
 
 #db_admin = st.Page("./data/db_admin.py", title="DB Admin", icon=":material/insert_chart_outlined:")
 
@@ -76,7 +77,7 @@ if st.session_state['authentication_status'] == True:
                         #db_admin,
                         #data_page,
                         #data_processing_page],
-                "Reports": [report_page,qa_page,post_to_telegram_x,liquidity_bot_page],
+                "Reports": [report_page,qa_page,post_to_telegram_x,liquidity_bot_page,contract_address_message],
             
             }
         )
