@@ -18,12 +18,12 @@ class TelegramBot():
         if token:
             self.token = token
         else:
-            self.token = os.getenv('TELEGRAM_BOT_TOKEN')
+            self.token = os.getenv('TELEGRAM_AI_MEME_BOT_TOKEN')
         trequest = HTTPXRequest(connection_pool_size=20)
         self.bot = telegram.Bot(token=self.token,request=trequest)
     
     async def send_message(self, chat_id, msg, image_url=None, parse_mode=ParseMode.MARKDOWN):
-        chat_ids = ['-596174527']
+        chat_ids = ['-596174527','@AIxAPE']
         if parse_mode.lower() == 'markdown':
             parse_mode = ParseMode.MARKDOWN
         elif parse_mode.lower() == 'html':
@@ -42,6 +42,7 @@ class TelegramBot():
         me = await self.bot.getMe()
         for a in info:
             print(a.message.chat_id)
+    
 if __name__ == "__main__":
     telegram_bot = TelegramBot()
     asyncio.run(telegram_bot.list_all_chats())

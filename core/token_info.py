@@ -219,7 +219,9 @@ class TokenInfo:
     ├ <a href="https://gmgn.ai/{gmgn_network}/token/{token_info.token_address}?ref=ty1GJmNe">Gmgn</a>
     └ <a href="https://dexscreener.com/{token_info.network}/{token_info.token_address}">DexScreener</a>
 
-    💸 <a href="https://t.me/GMGN_sol_bot?start=i_BNKuCPoo">Trade on {token_info.network.upper()} with GMGN!</a>"""
+    💸 <a href="https://t.me/GMGN_sol_bot?start=i_BNKuCPoo">Trade on {token_info.network.upper()} with GMGN!</a>
+    ***<i>Note: AIAPE MEME SIGNAL is currently in the Alpha phase. The signals are analyzed based on information collected from on-chain data, social platforms, and various other sources to identify potential meme tokens early. This should not be considered investment advice.</i>***
+    """
         return content
 def post_to_telegram(content,parse_mode='html'):
     telegram_bot = TelegramBot()
@@ -227,7 +229,7 @@ def post_to_telegram(content,parse_mode='html'):
     #telegram_bot.send_message(chat_id='addas',msg = content,parse_mode=parse_mode)
     print("Content posted to Telegram successfully.")
 if __name__ == "__main__":
-    token_address = "6TQJVjo7sfvNTC7N3eGwPP8BzdBz3jNHaBXFhvQdpump"
+    token_address = "0xB3a998BC34fA4F463c08F079affB17A82aad5356"
     token_info = TokenInfo(token_address)
     token_data = {}
     token_info.get_token_price_data_cmc()
@@ -235,7 +237,7 @@ if __name__ == "__main__":
     token_info.scan_quickintel()
     #token_info.scan_goplus()
     content = token_info.generate_content(token_info)
-    #post_to_telegram(content)
+    post_to_telegram(content)
 
     # df = pd.read_csv("list_token_aMinh.csv")
     # addresses = df["address"].to_list()
