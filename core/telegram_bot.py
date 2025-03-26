@@ -23,7 +23,8 @@ class TelegramBot():
         self.bot = telegram.Bot(token=self.token,request=trequest)
     
     async def send_message(self, chat_id, msg, image_url=None, parse_mode=ParseMode.MARKDOWN):
-        chat_ids = ['-596174527','@AIxAPE']
+        chat_ids = ['-596174527','@AIxAPE:13568']
+        message_thread_id = None
         if parse_mode.lower() == 'markdown':
             parse_mode = ParseMode.MARKDOWN
         elif parse_mode.lower() == 'html':
@@ -31,11 +32,16 @@ class TelegramBot():
         else:
             parse_mode = None
         for chat_id in chat_ids:
+            if ":" in chat_id:
+                group_id = chat_id.split(":")[0]
+                message_thread_id = chat_id.split(":")[1]
+            else:
+                group_id =chat_id
             if image_url:
                 res = requests.get(image_url)
-                await asyncio.gather(self.bot.send_message(chat_id=chat_id, text=msg,parse_mode=parse_mode),self.bot.send_photo(chat_id=chat_id,photo= res.content))
+                await asyncio.gather(self.bot.send_message(chat_id=group_id, message_thread_id=message_thread_id,text=msg,parse_mode=parse_mode),self.bot.send_photo(chat_id=chat_id,photo= res.content))
             else:
-                await asyncio.gather(self.bot.send_message(chat_id=chat_id, text=msg,parse_mode=parse_mode))
+                await asyncio.gather(self.bot.send_message(chat_id=group_id,  message_thread_id=message_thread_id,text=msg,parse_mode=parse_mode))
 
     async def list_all_chats(self):
         info = await self.bot.getUpdates() 
