@@ -14,7 +14,7 @@ from datetime import datetime
 
 
 class TokenInfo:
-    def __init__(self,token_address):
+    def __init__(self,token_address,network=None):
         self.token_address = token_address
         self.moralis_api_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjgxZTY1Yjk4LTc5OGMtNDZlOS04Yjg2LTYzNTc5ZTgzMzBiMSIsIm9yZ0lkIjoiNDIyMDcxIiwidXNlcklkIjoiNDM0MDgxIiwidHlwZUlkIjoiZTU2MGEwNmQtMWUzYS00OTY3LWFlNTMtMjc3YzBkMjgxMmM2IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MzQ4MzY1NzgsImV4cCI6NDg5MDU5NjU3OH0.HRZOSN3-iN5hcWbIot444zcoY5_BIfD5322cuZWDCUE'
         self.moralis_headers = {
@@ -29,7 +29,10 @@ class TokenInfo:
             "accept":"application/json",
             "X-CMC_PRO_API_KEY":os.getenv("CMC_DEXSCAN_API_KEY")
         }
-        self.cgc_token_data, self.network = self.detect_network()
+        if network:
+            self.network = network
+        else:
+            self.cgc_token_data, self.network = self.detect_network()
         self.quickintel_data = None
         self.goplus_data = None
         self.moralis_data = {}
@@ -80,7 +83,7 @@ class TokenInfo:
         }
         url = f"https://pro-api.coinmarketcap.com/v4/dex/pairs/ohlcv/historical"
         response = requests.get(url, headers=self.cmc_headers,params=params)
-        return response.json()
+        self.cmc_data =  response.json()
     
     def get_top_holders(self):
         url = f"https://api.covalenthq.com/v1/{self.network}/tokens/{self.token_address}/token_holders/"
@@ -178,42 +181,48 @@ class TokenInfo:
     # """
         price_in_usd = round(token_info.moralis_data['token_price']['usdPrice'],4)
         price_24hr_change = round(token_info.moralis_data['token_price']['usdPrice24hrPercentChange'],2)
-        fdv = float(token_info.cgc_token_data['data']['attributes']['fdv_usd'])
+        #fdv = float(token_info.cgc_token_data['data']['attributes']['fdv_usd'])
+        fdv  = float(token_info.moralis_data['token_analytics']['totalFullyDilutedValuation'])
         if fdv > 1000000:
             market_cap = f"${round(fdv/1000000,2)}M"
-        elif float(token_info.cgc_token_data['data']['attributes']['fdv_usd']) > 1000:
+        elif fdv > 1000:
             market_cap = f"${round(fdv/1000,2)}K"
         else:
             market_cap = f"${fdv}"
-        h24_volume = float(token_info.cgc_token_data['data']['attributes']['volume_usd']['h24'])
+        total_buy_h24 = float(token_info.moralis_data['token_analytics']['totalBuyVolume']['24h'])
+        total_sell_h24 = float(token_info.moralis_data['token_analytics']['totalSellVolume']['24h'])
+        h24_volume = total_buy_h24 + total_sell_h24
+        #h24_volume = float(token_info.cgc_token_data['data']['attributes']['volume_usd']['h24'])
         if h24_volume> 1000000:
             volume = f"${round(h24_volume/1000000,2)}M"
-        elif float({token_info.cgc_token_data['data']['attributes']['volume_usd']['h24']}) > 1000:
+        elif h24_volume > 1000:
             volume = f"${round(h24_volume/1000,2)}K"
         else:
             volume = f"${h24_volume}"
-        top_pools = token_info.cgc_token_data['included']
-        if len(top_pools) > 0:
-            top_pool = top_pools[0]
-            pool_created_at = datetime.strptime(top_pool['attributes']['pool_created_at'], "%Y-%m-%dT%H:%M:%SZ")
-            time_diff = datetime.now().utcnow() - pool_created_at
-            pool_age_hour = time_diff.seconds//3600
-            pool_age_min = (time_diff.seconds - pool_age_hour*3600)//60
-            pool_age = f"{pool_age_hour}h {pool_age_min}m"
-            if top_pool['attributes']['price_change_percentage'].get('h1'):
-                price_percentage_change_1h = top_pool['attributes']['price_change_percentage']['h1']
-            else:
-                price_percentage_change_1h = None
+        #top_pools = token_info.cgc_token_data.get('included')
+        # if top_pools and len(top_pools) > 0:
+        #     top_pool = top_pools[0]
+        #     pool_created_at = datetime.strptime(top_pool['attributes']['pool_created_at'], "%Y-%m-%dT%H:%M:%SZ")
+        #     time_diff = datetime.now().utcnow() - pool_created_at
+        #     pool_age_hour = time_diff.seconds//3600
+        #     pool_age_min = (time_diff.seconds - pool_age_hour*3600)//60
+        #     pool_age = f"{pool_age_hour}h {pool_age_min}m"
+        #     if top_pool['attributes']['price_change_percentage'].get('h1'):
+        #         price_percentage_change_1h = top_pool['attributes']['price_change_percentage']['h1']
+        #     else:
+        #         price_percentage_change_1h = None
+        price_percentage_change_1h = None
+        token_address = token_info.moralis_data['token_price']['tokenAddress']
         content = f"""­
-    🔸 {token_info.cgc_token_data['data']['attributes']['name']} (${token_info.cgc_token_data['data']['attributes']['symbol']})
-    ├ <code>{token_info.token_address}</code>
-    └ #{token_info.network.upper()} | {pool_age}
+    🔸 {token_info.moralis_data['token_price']['name']} (${token_info.moralis_data['token_price']['symbol']})
+    ├ <code>{token_info.moralis_data['token_price']['tokenAddress']}</code>
+    └ #{token_info.network.upper()}
 
     📊 <b>Token Stats:</b>
     ├ USD:  {token_info.moralis_data['token_price']['usdPrice']} ({round(float(token_info.moralis_data['token_price']['usdPrice24hrPercentChange']),2)}%)
     ├ MC:   {market_cap}
     ├ Vol:  {volume}
-    └ 1H:   {price_percentage_change_1h}% 
+    └ 1H:   {price_percentage_change_1h}%
 
     🔗 <b>Links:</b>
     ├ <a href="https://gmgn.ai/{gmgn_network}/token/{token_info.token_address}?ref=ty1GJmNe">Gmgn</a>
@@ -229,8 +238,8 @@ def post_to_telegram(content,parse_mode='html'):
     #telegram_bot.send_message(chat_id='addas',msg = content,parse_mode=parse_mode)
     print("Content posted to Telegram successfully.")
 if __name__ == "__main__":
-    token_address = "0xB3a998BC34fA4F463c08F079affB17A82aad5356"
-    token_info = TokenInfo(token_address)
+    token_address = "9WucnshVcJeZyTKHCdCUFN5pMShiCWSGLL9s8bMfSnaq"
+    token_info = TokenInfo(token_address,network='solana')
     token_data = {}
     token_info.get_token_price_data_cmc()
     token_info.get_moralis_data()

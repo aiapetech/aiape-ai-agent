@@ -38,8 +38,8 @@ def response_generator(response):
         yield word + " "
         time.sleep(0.05)
 
-def generate_conent(contract_address):
-    token_info = TokenInfo(contract_address)
+def generate_conent(contract_address,network=None):
+    token_info = TokenInfo(token_address=contract_address,network=network)
     token_data = {}
     token_info.get_token_price_data_cmc()
     token_info.get_moralis_data()
@@ -50,9 +50,9 @@ def generate_conent(contract_address):
 
 
 
-def post_to_telegram():
+def post_to_telegram(is_tested=False):
     telegram_bot = TelegramBot()
-    asyncio.run(telegram_bot.send_message(chat_id='addas',msg = st.session_state.post_content,parse_mode='html'))
+    asyncio.run(telegram_bot.send_message(chat_id='addas',msg = st.session_state.post_content,parse_mode='html',is_tested=is_tested))
     st.success("Content posted to Telegram successfully.")
     st.session_state.posted = True
 
@@ -66,12 +66,20 @@ list_session_state = [
 for state in list_session_state:
     if state not in st.session_state:
         st.session_state[state] = None
-contract_address = st.text_input("Please input contract address",key="contract_address")
+col1, col2 = st.columns([4,1])
+with col1:
+    contract_address = st.text_input("Please input contract address",key="contract_address")
+with col2:
+    network = st.selectbox("Network",['eth','bsc','polygon','solana','base','ftm','ronin'],key="network")
 if contract_address:
-    st.button('Generate Content', on_click=generate_conent,kwargs={"contract_address":st.session_state.contract_address})
+    st.button('Generate Content', on_click=generate_conent,kwargs={"contract_address":st.session_state.contract_address,"network":st.session_state.network})
     if st.session_state.generated_content:
         st.markdown(st.session_state.post_content)
-        st.button("Post to Telegram", on_click=post_to_telegram)
+        col1,col2 = st.columns([1,1])
+        with col1:
+            st.button("Test post to Telegram", on_click=post_to_telegram,kwargs={"is_tested":True})
+        with col2:
+            st.button("Post to Telegram", on_click=post_to_telegram)
 else:
     st.warning("Please input contract address")
 

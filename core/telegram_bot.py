@@ -22,8 +22,11 @@ class TelegramBot():
         trequest = HTTPXRequest(connection_pool_size=20)
         self.bot = telegram.Bot(token=self.token,request=trequest)
     
-    async def send_message(self, chat_id, msg, image_url=None, parse_mode=ParseMode.MARKDOWN):
-        chat_ids = ['-596174527','@AIxAPE:13568']
+    async def send_message(self, chat_id, msg, image_url=None, parse_mode=ParseMode.MARKDOWN, is_tested =True):
+        if not is_tested:
+            chat_ids = ['-596174527','@AIxAPE:13568']
+        else:
+            chat_ids = ['-596174527']
         message_thread_id = None
         if parse_mode.lower() == 'markdown':
             parse_mode = ParseMode.MARKDOWN
