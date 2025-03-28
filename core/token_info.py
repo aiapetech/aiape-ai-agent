@@ -212,8 +212,6 @@ class TokenInfo:
     # <a href="https://gmgn.ai/bsc/token/{token_address}">Gmgn</a>
     # <a href="https://t.me/GMGN_sol_bot?start=i_BNKuCPoo">Gmgn Bot</a>
     # """
-        price_in_usd = round(token_info.moralis_data['token_price']['usdPrice'],4)
-        price_24hr_change = round(token_info.moralis_data['token_price']['usdPrice24hrPercentChange'],2)
         #fdv = float(token_info.cgc_token_data['data']['attributes']['fdv_usd'])
         if token_info.moralis_data['token_metadata'].get('fullyDilutedValue'):
             fdv  = float(token_info.moralis_data['token_metadata']['fullyDilutedValue'])
@@ -252,16 +250,33 @@ class TokenInfo:
         #         price_percentage_change_1h = top_pool['attributes']['price_change_percentage']['h1']
         #     else:
         #         price_percentage_change_1h = None
-        if token_info.moralis_data.get('ohlcv'):
-            result = token_info.moralis_data['ohlcv']['result']
-            if len(result) > 1:
-                price_now = result[0]['close']
-                price_1h_ago = result[1]['close']
-                price_percentage_change_1h = round((price_now - price_1h_ago)/price_1h_ago*100,2)
+        if token_info.moralis_data['token_metadata'].get('name'):
+            token_name = token_info.moralis_data['token_metadata']['name']
+        elif token_info.moralis_data['token_price'].get('name'):
+            token_name = token_info.moralis_data['token_price']['name']
         else:
-            price_percentage_change_1h = None
+            token_name  = token_info.quickintel_data['tokenDetails']['tokenName']
+
+        if  token_info.moralis_data['token_metadata'].get('symbol'):
+            token_symbol = token_info.moralis_data['token_metadata']['symbol']
+        elif token_info.moralis_data['token_price'].get('symbol'):
+            token_symbol = token_info.moralis_data['token_price']['symbol']
+        else:
+            token_symbol = token_info.quickintel_data['tokenDetails']['tokenSymbol']
+        price_percentage_change_1h = "N/A"
+        try :
+            if token_info.moralis_data.get('ohlcv'):
+                result = token_info.moralis_data['ohlcv']['result']
+                if len(result) > 1:
+                    price_now = result[0]['close']
+                    price_1h_ago = result[1]['close']
+                    price_percentage_change_1h = round((price_now - price_1h_ago)/price_1h_ago*100,2)
+            else:
+                price_percentage_change_1h = "N/A"
+        except Exception as e:
+            price_percentage_change_1h = "N/A"
         content = f"""­
-    🔸 {token_info.moralis_data['token_metadata']['name']} (${token_info.moralis_data['token_metadata']['symbol']})
+    🔸<a href="https://gmgn.ai/{gmgn_network}/token/{token_info.token_address}?ref=ty1GJmNe"><b>{token_name}</b></a> (<a href="https://t.me/AIxAPE"><b>${token_symbol}</b></a>)🔥
     ├ <code>{token_info.token_address}</code>
     └ #{token_info.network.upper()}
 
@@ -275,25 +290,27 @@ class TokenInfo:
     ├ <a href="https://gmgn.ai/{gmgn_network}/token/{token_info.token_address}?ref=ty1GJmNe">Gmgn</a>
     └ <a href="https://dexscreener.com/{token_info.network}/{token_info.token_address}">DexScreener</a>
 
-    💸 <a href="https://t.me/GMGN_sol_bot?start=i_BNKuCPoo">Trade on {token_info.network.upper()} with GMGN!</a>
+    💸 <a href="https://t.me/GMGN_sol_bot?start=i_BNKuCPoo"><b>Trade on {token_info.network.upper()} with GMGN!</b></a>
+    
+    
     ***<i>Note: AIAPE MEME SIGNAL is currently in the Alpha phase. The signals are analyzed based on information collected from on-chain data, social platforms, and various other sources to identify potential meme tokens early. This should not be considered investment advice.</i>***
     """
         return content
 def post_to_telegram(content,parse_mode='html'):
     telegram_bot = TelegramBot()
-    asyncio.run(telegram_bot.send_message(chat_id='addas',msg = content,parse_mode=parse_mode))
+    asyncio.run(telegram_bot.send_message(chat_id='addas',msg = content,parse_mode=parse_mode,is_tested=True))
     #telegram_bot.send_message(chat_id='addas',msg = content,parse_mode=parse_mode)
     print("Content posted to Telegram successfully.")
 if __name__ == "__main__":
-    token_address = "0x944718bcf945159e8430c99e3a8023cb17f79271"
-    token_info = TokenInfo(token_address,network='bsc')
+    token_address = "29Gzu9fqBBMXn9u3i1rxWRBdfoWybHd9975Cw53Fpump"
+    token_info = TokenInfo(token_address,network='solana')
     token_data = {}
     token_info.get_token_price_data_cmc()
     token_info.get_moralis_data()
     token_info.scan_quickintel()
     #token_info.scan_goplus()
     content = token_info.generate_content(token_info)
-    #post_to_telegram(content)
+    post_to_telegram(content)
 
     # df = pd.read_csv("list_token_aMinh.csv")
     # addresses = df["address"].to_list()
@@ -311,4 +328,3 @@ if __name__ == "__main__":
     #                 result.append(record)
     # df = pd.DataFrame(result)
     # df.to_csv("top_profit_wallets_aMinh.csv",index=False)
-    
