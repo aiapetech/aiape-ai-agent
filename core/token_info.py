@@ -10,7 +10,7 @@ import time
 from core.x import post_to_twitter
 import asyncio
 from core.telegram_bot import TelegramBot
-from datetime import datetime
+from datetime import datetime, timedelta, UTC
 
 
 class TokenInfo:
@@ -104,6 +104,9 @@ class TokenInfo:
             params=params,
             )
             self.moralis_data['token_price'] = result
+            url = f"https://solana-gateway.moralis.io/token/mainnet/{self.token_address}/metadata"
+            response = requests.get(url, headers=self.moralis_headers)
+            self.moralis_data['token_metadata'] = response.json()
         else:
             params = {
                 "chain": self.network,
@@ -112,6 +115,36 @@ class TokenInfo:
                 }
             result = evm_api.token.get_token_price(api_key=self.moralis_api_key, params=params)
             self.moralis_data['token_price'] = result
+            params = {
+            "chain": self.network,
+            "addresses":[self.token_address]
+            }
+
+            result = evm_api.token.get_token_metadata(
+            api_key=self.moralis_api_key,
+            params=params,
+            )
+            if type(result) == list and len(result) > 0:
+                result = result[0]
+            self.moralis_data['token_metadata'] = result
+        if self.moralis_data.get("token_price"):
+            pair_address = self.moralis_data['token_price']['pairAddress']
+            params = {
+                "chain": self.network,
+                "timeframe": '1h',
+                "currency": 'usd',
+                "fromDate": (datetime.now(UTC) - timedelta(days=1)).strftime("%Y-%m-%d"),
+                "toDate":(datetime.now(UTC)+timedelta(days=1)).strftime("%Y-%m-%d"),
+                "limit":24,
+
+            }
+            if self.network == "solana":
+                url = f"https://solana-gateway.moralis.io/token/mainnet/pairs/{pair_address}/ohlcv"
+            else:
+                url = f"https://deep-index.moralis.io/api/v2.2/pairs/{pair_address}/ohlcv"
+            response = requests.get(url, headers=self.moralis_headers,params=params)
+            self.moralis_data['ohlcv'] = response.json()
+
     
     def get_profit_wallet_by_token(self):
         if self.network == "ethereum":
@@ -182,13 +215,21 @@ class TokenInfo:
         price_in_usd = round(token_info.moralis_data['token_price']['usdPrice'],4)
         price_24hr_change = round(token_info.moralis_data['token_price']['usdPrice24hrPercentChange'],2)
         #fdv = float(token_info.cgc_token_data['data']['attributes']['fdv_usd'])
-        fdv  = float(token_info.moralis_data['token_analytics']['totalFullyDilutedValuation'])
-        if fdv > 1000000:
-            market_cap = f"${round(fdv/1000000,2)}M"
-        elif fdv > 1000:
-            market_cap = f"${round(fdv/1000,2)}K"
+        if token_info.moralis_data['token_metadata'].get('fullyDilutedValue'):
+            fdv  = float(token_info.moralis_data['token_metadata']['fullyDilutedValue'])
+        elif token_info.moralis_data['token_metadata'].get('fully_diluted_valuation'):
+            fdv = float(token_info.moralis_data['token_metadata']['fully_diluted_valuation'])
         else:
-            market_cap = f"${fdv}"
+            fdv = None
+        if fdv:
+            if fdv > 1000000:
+                market_cap = f"${round(fdv/1000000,2)}M"
+            elif fdv > 1000:
+                market_cap = f"${round(fdv/1000,2)}K"
+            else:
+                market_cap = f"${fdv}"
+        else:
+            market_cap = "N/A"
         total_buy_h24 = float(token_info.moralis_data['token_analytics']['totalBuyVolume']['24h'])
         total_sell_h24 = float(token_info.moralis_data['token_analytics']['totalSellVolume']['24h'])
         h24_volume = total_buy_h24 + total_sell_h24
@@ -211,11 +252,17 @@ class TokenInfo:
         #         price_percentage_change_1h = top_pool['attributes']['price_change_percentage']['h1']
         #     else:
         #         price_percentage_change_1h = None
-        price_percentage_change_1h = None
-        token_address = token_info.moralis_data['token_price']['tokenAddress']
+        if token_info.moralis_data.get('ohlcv'):
+            result = token_info.moralis_data['ohlcv']['result']
+            if len(result) > 1:
+                price_now = result[0]['close']
+                price_1h_ago = result[1]['close']
+                price_percentage_change_1h = round((price_now - price_1h_ago)/price_1h_ago*100,2)
+        else:
+            price_percentage_change_1h = None
         content = f"""­
-    🔸 {token_info.moralis_data['token_price']['name']} (${token_info.moralis_data['token_price']['symbol']})
-    ├ <code>{token_info.moralis_data['token_price']['tokenAddress']}</code>
+    🔸 {token_info.moralis_data['token_metadata']['name']} (${token_info.moralis_data['token_metadata']['symbol']})
+    ├ <code>{token_info.token_address}</code>
     └ #{token_info.network.upper()}
 
     📊 <b>Token Stats:</b>
@@ -238,15 +285,15 @@ def post_to_telegram(content,parse_mode='html'):
     #telegram_bot.send_message(chat_id='addas',msg = content,parse_mode=parse_mode)
     print("Content posted to Telegram successfully.")
 if __name__ == "__main__":
-    token_address = "9WucnshVcJeZyTKHCdCUFN5pMShiCWSGLL9s8bMfSnaq"
-    token_info = TokenInfo(token_address,network='solana')
+    token_address = "0x944718bcf945159e8430c99e3a8023cb17f79271"
+    token_info = TokenInfo(token_address,network='bsc')
     token_data = {}
     token_info.get_token_price_data_cmc()
     token_info.get_moralis_data()
     token_info.scan_quickintel()
     #token_info.scan_goplus()
     content = token_info.generate_content(token_info)
-    post_to_telegram(content)
+    #post_to_telegram(content)
 
     # df = pd.read_csv("list_token_aMinh.csv")
     # addresses = df["address"].to_list()
