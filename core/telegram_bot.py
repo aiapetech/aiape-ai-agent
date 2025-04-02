@@ -24,7 +24,7 @@ class TelegramBot():
     
     async def send_message(self, chat_id, msg, image_url=None, parse_mode=ParseMode.MARKDOWN, is_tested =True):
         if not is_tested:
-            chat_ids = ['-596174527','@AIxAPE:13568']
+            chat_ids = ['-596174527','@AIxAPE:13568','@HNNBMC','@shillchillcrew']
         else:
             chat_ids = ['-596174527']
         message_thread_id = None
