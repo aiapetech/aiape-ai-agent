@@ -158,6 +158,14 @@ class TwitterCredentials(BaseSQLModel,table=True):
     username: str =Field(default=None,nullable=True)
     language: str =Field(default=None,nullable=True)
 
+class TokenFollowings(BaseSQLModel,table=True):
+    __tablename__ = "token_followings"
+    address: str =Field(default=None,nullable=True)
+    symbol: str =Field(default=None,nullable=True)
+    name: str =Field(default=None,nullable=True)
+    follow_at: datetime
+    follow_status: str =Field(default=None,nullable=True)
+
 class User(UserBase, table=True):
     #id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
     hashed_password: str
