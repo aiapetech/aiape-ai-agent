@@ -1,8 +1,8 @@
-"""Initial migration
+"""init table
 
-Revision ID: 6e858956bdff
+Revision ID: b020e38ffab9
 Revises: 
-Create Date: 2025-01-27 15:50:17.020895
+Create Date: 2025-04-03 07:04:31.644014
 
 """
 from typing import Sequence, Union
@@ -15,7 +15,7 @@ prepend_sys_path = "."
 from sqlalchemy.dialects import postgresql
 
 # revision identifiers, used by Alembic.
-revision: str = '6e858956bdff'
+revision: str = 'b020e38ffab9'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -31,6 +31,23 @@ def upgrade() -> None:
     sa.Column('description', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.PrimaryKeyConstraint('id')
     )
+    op.create_table('post_personas',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
+    sa.Column('username', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('age', sa.Integer(), nullable=True),
+    sa.Column('country', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('profession', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('financial_status', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('personality', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('likes', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('dislikes', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('posting_style', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('daily_post_frequency', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('twitter_app_id', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
     op.create_table('tokens',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=False),
@@ -41,6 +58,20 @@ def upgrade() -> None:
     sa.Column('name', sqlmodel.sql.sqltypes.AutoString(), nullable=False),
     sa.Column('market_cap_rank', sa.Integer(), nullable=False),
     sa.Column('search_text', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('twitter_credentials',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=False),
+    sa.Column('updated_at', sa.DateTime(), nullable=False),
+    sa.Column('app_id', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('consumer_key', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('consumer_secret', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('bearer_token', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('access_token', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('access_secret', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('username', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
+    sa.Column('language', sqlmodel.sql.sqltypes.AutoString(), nullable=True),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('user',
@@ -150,6 +181,8 @@ def downgrade() -> None:
     op.drop_table('profiles')
     op.drop_index(op.f('ix_user_email'), table_name='user')
     op.drop_table('user')
+    op.drop_table('twitter_credentials')
     op.drop_table('tokens')
+    op.drop_table('post_personas')
     op.drop_table('channels')
     # ### end Alembic commands ###
