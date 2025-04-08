@@ -9,6 +9,10 @@ from io import StringIO , BytesIO
 from telegram.request import HTTPXRequest
 import telegram
 from telegram.constants import ParseMode
+from psycopg2 import sql
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 
 
 
@@ -22,11 +26,12 @@ class TelegramBot():
         trequest = HTTPXRequest(connection_pool_size=20)
         self.bot = telegram.Bot(token=self.token,request=trequest)
     
-    async def send_message(self, chat_id, msg, image_url=None, parse_mode=ParseMode.MARKDOWN, is_tested =True):
+    async def send_message(self, chat_id, msg, image_url=None, parse_mode=ParseMode.MARKDOWN, is_tested =True,reply_message_id=None):
+        result = []
         if not is_tested:
             chat_ids = ['-596174527','@AIxAPE:13568','-1002654281827','-1002385123449']
         else:
-            chat_ids = ['-596174527','1002344214917']
+            chat_ids = ['-1002344214917']
         message_thread_id = None
         if parse_mode.lower() == 'markdown':
             parse_mode = ParseMode.MARKDOWN
@@ -42,10 +47,20 @@ class TelegramBot():
                 group_id =chat_id
             if image_url:
                 res = requests.get(image_url)
-                await asyncio.gather(self.bot.send_message(chat_id=group_id, message_thread_id=message_thread_id,text=msg,parse_mode=parse_mode),self.bot.send_photo(chat_id=chat_id,photo= res.content))
+                a = await asyncio.gather(self.bot.send_message(chat_id=group_id, message_thread_id=message_thread_id,text=msg,parse_mode=parse_mode,reply_to_message_id=reply_message_id),self.bot.send_photo(chat_id=chat_id,photo= res.content))
+                if isinstance(a[0], telegram.Message):
+                    result.append({
+                        "chat_id": group_id,
+                        "message_id": a[0].message_id,
+                    })
             else:
-                await asyncio.gather(self.bot.send_message(chat_id=group_id,  message_thread_id=message_thread_id,text=msg,parse_mode=parse_mode))
-
+                a = await asyncio.gather(self.bot.send_message(chat_id=group_id,  message_thread_id=message_thread_id,text=msg,parse_mode=parse_mode,reply_to_message_id=reply_message_id))
+                if isinstance(a[0], telegram.Message):
+                    result.append({
+                        "chat_id": group_id,
+                        "message_id": a[0].message_id,
+                    })
+        return result
     async def list_all_chats(self):
         info = await self.bot.getUpdates() 
         me = await self.bot.getMe()
@@ -54,6 +69,6 @@ class TelegramBot():
     
 if __name__ == "__main__":
     telegram_bot = TelegramBot()
-    asyncio.run(telegram_bot.list_all_chats())
-    #asyncio.run(telegram_bot.send_message(chat_id='addas',msg = "Hi there!!!!",image_url='https://sightsea-ai-space-bucket.sgp1.digitaloceanspaces.com/images/tmp/images/download%20(2)2025021900185920250219013356.png'))
+    #asyncio.run(telegram_bot.list_all_chats())
+    asyncio.run(telegram_bot.send_message(chat_id='addas',msg = "Hi there!!!!",image_url='https://sightsea-ai-space-bucket.sgp1.digitaloceanspaces.com/images/tmp/images/download%20(2)2025021900185920250219013356.png'))
 

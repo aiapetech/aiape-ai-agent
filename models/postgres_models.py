@@ -163,8 +163,13 @@ class TokenFollowings(BaseSQLModel,table=True):
     address: str =Field(default=None,nullable=True)
     symbol: str =Field(default=None,nullable=True)
     name: str =Field(default=None,nullable=True)
+    network: str =Field(default=None,nullable=True)
+    chat_id: str =Field(default=None,nullable=True)
+    message_id: str =Field(default=None,nullable=True)
     follow_at: datetime
     follow_status: str =Field(default=None,nullable=True)
+    price: float =Field(default=None,nullable=True)
+    market_cap: float =Field(default=None,nullable=True)
 
 class User(UserBase, table=True):
     #id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)

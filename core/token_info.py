@@ -11,6 +11,11 @@ from core.x import post_to_twitter
 import asyncio
 from core.telegram_bot import TelegramBot
 from datetime import datetime, timedelta, UTC
+from sqlalchemy import create_engine
+from models.postgres_models import TokenFollowings
+from sqlalchemy import URL
+from sqlalchemy.orm import sessionmaker
+
 
 
 class TokenInfo:
@@ -275,13 +280,14 @@ class TokenInfo:
                 price_percentage_change_1h = "N/A"
         except Exception as e:
             price_percentage_change_1h = "N/A"
+
         content = f"""­
     🔸<a href="https://gmgn.ai/{gmgn_network}/token/{token_info.token_address}?ref=ty1GJmNe"><b>{token_name}</b></a> (<a href="https://t.me/AIxAPE"><b>${token_symbol}</b></a>)🔥
     ├ <code>{token_info.token_address}</code>
     └ #{token_info.network.upper()}
 
     📊 <b>Token Stats:</b>
-    ├ USD:  {token_info.moralis_data['token_price']['usdPrice']} ({round(float(token_info.moralis_data['token_price']['usdPrice24hrPercentChange']),2)}%)
+    ├ USD:  {token_info.moralis_data['token_price']['usdPrice']} ({round(float(token_info.moralis_data['token_price']['usdPrice24hrPercentChange']),2) if token_info.moralis_data['token_price'].get('usdPrice24hrPercentChange') else None}%)
     ├ MC:   {market_cap}
     ├ Vol:  {volume}
     └ 1H:   {price_percentage_change_1h}%
@@ -296,13 +302,83 @@ class TokenInfo:
     ***<i>Note: AIAPE MEME SIGNAL is currently in the Alpha phase. The signals are analyzed based on information collected from on-chain data, social platforms, and various other sources to identify potential meme tokens early. This should not be considered investment advice.</i>***
     """
         return content
-def post_to_telegram(content,parse_mode='html'):
+    def generate_following_content(self, following_token):
+        x = int(following_token.price/self.moralis_data['token_price']['usdPrice'])
+        old_market_cap = following_token.market_cap
+        if old_market_cap > 1000000:
+            old_market_cap = f"${round(old_market_cap/1000000,2)}M"
+        elif old_market_cap > 1000:
+            old_market_cap = f"${round(old_market_cap/1000,2)}K"
+        else:
+            old_market_cap = f"${old_market_cap}"
+
+        if self.moralis_data['token_metadata'].get('fullyDilutedValue'):
+            fdv  = float(self.moralis_data['token_metadata']['fullyDilutedValue'])
+        elif self.moralis_data['token_metadata'].get('fully_diluted_valuation'):
+            fdv = float(self.moralis_data['token_metadata']['fully_diluted_valuation'])
+        else:
+            fdv = None
+        if fdv:
+            if fdv > 1000000:
+                new_market_cap = f"${round(fdv/1000000,2)}M"
+            elif fdv > 1000:
+                new_market_cap = f"${round(fdv/1000,2)}K"
+            else:
+                new_market_cap = f"${fdv}"
+        if  self.moralis_data['token_metadata'].get('symbol'):
+            token_symbol = self.moralis_data['token_metadata']['symbol']
+        elif self.moralis_data['token_price'].get('symbol'):
+            token_symbol = self.moralis_data['token_price']['symbol']
+        else:
+            token_symbol = self.quickintel_data['tokenDetails']['tokenSymbol']
+        content = f"""
+🔥🔥🔥
+Achievement Unlocked: <b>{x}!</b>
+AIAPE made a {x} call on ${token_symbol}.
+(Market cap called:{old_market_cap}) -> ({new_market_cap})
+"""
+        return content
+def post_to_telegram(content,parse_mode='html',reply_message_id=None):
     telegram_bot = TelegramBot()
-    asyncio.run(telegram_bot.send_message(chat_id='addas',msg = content,parse_mode=parse_mode,is_tested=True))
+    results = asyncio.run(telegram_bot.send_message(chat_id='addas',msg = content,parse_mode=parse_mode,is_tested=True,reply_message_id=reply_message_id))
     #telegram_bot.send_message(chat_id='addas',msg = content,parse_mode=parse_mode)
     print("Content posted to Telegram successfully.")
+    return results
+
+def insert_to_db(record):
+    SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@{os.getenv('POSTGRES_SERVER')}:{os.getenv('POSTGRES_PORT')}/{os.getenv('POSTGRES_DB')}"
+    engine = create_engine(SQLALCHEMY_DATABASE_URI)
+    Session = sessionmaker(engine)
+    session = Session()
+    with Session() as session:
+        # Create a new record
+        new_record = TokenFollowings(**record)
+        res =session.add(new_record)
+        res = session.commit()
+    return res
+
+def follow_token():
+    SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg2://{os.getenv('POSTGRES_USER')}:{os.getenv('POSTGRES_PASSWORD')}@{os.getenv('POSTGRES_SERVER')}:{os.getenv('POSTGRES_PORT')}/{os.getenv('POSTGRES_DB')}"
+    engine = create_engine(SQLALCHEMY_DATABASE_URI)
+    Session = sessionmaker(engine)
+    with Session() as session:
+        token_followings = session.query(TokenFollowings).filter(TokenFollowings.follow_status == "active").all()
+        for token_following in token_followings:
+            follow_duration = datetime.now(UTC) - token_following.follow_at.replace(tzinfo=UTC)
+            if follow_duration > timedelta(hours=24):
+                token_following.follow_status = "inactive"
+                session.commit()
+            else:
+                token_info = TokenInfo(token_following.address,network=token_following.network)
+                token_info.get_moralis_data()
+                token_info.scan_quickintel()
+                content = token_info.generate_following_content(token_following)
+                results = post_to_telegram(content,reply_message_id=token_following.message_id)
+                
+    
 if __name__ == "__main__":
-    token_address = "29Gzu9fqBBMXn9u3i1rxWRBdfoWybHd9975Cw53Fpump"
+    follow_token()
+    token_address = "EiKZAWphC65hFKz9kygWgKGcRZUGgdMmH2zSPtbGpump"
     token_info = TokenInfo(token_address,network='solana')
     token_data = {}
     token_info.get_token_price_data_cmc()
@@ -310,7 +386,28 @@ if __name__ == "__main__":
     token_info.scan_quickintel()
     #token_info.scan_goplus()
     content = token_info.generate_content(token_info)
-    post_to_telegram(content)
+    
+    results = post_to_telegram(content)
+    if len(results) > 0:
+        for result in results:
+            market_cap = token_info.moralis_data['token_metadata'].get('fullyDilutedValue')
+            if market_cap is None:
+                market_cap = token_info.moralis_data['token_metadata'].get('fully_diluted_valuation')
+            if market_cap:
+                market_cap = float(market_cap)
+            inserted_record = {
+                "address": token_address,
+                "network": token_info.network,
+                "name": token_info.moralis_data['token_metadata']['name'],
+                "symbol": token_info.moralis_data['token_metadata']['symbol'],
+                "follow_at": datetime.now(UTC),
+                "follow_status":"active",
+                "message_id":result['message_id'],
+                "chat_id": result['chat_id'],
+                "price": token_info.moralis_data['token_price']['usdPrice'],
+                "market_cap": market_cap
+            }
+            insert_to_db(inserted_record)
 
     # df = pd.read_csv("list_token_aMinh.csv")
     # addresses = df["address"].to_list()
