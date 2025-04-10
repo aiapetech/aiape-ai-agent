@@ -134,3 +134,10 @@ Rephrase the following sentence in language {language} with a below personality 
 Sentence:
 {context}
 Rephrased Sentence:"""
+
+
+REPHRASE_X_POST = """The target audience is crypto investor.
+Rephrase the following content with maximum 200 characters to make it more engaging and appealing to the target audience.
+content:
+{context}
+Rephrased Sentence:"""

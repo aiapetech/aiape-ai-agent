@@ -81,6 +81,12 @@ class TokenInfo:
         url = f"https://pro-api.coingecko.com/api/v3/onchain/networks/{network}/tokens/{contract_address}"
         response = requests.get(url, headers=self.cgc_headers)
         return response.json()
+
+    def get_cgc_data(self):
+        url = f"https://pro-api.coingecko.com/api/v3/onchain/networks/{self.network}/tokens/{self.token_address}"
+        response = requests.get(url, headers=self.cgc_headers)
+        self.cgc_data =  response.json()['data']
+
     def get_token_price_data_cmc(self):
         params = {
             "contract_address":self.token_address,
