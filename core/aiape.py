@@ -139,8 +139,8 @@ class AIAPE:
                 pool_created_at = datetime.datetime.strptime(pool['pool_data']['attributes']['pool_created_at'], date_format)
                 pair_age  = datetime.datetime.now().utcnow() - pool_created_at
                 with open('last_posted.txt', 'r') as f:
-                    last_posted = f.read()
-                    if last_posted == pool['pool_data']['attributes']['address']:
+                    last_posted = f.readlines()
+                    if pool['pool_data']['attributes']['address'] in last_posted:
                         continue
                 if not(liquidity and float(liquidity) >= 200000):
                     continue
@@ -152,12 +152,16 @@ class AIAPE:
                     continue
                 if not(pair_age and pair_age.days <=5 and pair_age.seconds >= 60*60):
                     continue
+                if len(last_posted) > 4:
+                    last_posted.pop(0)
+                    last_posted.append(pool['pool_data']['attributes']['address'])
+                else:
+                    last_posted.append(pool['pool_data']['attributes']['address'])
                 with open('last_posted.txt', 'w') as f:
-                    f.write(pool['pool_data']['attributes']['address'])
+                    f.writelines(pool['pool_data']['attributes']['address'])
                 return pool
     
 
-                
 if __name__ == "__main__":
     aiape = AIAPE()
     result = aiape.filter_tokens()
