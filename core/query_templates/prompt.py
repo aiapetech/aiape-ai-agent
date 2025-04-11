@@ -147,5 +147,5 @@ Each post must follow these rules:
 4. If any market cap or price is a number, replace:
     - "thousand" with K
     - "million" with M
-Make the tone sharp and informative, appealing to people actively tracking crypto trends and prices.
+Make the tone sharp, more attractive and informative, appealing to people actively tracking crypto trends and prices.
 Rephrased Sentence:"""
