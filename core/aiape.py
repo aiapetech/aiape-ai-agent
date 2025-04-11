@@ -71,25 +71,25 @@ class AIAPE:
     def get_pool_info(self,total,category):
         pool_data = self.trending_pool[:total]
         results = []
-        narative = category
+        narative = category['attributes']['name']
         for pool in pool_data:
             pool_address = pool['attributes']['address']
             network = pool['relationships']['network']['data']['id']
             base_token_address = pool['relationships']['base_token']['data']['id'].replace(f"{network}_","")
-            
-            token_info = TokenInfo(token_address=base_token_address,network=network)
-            token_info.get_moralis_data()
-            token_info.get_cgc_data()
-            pool_ohlcv = self.get_ohlcv(pool_address,network)
-            results.append({
-                "narrative": narative,
-                "pool_address": pool_address,
-                "base_token_address": base_token_address,
-                "network": network,
-                "pool_data": pool,
-                "ohlcv": pool_ohlcv,
-                "token_info": token_info,
-            })
+            if network in ['solana','eth', '0x1', 'sepolia', '0xaa36a7', 'polygon', '0x89', 'bsc', '0x38', 'bsc testnet', '0x61', 'avalanche', '0xa86a', 'fantom', '0xfa', 'palm', '0x2a15c308d', 'cronos', '0x19', 'arbitrum', '0xa4b1', 'chiliz', '0x15b38', 'chiliz testnet', '0x15b32', 'gnosis', '0x64', 'gnosis testnet', '0x27d8', 'base', '0x2105', 'base sepolia', '0x14a34', 'optimism', '0xa', 'holesky', '0x4268', 'polygon amoy', '0x13882', 'linea', '0xe708', 'moonbeam', '0x504', 'moonriver', '0x505', 'moonbase', '0x507', 'linea sepolia', '0xe705']:
+                token_info = TokenInfo(token_address=base_token_address,network=network)
+                token_info.get_moralis_data()
+                token_info.get_cgc_data()
+                pool_ohlcv = self.get_ohlcv(pool_address,network)
+                results.append({
+                    "narrative": narative,
+                    "pool_address": pool_address,
+                    "base_token_address": base_token_address,
+                    "network": network,
+                    "pool_data": pool,
+                    "ohlcv": pool_ohlcv,
+                    "token_info": token_info,
+                })
         return results
             #content = self.generate_content(token_info,narative,pool_ohlcv)
             #post_to_twitter(content)
@@ -106,7 +106,7 @@ class AIAPE:
         vol_up = int((ohlcv[1][-1] / ohlcv[-1][-1])*100)
         marketcap = token_info.cgc_data['attributes']['fdv_usd']
         content = f"""
-        Trending on #{narrative}, ${token_symbol} showing signs, vol up {vol_up}% past 24h, mc ${marketcap}, built on {token_info.network}, contract {token_info.token_address}, looks like something’s brewing right now.      
+        Trending on {narrative}, ${token_symbol} showing signs, vol up {vol_up}% past 24h, mc ${marketcap}, built on {token_info.network}, contract {token_info.token_address}, looks like something’s brewing right now.      
         """
         post_content = self.rephrase_content(content)
         return post_content
@@ -129,7 +129,7 @@ class AIAPE:
         categories = aiape.get_cgc_categories()
         for category in categories:
             aiape.get_top_trending_pool(category['id'],hours=6)
-            pool_data = aiape.get_pool_info(5,category['id'])
+            pool_data = aiape.get_pool_info(10,category)
             for pool in pool_data:
                 liquidity = pool['token_info'].moralis_data['token_analytics'].get('totalLiquidityUsd')
                 fdv = pool['token_info'].moralis_data['token_analytics'].get('totalFullyDilutedValuation')
@@ -138,16 +138,22 @@ class AIAPE:
                 date_format = "%Y-%m-%dT%H:%M:%SZ"
                 pool_created_at = datetime.datetime.strptime(pool['pool_data']['attributes']['pool_created_at'], date_format)
                 pair_age  = datetime.datetime.now().utcnow() - pool_created_at
+                with open('last_posted.txt', 'r') as f:
+                    last_posted = f.read()
+                    if last_posted == pool['pool_data']['attributes']['address']:
+                        continue
                 if not(liquidity and float(liquidity) >= 200000):
                     continue
                 if not(fdv and 500000 <= float(fdv) <= 3000000):
                     continue
-                if not(buy_volume_24h and float(buy_volume_24h) >= 1000000):
+                if not(buy_volume_24h and float(buy_volume_24h) >= 50000):
                     continue
-                if not(buy_volume_1h and float(buy_volume_1h) >= 100000):
+                if not(buy_volume_1h and float(buy_volume_1h) >= 50000):
                     continue
                 if not(pair_age and pair_age.days <=5 and pair_age.seconds >= 60*60):
                     continue
+                with open('last_posted.txt', 'w') as f:
+                    f.write(pool['pool_data']['attributes']['address'])
                 return pool
     
 

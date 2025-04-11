@@ -137,7 +137,15 @@ Rephrased Sentence:"""
 
 
 REPHRASE_X_POST = """The target audience is crypto investor.
-Rephrase the following content with maximum 200 characters to make it more engaging and appealing to the target audience.
-content:
+Rephrase the following x short posts targeted at crypto investors.
+Post:
 {context}
+Each post must follow these rules:
+1. Maximum 200 characters
+2. No emoji
+3. Use a new line for each sentence
+4. If any market cap or price is a number, replace:
+    - "thousand" with K
+    - "million" with M
+Make the tone sharp and informative, appealing to people actively tracking crypto trends and prices.
 Rephrased Sentence:"""
