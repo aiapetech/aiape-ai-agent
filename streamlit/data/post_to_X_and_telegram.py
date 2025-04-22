@@ -42,9 +42,9 @@ def rephrase_content(content,persona=None,limit=2):
     settings = ChainSetting()
     processor = PostProcessor(settings, postgres_engine)
     if persona:
-        personas = pd.read_sql(f"SELECT p.*,t.language from post_personas p left join twitter_credentials t on p.twitter_app_id = t.app_id where p.username = '{persona}'", postgres_engine)
+        personas = pd.read_sql(f"SELECT p.*,t.language,t.username x_username from post_personas p left join twitter_credentials t on p.twitter_app_id = t.id::TEXT where p.username = '{persona}'", postgres_engine)
     else:
-        personas = pd.read_sql(f"SELECT p.*,t.language from post_personas p left join twitter_credentials t on p.twitter_app_id = t.app_id where p.twitter_app_id is not null", postgres_engine)
+        personas = pd.read_sql(f"SELECT p.*,t.language,t.username x_username from post_personas p left join twitter_credentials t on p.twitter_app_id = t.id::TEXT where p.twitter_app_id is not null order by id", postgres_engine)
     st.session_state.rephrased_content = personas.to_dict(orient='records')
     for record in  st.session_state.rephrased_content:
         record['rephrased_content'] = processor.add_persona_to_content(content, record)
@@ -62,7 +62,7 @@ def post_to_x_and_telegram(channels_option):
     if 'X' in channels_option:
         for record in st.session_state.rephrased_content:
             if record['posted']:
-                twitter_credential = df_twitter_credentials[df_twitter_credentials.app_id == record['twitter_app_id']].to_dict(orient='records')[0]
+                twitter_credential = df_twitter_credentials[df_twitter_credentials.id == int(record['twitter_app_id'])].to_dict(orient='records')[0]
                 res = post_to_twitter_with_credentials(record['rephrased_content'], twitter_credential['consumer_key'], twitter_credential['consumer_secret'], twitter_credential['access_token'], twitter_credential['access_secret'],media_path=record.get('image_path'))
             if not res: 
                 st.error("Failed to post to X and Telegram.")
@@ -124,7 +124,7 @@ if st.session_state.rephrased:
     with col1:
         st.text("Rephrased Content")
     with col2:
-        st.text("Images")
+        st.text("Account")
     with col3:
         st.text("Select")
     for record in st.session_state.rephrased_content:
@@ -132,15 +132,16 @@ if st.session_state.rephrased:
         with col1:
             st.text_area(label= record['username'],value=record['rephrased_content'],key=f"{record['username']}_content",on_change=update_rephrased_content,label_visibility="hidden",kwargs={"username":record['username']})
         with col2:
-            record['image'] = st.file_uploader(
-                record['username'],key=f"{record['username']}_images", accept_multiple_files=False, type=["jpg", "png", "jpeg"],label_visibility="hidden"
-            )
-            if record['image']:
-                local_path, public_url = upload_images(record['image'])
-                record['image_path'] = local_path
-                record['image_public_url'] = public_url
-                st.success("Images uploaded successfully.")
-                st.image(st.session_state[f"{record['username']}_images"])
+            # record['image'] = st.file_uploader(
+            #     record['username'],key=f"{record['username']}_images", accept_multiple_files=False, type=["jpg", "png", "jpeg"],label_visibility="hidden"
+            # )
+            # if record['image']:
+            #     local_path, public_url = upload_images(record['image'])
+            #     record['image_path'] = local_path
+            #     record['image_public_url'] = public_url
+            #     st.success("Images uploaded successfully.")
+            #     st.image(st.session_state[f"{record['username']}_images"])
+            st.text(f"https://x.com/{record['x_username'].lower()}")
         with col3:
             record['posted'] = st.checkbox("post",key=f"{record['username']}_post",label_visibility="hidden")
 
