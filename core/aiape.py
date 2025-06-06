@@ -106,21 +106,30 @@ class AIAPE:
         token_symbol = token_info.cgc_data['attributes']['symbol']
         vol_up = int((ohlcv[1][-1] / ohlcv[-1][-1])*100)
         marketcap = token_info.cgc_data['attributes']['fdv_usd']
+
         content = f"""
         Trending on {narrative}, ${token_symbol} showing signs, vol up {vol_up}% past 24h, mc ${marketcap}, built on {token_info.network}, contract {token_info.token_address}, looks like something’s brewing right now.      
         """
         post_content = self.rephrase_content(content)
         return post_content
-    def rephrase_content(self, content):
+    def generate_ai_content(self, token_info,narrative,ohlcv):
+        token_symbol = token_info.cgc_data['attributes']['symbol']
+        volume_increase = int((ohlcv[1][-1] / ohlcv[-1][-1])*100)
+        marketcap = token_info.cgc_data['attributes']['fdv_usd']
         prompt = PromptTemplate(
             template = prompt_template.REPHRASE_X_POST,
             input_variables=["context"],
             partial_variables={
-                "content":content
+                "token_symbol": token_symbol,
+                "narrative": narrative,
+                "volume_increase": volume_increase,
+                "token_address": token_info.token_address,
+                "network": token_info.network,
+                "market_cap": marketcap
                 }
             )
         chain = chain = prompt | self.llm
-        res = chain.invoke({"context": content})
+        res = chain.invoke({"context": None})
         if isinstance(res,dict):
             return res['output_text']
         else:
@@ -130,7 +139,7 @@ class AIAPE:
         categories = aiape.get_cgc_categories()
         for category in categories:
             aiape.get_top_trending_pool(category['id'],hours=6)
-            pool_data = aiape.get_pool_info(10,category)
+            pool_data = aiape.get_pool_info(15,category)
             for pool in pool_data:
                 liquidity = pool['token_info'].moralis_data['token_analytics'].get('totalLiquidityUsd')
                 fdv = pool['token_info'].moralis_data['token_analytics'].get('totalFullyDilutedValuation')
@@ -143,7 +152,7 @@ class AIAPE:
                     last_posted = json.load(f)
                     if pool['pool_data']['attributes']['address'] in last_posted['pool_addresses']:
                         continue
-                if not(liquidity and float(liquidity) >= 200000):
+                if not(liquidity and float(liquidity) >= 150000):
                     continue
                 if not(fdv and 500000 <= float(fdv) <= 3000000):
                     continue
@@ -166,6 +175,6 @@ class AIAPE:
 if __name__ == "__main__":
     aiape = AIAPE()
     result = aiape.filter_tokens()
-    content = aiape.generate_content(result['token_info'],result['narrative'],result['ohlcv'])
-    post_to_twitter(content)
+    content = aiape.generate_ai_content(result['token_info'],result['narrative'],result['ohlcv'])
+    post_to_twitter(content,env="prod")
     # aiape.get_top_trending_pool('stablecoins')

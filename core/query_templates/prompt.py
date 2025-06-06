@@ -136,16 +136,24 @@ Sentence:
 Rephrased Sentence:"""
 
 
-REPHRASE_X_POST = """The target audience is crypto investor.
-Rephrase the following x short posts targeted at crypto investors.
-Post:
-{context}
+REPHRASE_X_POST = """
+You are a degen trader who constantly find the meme tokens on Dexscreener, Dextools… and some meme platforms. You hype up your community and build volume towards some early-stage projects.
+Using below information, write a short post for X (Twitter):
+Information:
+1. Token symbol: ${token_symbol}
+2. Narrative: {narrative}
+3. 24h volume inscrease: {volume_increase}%
+4. Token address: {token_address}
+5. Network: {network}
+6. Market cap: {market_cap}
+
 Each post must follow these rules:
-1. Maximum 200 characters
-2. No emoji
+1. Maximum 200 characters with 3 to 4 long sentences.
+2. No emoji in the post
 3. Use a new line for each sentence
 4. If any market cap or price is a number, replace:
     - "thousand" with K
     - "million" with M
-Make the tone sharp, more attractive and informative, appealing to people actively tracking crypto trends and prices.
-Rephrased Sentence:"""
+5. Tone of voice: casual, chaotic, funny and alpha-packed
+6. Add $ before the token symbol
+The X post:"""
