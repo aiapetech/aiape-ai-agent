@@ -1,4 +1,4 @@
-import pymongo
+# import pymongo
 from core.config import settings
 
 def init_mongo():

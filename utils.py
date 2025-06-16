@@ -6,7 +6,7 @@ from typing import Any
 
 #import emails  # type: ignore
 import jwt
-from jinja2 import Template
+# from jinja2 import Template
 from jwt.exceptions import InvalidTokenError
 
 from core import security

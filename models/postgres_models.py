@@ -33,7 +33,7 @@ class ItemBase(BaseSQLModel):
 
 class UserBase(BaseSQLModel):
     __table_args__ = {'extend_existing': True}
-    email: EmailStr = Field(unique=True, index=True, max_length=255)
+    #email: EmailStr = Field(unique=True, index=True, max_length=255)
     is_active: bool = True
     is_superuser: bool = False
     full_name: str | None = Field(default=None, max_length=255)
@@ -158,6 +158,21 @@ class TwitterCredentials(BaseSQLModel,table=True):
     username: str =Field(default=None,nullable=True)
     language: str =Field(default=None,nullable=True)
 
+
+class TwitterReply(BaseSQLModel,table=True):
+    __tablename__ = "twitter_reply"
+    tweet_id: str = Field(default=None,nullable=True)
+    conversation_id: str = Field(default=None,nullable=True)
+    tweet_text: str = Field(default=None,nullable=True)
+    reply_text: str = Field(default=None,nullable=True)
+    tweet_by: str = Field(default=None,nullable=True)
+    tweet_at: datetime
+    reply_at: datetime = Field(default=None,nullable=True)
+    reply_status: str =Field(default=False,nullable=True)
+    x_user_id: str =Field(default=None,nullable=True)
+    x_username: str =Field(default=None,nullable=True)
+    
+
 class TokenFollowings(BaseSQLModel,table=True):
     __tablename__ = "token_followings"
     address: str =Field(default=None,nullable=True)
@@ -170,6 +185,12 @@ class TokenFollowings(BaseSQLModel,table=True):
     follow_status: str =Field(default=None,nullable=True)
     price: float =Field(default=None,nullable=True)
     market_cap: float =Field(default=None,nullable=True)
+
+class TokenFollowings(BaseSQLModel,table=True):
+    __tablename__ = "ai_logs"
+    action: str =Field(default=None,nullable=True)
+    description: str =Field(default=None,nullable=True)
+
 
 class User(UserBase, table=True):
     #id: uuid.UUID = Field(default_factory=uuid.uuid4, primary_key=True)
@@ -191,39 +212,39 @@ class UserCreate(UserBase):
     password: str = Field(min_length=8, max_length=40)
 
 
-class UserRegister(BaseSQLModel):
-    email: EmailStr = Field(max_length=255)
-    password: str = Field(min_length=8, max_length=40)
-    full_name: str | None = Field(default=None, max_length=255)
+# class UserRegister(BaseSQLModel):
+#     email: EmailStr = Field(max_length=255)
+#     password: str = Field(min_length=8, max_length=40)
+#     full_name: str | None = Field(default=None, max_length=255)
 
 
 # Properties to receive via API on update, all are optional
-class UserUpdate(UserBase):
-    email: EmailStr | None = Field(default=None, max_length=255)  # type: ignore
-    password: str | None = Field(default=None, min_length=8, max_length=40)
+# class UserUpdate(UserBase):
+#     email: EmailStr | None = Field(default=None, max_length=255)  # type: ignore
+#     password: str | None = Field(default=None, min_length=8, max_length=40)
 
 
-class UserUpdateMe(BaseSQLModel):
-    full_name: str | None = Field(default=None, max_length=255)
-    email: EmailStr | None = Field(default=None, max_length=255)
+# class UserUpdateMe(BaseSQLModel):
+#     full_name: str | None = Field(default=None, max_length=255)
+#     email: EmailStr | None = Field(default=None, max_length=255)
 
 
-class UpdatePassword(BaseSQLModel):
-    current_password: str = Field(min_length=8, max_length=40)
-    new_password: str = Field(min_length=8, max_length=40)
+# class UpdatePassword(BaseSQLModel):
+#     current_password: str = Field(min_length=8, max_length=40)
+#     new_password: str = Field(min_length=8, max_length=40)
 
-# Database model, database table inferred from class name
-
-
-
-# Properties to return via API, id is always required
-class UserPublic(UserBase):
-    id: uuid.UUID
+# # Database model, database table inferred from class name
 
 
-class UsersPublic(BaseSQLModel):
-    data: list[UserPublic]
-    count: int
+
+# # Properties to return via API, id is always required
+# class UserPublic(UserBase):
+#     id: uuid.UUID
+
+
+# class UsersPublic(BaseSQLModel):
+#     data: list[UserPublic]
+#     count: int
 
 
 
