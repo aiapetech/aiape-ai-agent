@@ -14,7 +14,40 @@ from langchain_openai import ChatOpenAI
 from langchain_core.prompts import PromptTemplate
 from core.query_templates import prompt as prompt_template
 import json
+import psycopg2
 
+def log_action(action_type, description):
+    now = datetime.datetime.utcnow().isoformat() + "Z"
+    action = {
+        "created_at": now,
+        "updated_at": now,
+        "action_type": action_type,
+        "description": description
+    }
+    # Insert into ai_logs table in Postgres
+    try:
+## Local Postgres
+        conn = psycopg2.connect(
+            dbname=os.getenv("POSTGRES_DB"),
+            user=os.getenv("POSTGRES_USER"),
+            password=os.getenv("POSTGRES_PASSWORD"),
+            host=os.getenv("POSTGRES_SERVER"),
+            port=os.getenv("POSTGRES_PORT")
+        )
+        cur = conn.cursor()
+        cur.execute(
+            """
+            INSERT INTO ai_logs (created_at, updated_at, action, description)
+            VALUES (%s, %s, %s, %s)
+            """,
+            (action["created_at"], action["updated_at"], action["action_type"], action["description"])
+        )
+        conn.commit()
+        cur.close()
+        conn.close()
+    except Exception as e:
+        print(f"Failed to log action to ai_logs: {e}")
+    return 
 class AIAPE:
     def __init__(self):
         self.moralis_api_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjgxZTY1Yjk4LTc5OGMtNDZlOS04Yjg2LTYzNTc5ZTgzMzBiMSIsIm9yZ0lkIjoiNDIyMDcxIiwidXNlcklkIjoiNDM0MDgxIiwidHlwZUlkIjoiZTU2MGEwNmQtMWUzYS00OTY3LWFlNTMtMjc3YzBkMjgxMmM2IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3MzQ4MzY1NzgsImV4cCI6NDg5MDU5NjU3OH0.HRZOSN3-iN5hcWbIot444zcoY5_BIfD5322cuZWDCUE'
@@ -36,6 +69,7 @@ class AIAPE:
         url = "https://pro-api.coingecko.com/api/v3/onchain/categories?sort=h24_tx_count_desc"
         response = requests.get(url, headers=self.cgc_headers)
         self.top_cgc_categories = response.json()['data']
+        log_action( "get_cgc_categories", "Fetched top CGC categories")
         return self.top_cgc_categories
     
     def get_top_trending_pool(self, category, hours=1):
@@ -53,8 +87,10 @@ class AIAPE:
                 "per_page": 1,
                 "page": 1
             }
+        log_action("get_top_trending_pool", f"Fetched top trending pool for category: {category}, hours: {hours}")
         response = requests.get(url, headers=self.cgc_headers,params=params)
         self.trending_pool = response.json()['data']
+        
         return self.trending_pool
 
     def get_ohlcv(self,pool_address,network,interval='1'):
@@ -79,7 +115,7 @@ class AIAPE:
             base_token_address = pool['relationships']['base_token']['data']['id'].replace(f"{network}_","")
             if network in ['solana','eth', '0x1', 'sepolia', '0xaa36a7', 'polygon', '0x89', 'bsc', '0x38', 'bsc testnet', '0x61', 'avalanche', '0xa86a', 'fantom', '0xfa', 'palm', '0x2a15c308d', 'cronos', '0x19', 'arbitrum', '0xa4b1', 'chiliz', '0x15b38', 'chiliz testnet', '0x15b32', 'gnosis', '0x64', 'gnosis testnet', '0x27d8', 'base', '0x2105', 'base sepolia', '0x14a34', 'optimism', '0xa', 'holesky', '0x4268', 'polygon amoy', '0x13882', 'linea', '0xe708', 'moonbeam', '0x504', 'moonriver', '0x505', 'moonbase', '0x507', 'linea sepolia', '0xe705']:
                 token_info = TokenInfo(token_address=base_token_address,network=network)
-                token_info.get_moralis_data()
+                #token_info.get_moralis_data()
                 token_info.get_cgc_data()
                 pool_ohlcv = self.get_ohlcv(pool_address,network)
                 results.append({
@@ -130,6 +166,7 @@ class AIAPE:
             )
         chain = chain = prompt | self.llm
         res = chain.invoke({"context": None})
+        log_action("generate_ai_content", f"Generated AI analysis for token: {token_symbol}, narrative: {narrative}")
         if isinstance(res,dict):
             return res['output_text']
         else:
@@ -141,10 +178,9 @@ class AIAPE:
             aiape.get_top_trending_pool(category['id'],hours=6)
             pool_data = aiape.get_pool_info(15,category)
             for pool in pool_data:
-                liquidity = pool['token_info'].moralis_data['token_analytics'].get('totalLiquidityUsd')
-                fdv = pool['token_info'].moralis_data['token_analytics'].get('totalFullyDilutedValuation')
-                buy_volume_24h = pool['token_info'].moralis_data['token_analytics'].get('totalBuyVolume').get('24h')
-                buy_volume_1h = pool['token_info'].moralis_data['token_analytics'].get('totalBuyVolume').get('1h')
+                log_action("apply_logical_scoring", f"Apply business logic scoring pool: {pool['pool_data']['attributes']['address']}")
+                liquidity = pool['pool_data']['attributes']['h24_volume_usd']
+                fdv = pool['pool_data']['attributes']['fdv_usd']
                 date_format = "%Y-%m-%dT%H:%M:%SZ"
                 pool_created_at = datetime.datetime.strptime(pool['pool_data']['attributes']['pool_created_at'], date_format)
                 pair_age  = datetime.datetime.now().utcnow() - pool_created_at
@@ -156,10 +192,6 @@ class AIAPE:
                     continue
                 if not(fdv and 500000 <= float(fdv) <= 3000000):
                     continue
-                if not(buy_volume_24h and float(buy_volume_24h) >= 50000):
-                    continue
-                if not(buy_volume_1h and float(buy_volume_1h) >= 50000):
-                    continue
                 if not(pair_age and pair_age.days <=5 and pair_age.seconds >= 60*60):
                     continue
                 if len(last_posted) > 4:
@@ -170,7 +202,7 @@ class AIAPE:
                 with open('last_posted.json', 'w') as f:
                     f.write(json.dumps(last_posted))
                 return pool
-    
+
 
 if __name__ == "__main__":
     aiape = AIAPE()
